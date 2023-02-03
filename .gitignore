@@ -1,4 +1,4 @@
 /vendor/
 public/covers/
-/app/config/config.php
+app/config/config.php
 
