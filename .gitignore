@@ -1,3 +1,14 @@
-/vendor/
-/public/
-
+.vscode
+.DS_Store
+public/covers/
+public/social/
+public/uploads/
+public/covers/
+*.mp3
+app/config/config.php
+z-dump/
+composer.json
+conposer.lock
+rector.php
+toDolist.md
+vendor/
