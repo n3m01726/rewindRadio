@@ -6,9 +6,8 @@ public/uploads/
 public/covers/
 *.mp3
 app/config/config.php
-z-dump/
 composer.json
-conposer.lock
+composer.lock
 rector.php
 toDolist.md
-vendor/
+/vendor/
