@@ -27,31 +27,6 @@ include('../../ressources/lang/lang-'.$language.'.php');
         </div>
         <div class="card-body">
             <form method="POST" action="setup.php">
-                <div class="mb-4" style="background-color:#eaeaea; padding:15px;">
-<p>Avant d'installer ce script, vous devez installer quelques dépendances.</p>
-<ol>
-    <li>Composer <br>
-        L'installation de composer est très simple (dans les 2 cas il faut avoir la commande php disponible dans le terminal) :
-        <ul>
-        <li>Si vous êtes sur Windows, il vous suffit de télécharger le fichier composer-setup.exe qui ajoutera automatiquement la commande composer au PATH de votre système.</li>
-        <li>Sur UNIX il faut télécharger composer.phar en tapant la ligne <code>
-        curl -sS https://getcomposer.org/installer | php
-</code>  dans votre terminal. Vous pourrez ensuite éxécuter composer en faisant <code> php composer.phar</code></li>
-        Pour plus d'infos, consulter <a href="https://grafikart.fr/tutoriels/composer-480" target="_blank" rel="noopener noreferrer">ce tutoriel(fr)</a> ou la <a href="https://getcomposer.org/" target="_blank" rel="noopener noreferrer">documentation Composer(en)</a>
-    </ul>
-    </li>
-    <li>AltoRouter <pre>composer require altorouter/altorouter</pre></li>
-    <li>FakerPHP <pre>composer require fakerphp/faker</pre> </li>
-</ol>
-
-
-
-
-
-
-
-</div>
-
                 <div class="container">
                     <p><?= $lang['intro']; ?></p>
                     <input type="hidden" name="language" value="<?php echo $language; ?>">

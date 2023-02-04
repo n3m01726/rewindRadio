@@ -371,18 +371,22 @@ echo "Added a category for the website events.<br>";
 
     ('Introducing our new product line', 'We are thrilled to announce the launch of our new product line. Our products are designed to be innovative, high-quality, and affordable. Check them out now!', NOW(), '1', 'introducing-our-new-product-line', 'pexels-bade-saba-13945391.jpg',1,1,1,1,0),
 
-    ('Tips for working from home', 'With many people now working from home due to the COVID-19 pandemic, we thought we would share some tips for making the most of your home office. Stay productive, healthy, and happy while working from home!', NOW(), '1', 'tips-for-working-from-home', 'pexels-nati-14642654.jpg',1,1,1,1,0);";
+    ('Tips for working from home', 'With many people now working from home due to the COVID-19 pandemic, we thought we would share some tips for making the most of your home office. Stay productive, healthy, and happy while working from home!', NOW(), '1', 'tips-for-working-from-home', 'pexels-nati-14642654.jpg',1,1,1,1,0),
+
+    ('Bénévolat chez rewindRadio', 'test volunteer page', NOW(), '1', 'benevolat-chez-rewindradio', 'pexels-nati-14642654.jpg',1,1,1,1,0),
+
+    ('Politique de confidentialité', 'privacy policiy text', NOW(), '1', 'privacy-policy', 'pexels-nati-14642654.jpg',1,1,1,1,0);";
+    
     $conn->exec($sql);
     echo "Added fake data to the post table.<br>";
-/* $sql = "INSERT INTO ".$prefix."_users( username, PASSWORD, avatar, last_login, member_since, bio, job_title, sm_facebook, sm_twitter, sm_instagram, sm_twitch, sm_tiktok, sm_discord, first_name, last_name, nice_nickname, email, background_image, fav_quote, is_fake ) 
-VALUES ('','$firstPassword','AvatarMaker03.png',NULL,'2022-03-06 15:37:26','My bio','Founder & CEO','rewindRadio','rewindRadio','rewindRadio','rewindRadio','rewindRadio','Osakari','Yasuhiro','Osakari Yasuhiro','$firstUserEmail','background_image.jpg','Be yourself; everyone else is already taken. ― Oscar Wilde','0')";*/
+$sql = "INSERT INTO ".$prefix."_users( username, PASSWORD, avatar, last_login, member_since, bio, job_title, sm_facebook, sm_twitter, sm_instagram, sm_twitch, sm_tiktok, sm_discord, first_name, last_name, nice_nickname, email, background_image, fav_quote, is_fake) 
 
-$sql = "INSERT INTO ".$prefix."_users( username, PASSWORD, avatar, last_login, member_since, bio, job_title, sm_facebook, sm_twitter, sm_instagram, sm_twitch, sm_tiktok, sm_discord, first_name, last_name, nice_nickname, email, background_image, fav_quote, is_fake ) 
-VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker03.png', NULL, NULL, 'My bio', 'Founder & CEO', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'Osakari', 'Yasuhiro', 'Osakari Yasuhiro', '$firstUserEmail', 'background_image', 'Be yourself. Everyone else is already taken. ― Oscar Wilde', 0);";
+VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker03.png', NULL, NULL, 'My bio', 'Founder & CEO', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'Osakari', 'Yasuhiro', 'Osakari Yasuhiro', '$firstUserEmail' , 'background_image.jpg', 'Be yourself. Everyone else is already taken. ― Oscar Wilde', 0),
+
+('Gallo2002', 'Iethue9ohph', 'AvatarMaker02.png', '2016-02-09 21:12:40', '2016-01-10 14:52:54', 'Certified explorer. Beer scholar. Food expert. Bacon lover. Creator. Troublemaker. Music junkie.', 'Directrice de création', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'Jennifer', 'Galloway', 'Jennifer Galloway', 'gallo2002@example.com', 'background_image', 'Create with the heart; build with the mind.', 0),";
 
 $conn->exec($sql);
-
-    echo "Added fake data to the news_user table. Don't worry, it won't mess with rdj users table.<br>";
+echo "Added fake data to the news_user table. Don't worry, it won't mess with rdj users table.<br>";
 
     $sql = "INSERT INTO " . $prefix . "_categories (name, slug) VALUES('News', 'news'), ('Tech', 'tech'), ('Entertainment', 'entertainment')";
     $conn->exec($sql);
@@ -419,7 +423,7 @@ $conn->exec($sql);
     file_put_contents('../../app/config/config.php', $config, FILE_APPEND);
 
     // Append the site constants to the constants.php file
-    $constants = "define('SITE_NAME', '{$site_name}');\n";
+    $constants = "\ndefine('SITE_NAME', '{$site_name}');\n";
     $constants .= "define('LANG', '{$language}');\n";
     file_put_contents('../../app/config/constants.php', $constants, FILE_APPEND);
     echo "Setup completed successfully!</pre>

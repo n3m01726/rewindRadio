@@ -56,5 +56,6 @@ define('VIEW_PATH', '../ressources/views/');
 define('RESSOURCES_PATH', '../ressources/');
 define('CONFIG_PATH', '../app/config/');
 define('UPLOAD_PATH', '/public/uploads/');
+
 define('SITE_NAME', 'rewindRadio');
 define('LANG', 'fr');
