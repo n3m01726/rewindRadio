@@ -4,7 +4,7 @@ include('classes/bd.classes.php');
 
 
 $target_dir = "../../public/uploads/";
-$featured_image = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$featured_image = $target_dir . basename((string) $_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($featured_image,PATHINFO_EXTENSION));
 
@@ -26,7 +26,7 @@ if(isset($_POST["submit"])) {
   }
 
   // Check file size
-  if ($_FILES["fileToUpload"]["size"] > 8000000) {
+  if ($_FILES["fileToUpload"]["size"] > 8_000_000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
   }
@@ -44,7 +44,7 @@ if(isset($_POST["submit"])) {
   // if everything is ok, try to upload file
   } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $featured_image)) {
-      echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+      echo "The file ". basename( (string) $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } else {
       echo "Sorry, there was an error uploading your file.";
     }
@@ -62,7 +62,7 @@ $db_conx_rdj = $db->connect();
 }
 
 // Traitement des données du formulaire
-$title = htmlspecialchars($_POST['title']);
+$title = htmlspecialchars((string) $_POST['title']);
 $content = $_POST['content'];
 $slug = strtolower(str_replace(' ','-',$title));
 $date_posted = date("Y-m-d");

@@ -38,12 +38,12 @@ WHERE id_subcat = " . $id . " ORDER BY title DESC LIMIT 20;");
           while ($donnees = $reponse->fetch()) {
             $accents = ["&", "è"];
             $lettre = ["&amp", "e"];
-            $showArtist = str_replace($accents, $lettre, $donnees['artist']);
-            $showTrack = str_replace($accents, $lettre, $donnees['title']);
+            $showArtist = str_replace($accents, $lettre, (string) $donnees['artist']);
+            $showTrack = str_replace($accents, $lettre, (string) $donnees['title']);
 
             // N'oubliez pas d'uploader vos fichiers mp3 sur votre serveur web!  
             $path = $donnees['path'];
-            $getStreamURL = str_replace(LOCAL_PODCASTS_FOLDER, REMOTE_PODCASTS_FOLDER, $path);
+            $getStreamURL = str_replace(LOCAL_PODCASTS_FOLDER, REMOTE_PODCASTS_FOLDER, (string) $path);
         ?>
             <div class="card mb-3" style="max-width: 100%">
               <div class="row g-0">

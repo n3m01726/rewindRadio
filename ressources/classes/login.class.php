@@ -30,7 +30,7 @@ function login($username, $password, $db_conx_rdj) {
     // Vérifiez les informations de connexion de l'utilisateur
     $query = "SELECT * FROM ".PREFIX."_users WHERE username = :username AND password = :password";
     $statement = $db_conx_rdj->prepare($query);
-    $statement->execute(array(':username' => $username, ':password' => $password));
+    $statement->execute([':username' => $username, ':password' => $password]);
     $row = $statement->fetch(PDO::FETCH_ASSOC);
 
     // Si les informations de connexion sont valides

@@ -103,7 +103,8 @@ public static function get_scriptfiles() {
         include(RESSOURCES_PATH.'classes/static.class.php');
     }
 public static function noScriptInstalled() {  
-    define('LANG', substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
+    $lang = [];
+    define('LANG', substr((string) $_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
         include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
         echo'
         <body class="bg-dark">

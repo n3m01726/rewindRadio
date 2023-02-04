@@ -130,7 +130,7 @@ ORDER BY ".PREFIX."_posts.date_posted ASC
                       <div>
                         <div class="mb-4">
                         <small><?php 
-                        Text::cutText(preg_replace('/\[(.*?)\]/', '', $donnees['content']), 100) ?></small>
+                        Text::cutText(preg_replace('/\[(.*?)\]/', '', (string) $donnees['content']), 100) ?></small>
                         </div>
                       </div>
                       <hr>

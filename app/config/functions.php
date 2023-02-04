@@ -1,9 +1,12 @@
 <?php
-include(RESSOURCES_PATH.'classes/common.class.php');
+include(RESSOURCES_PATH.'classes/database.class.php');
+include(RESSOURCES_PATH.'classes/date.classes.php');
+include(RESSOURCES_PATH.'classes/layout.class.php');
 include(RESSOURCES_PATH.'classes/songs.class.php');
 include(RESSOURCES_PATH.'classes/login.class.php');
 include(RESSOURCES_PATH.'classes/news.class.php');
 include(RESSOURCES_PATH.'classes/shortcodes.class.php');
 include(RESSOURCES_PATH.'classes/static.class.php');
 include(RESSOURCES_PATH.'classes/team.class.php');
+include(RESSOURCES_PATH.'classes/text.classes.php');
 ?>

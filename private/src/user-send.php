@@ -4,7 +4,7 @@ include('src/classes/bd.classes.php');
 
 
 $target_dir = "../public/uploads/";
-$featured_image = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$featured_image = $target_dir . basename((string) $_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($featured_image,PATHINFO_EXTENSION));
 
@@ -26,7 +26,7 @@ if(isset($_POST["submit"])) {
   }
 
   // Check file size
-  if ($_FILES["fileToUpload"]["size"] > 8000000) {
+  if ($_FILES["fileToUpload"]["size"] > 8_000_000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
   }
@@ -44,7 +44,7 @@ if(isset($_POST["submit"])) {
   // if everything is ok, try to upload file
   } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $featured_image)) {
-      echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+      echo "The file ". basename( (string) $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } else {
       echo "Sorry, there was an error uploading your file.";
     }
@@ -62,22 +62,22 @@ $db_conx_rdj = $db->connect();
 }
 
 // Traitement des données du formulaire
-$username= htmlspecialchars($_POST['username']);
-$password= htmlspecialchars($_POST['password']);
+$username= htmlspecialchars((string) $_POST['username']);
+$password= htmlspecialchars((string) $_POST['password']);
 $avatar = $_FILES["fileToUpload"]["name"];
-$first_name = htmlspecialchars($_POST['first_name']);
-$last_name = htmlspecialchars($_POST['last_name']);
-$nice_nickname = htmlspecialchars($_POST['nice_nickname']);
-$email = htmlspecialchars($_POST['email']);
-$bio = htmlspecialchars($_POST['bio']);
-$job_title = htmlspecialchars($_POST['job_title']);
-$sm_facebook = htmlspecialchars($_POST['sm_facebook']);
-$sm_instagram = htmlspecialchars($_POST['sm_instagram']);
-$sm_twitter = htmlspecialchars($_POST['sm_twitter']);
-$sm_twitch = htmlspecialchars($_POST['sm_twitch']);
-$sm_tiktok = htmlspecialchars($_POST['sm_tiktok']);
-$sm_snapchat = htmlspecialchars($_POST['sm_snapchat']);
-$sm_discord = htmlspecialchars($_POST['sm_discord']);
+$first_name = htmlspecialchars((string) $_POST['first_name']);
+$last_name = htmlspecialchars((string) $_POST['last_name']);
+$nice_nickname = htmlspecialchars((string) $_POST['nice_nickname']);
+$email = htmlspecialchars((string) $_POST['email']);
+$bio = htmlspecialchars((string) $_POST['bio']);
+$job_title = htmlspecialchars((string) $_POST['job_title']);
+$sm_facebook = htmlspecialchars((string) $_POST['sm_facebook']);
+$sm_instagram = htmlspecialchars((string) $_POST['sm_instagram']);
+$sm_twitter = htmlspecialchars((string) $_POST['sm_twitter']);
+$sm_twitch = htmlspecialchars((string) $_POST['sm_twitch']);
+$sm_tiktok = htmlspecialchars((string) $_POST['sm_tiktok']);
+$sm_snapchat = htmlspecialchars((string) $_POST['sm_snapchat']);
+$sm_discord = htmlspecialchars((string) $_POST['sm_discord']);
 
 
 // Requête SQL d'insertion

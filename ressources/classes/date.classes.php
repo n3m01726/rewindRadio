@@ -9,7 +9,7 @@ class Date {
 }
 
 public static function giveMethehour($hourset) {
-    $phpdate = strtotime($hourset);
+    $phpdate = strtotime((string) $hourset);
     $mysqldate = date('H:i', $phpdate);
     echo "<span class='timeSet'>" . $mysqldate . "</span>";
     } 

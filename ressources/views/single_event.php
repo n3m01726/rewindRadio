@@ -7,7 +7,7 @@ $db = new RewindRadio\Database();
 $db_conx_rdj = $db->connect();
 // Prepare and execute the SELECT query
 $stmt = $db_conx_rdj->prepare("SELECT * FROM ". PREFIX ."_posts LEFT JOIN ". PREFIX ."_users ON ". PREFIX ."_posts.posted_by = ". PREFIX ."_users.id LEFT JOIN ". PREFIX ."_categories ON ". PREFIX ."_posts.category_id = ". PREFIX ."_categories.id LEFT JOIN ". PREFIX ."_tags ON ". PREFIX ."_posts.tag_id = ". PREFIX ."_tags.id WHERE ". PREFIX ."_posts.id = :post_id");
-$stmt->execute(array(':post_id' => $post_id));
+$stmt->execute([':post_id' => $post_id]);
 
 // Fetch the result
 $post = $stmt->fetch();

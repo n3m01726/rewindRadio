@@ -73,8 +73,8 @@ class radioDJFunctions {
                 // Replace some characters in the artist and title
                 $accents = ["&", "è"];
                 $letters = ["&amp", "e"];
-                $show_artist = str_replace($accents, $letters, $song['artist']);
-                $show_track = str_replace($accents, $letters, $song['title']);
+                $show_artist = str_replace($accents, $letters, (string) $song['artist']);
+                $show_track = str_replace($accents, $letters, (string) $song['title']);
                 $fileName = $song['image'];
                 // Display the song
             ?>
@@ -90,7 +90,7 @@ class radioDJFunctions {
                         <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
                     </div>
                 </div>
-            <?php
+<?php
             }
         } else {
             // No song was found
@@ -122,8 +122,8 @@ class radioDJFunctions {
                 $username = $song['username'];
                 $accents = ["&", "è"];
                 $letters = ["&amp", "e"];
-                $show_artist = str_replace($accents, $letters, $song['artist']);
-                $show_track = str_replace($accents, $letters, $song['title']);
+                $show_artist = str_replace($accents, $letters, (string) $song['artist']);
+                $show_track = str_replace($accents, $letters, (string) $song['title']);
                 $fileName = $song['image'];
             ?>
                <div class="row border-bottom border-3 bg-light p-2">
@@ -212,7 +212,7 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
                     
                     <div class="d-grid gap-2 d-md-block">
                         <a class="btn btn-dark" href="<?php $id = $donnees['ID']; echo $router->generate('single_show', ['id_subcat' => $id]);?>"> <?= $lang['btn_moreInfoPodcast']; ?></a>
-                        <a class="btn btn-dark" href="audio/<?= strtolower(str_replace(' ', '_', $donnees['name'])); ?>/podcasts_rss.php">
+                        <a class="btn btn-dark" href="audio/<?= strtolower(str_replace(' ', '_', (string) $donnees['name'])); ?>/podcasts_rss.php">
                             <?= $lang['btn_subscPodcast']; ?></a>
                     </div>
                 </div>

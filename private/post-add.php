@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id'])) {
     $db_conx_rdj = $db->connect();
     $query = "SELECT * FROM ".PREFIX."_users WHERE id = :id";
     $statement = $db_conx_rdj->prepare($query);
-    $statement->execute(array(':id' => $_SESSION['user_id']));
+    $statement->execute([':id' => $_SESSION['user_id']]);
     $user = $statement->fetch(PDO::FETCH_ASSOC); ?>
 <nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
     <div class="container-fluid">
