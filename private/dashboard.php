@@ -1,4 +1,4 @@
 <?php 
-    include('layout/header.php');
+    include('views/layout/header.php');
     include('views/mainboard.php'); 
-    include('layout/footer.php');
+    include('views/layout/footer.php');
