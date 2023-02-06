@@ -45,7 +45,7 @@
                     Layout::socialIcons('twitter', 'https://twitter.com/noordotda');
                     Layout::socialIcons('instagram', 'https://instagram.com/noordotda');
                     Layout::socialIcons('github', 'https://github.com/noordotda');
-                    Layout::socialIcons('discord', 'https://discord.gg/X7DQPDMD');
+                    Layout::socialIcons('discord', DISCORD_INVITE);
                 ?>
                 </ul>
                 </nav>

@@ -52,7 +52,7 @@ class Layout
 
   public static function socialIcons(string $name, string $url)
   {
-    echo "<li class='ms-4'><a class='link-dark' href=" . $url . "><h2><i class='bi bi-" . $name . "'></i></h2></a></li>";
+    echo "<li class='ms-4'><a class='link-dark' href=" . $url . " target='_blank'><h2><i class='bi bi-" . $name . "'></i></h2></a></li>";
   }
 
   /**
