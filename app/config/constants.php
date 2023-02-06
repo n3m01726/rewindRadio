@@ -25,9 +25,6 @@ define('REMOTE_PODCASTS_FOLDER','http://rewind.radio/'); //  le dossier en ligne
 define('PLAYINFO','4'); // le nombre maximum de chansons à afficher dans l'historique de lecture, défini comme 4.
 define('STREAM_CAT','5'); // l'ID de la catégorie de diffusion en ligne utilisée par le site, défini comme 5.
 
-define('CAROUSEL_HERO',''); // définie comme '' (vide) , comme 1 si voulez que le slider apparaissent sous la navbar.
-define('CAROUSEL_SQUARE',''); // définie comme '' (vide) si inactif, ou comme 1 si vous voulez que le slider apparaisse en haut de la section historique des chansons.
-
 define('ADS_CODE','1'); //le code HTML des publicités à afficher, défini comme '' (vide).
 define('ADS_WARNING',"Vous avez un Google Ads ou un compte publicitaire? Ajoutez-le ici! Allez dans la section ads block du fichier constants.php pour ajouter votre code HTML");
 
@@ -35,6 +32,7 @@ define('ORS_NUMBER',''); // le numéro de licence de diffusion en ligne, défini
 define('SOCAN_URL',''); // // Lien vers le logo SOCAN.
 
 define('LASTFM_APIKEY','acfdea4cdcb5e0ff11b0d7c2dfd1d3dc'); //  la clé d'API de Lastfm, définie comme une chaine de 32 caratères ex. "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX".
+define('DISCORD_INVITE','https://discord.gg/fJ76jFQh');
 
 define('FB_OG_TYPE',''); //  le type de contenu associé à l'application, défini comme website.
 define('FB_APPID',''); //  l'ID de l'application Facebook, défini comme '' (vide).
