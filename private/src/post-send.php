@@ -1,6 +1,9 @@
 <?php
-include('config.php');
-include('classes/bd.classes.php');
+
+use RewindRadio\Database;
+
+include('../../app/config/config.php');
+include('../../ressources/classes/database.class.php');
 
 
 $target_dir = "../../public/uploads/";
@@ -54,7 +57,7 @@ if(isset($_POST["submit"])) {
 
 try {
   // Connexion à la base de données
-$db = new RewindRadio\DbConnect();
+$db = new Database;
 $db_conx_rdj = $db->connect();
 } catch (PDOException $e) {
   echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();

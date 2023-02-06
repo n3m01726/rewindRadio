@@ -1,11 +1,12 @@
 <?php
 
-use RewindRadio\DBConnect;
+use RewindRadio\Database;
 
-include('layout/header.php'); 
+
+include('views/layout/header.php'); 
 
 $id = $_GET['id'];
-$db = new DBConnect;
+$db = new Database;
 $db_conx_rdj = $db->connect();
 
 $query = "SELECT ". PREFIX. "_posts.id, ". PREFIX ."_posts.featured_image,". PREFIX ."_posts.posted_by, ". PREFIX ."_posts.date_posted, ". PREFIX ."_posts.title, ". PREFIX ."_posts.content, ". PREFIX ."_users.username, ". PREFIX ."_users.nice_nickname,". PREFIX ."_categories.name as category_name, ". PREFIX ."_tags.name as tag_name,
@@ -36,7 +37,7 @@ while ($row = $result->fetch()) { ?>
 
 <div class="mb-3">
 Sélectionnez un fichier à télécharger:
-<input type="file" name="fileToUpload"  class="form-control" id="fileToUpload">
+<input type="file" name="fileToUpload" class="form-control" id="fileToUpload" multiple>
 </div>
 <div class="p-3 mt-3 mb-3" style="background-color: #eaeaea;">
 <label for="is_featured">Mettre ce contenu en avant :</label><br>
@@ -58,4 +59,4 @@ Sélectionnez un fichier à télécharger:
 <?php } 
 } ?>
 <!-- // about -->
-<?php include('layout/footer.php'); ?>
+<?php include('views/layout/footer.php'); ?>

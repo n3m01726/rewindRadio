@@ -4,10 +4,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 </html>
-<?php
-include("../private/layout/modals.php");
-include("../private/layout/shortcodes_modals.php");
-?>
+<?php include("views/layout/shortcodes_modals.php"); ?>
 <script>
 const textarea = document.getElementById('content');
 const insertImageButton = document.getElementById('insert-image-button'); 

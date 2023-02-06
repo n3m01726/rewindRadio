@@ -1,14 +1,11 @@
 <?php
 include("layout/header.php");
-use RewindRadio\DBConnect;
 
-
-
+use RewindRadio\Database;
 if (isset($_SESSION['user_id'])) {
-    echo "Welcome to the member's area, " . $_SESSION['username'] . "!";
     // L'utilisateur est connecté
     // Récupérez les informations de l'utilisateur à partir de la base de données
-    $db = new DBConnect;
+    $db = new Database;
     $db_conx_rdj = $db->connect();
     $query = "SELECT * FROM ".PREFIX."_users WHERE id = :id";
     $statement = $db_conx_rdj->prepare($query);
