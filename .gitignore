@@ -1,16 +1,19 @@
-.vscode
 .DS_Store
 public/covers/
 public/social/
-public/uploads/
-public/covers/
-*.mp3
 app/config/config.php
+
+# Dev stuff 
+/node_modules/
+/vendor/
 composer.json
 composer.lock
 rector.php
 toDolist.md
-/vendor/
+
+# fake stuff
+*.mp3
+.release-it.json
+package-lock.json
+package.json
 public/htacfdefewfwcess
-public/.htaccess
-public/.htaccess
