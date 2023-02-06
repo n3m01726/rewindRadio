@@ -9,4 +9,5 @@ include(RESSOURCES_PATH.'classes/shortcodes.class.php');
 include(RESSOURCES_PATH.'classes/static.class.php');
 include(RESSOURCES_PATH.'classes/team.class.php');
 include(RESSOURCES_PATH.'classes/text.classes.php');
+include(RESSOURCES_PATH.'classes/admin.classes.php');
 ?>
