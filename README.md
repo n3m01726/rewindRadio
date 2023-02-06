@@ -15,7 +15,9 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 - Ajouter un router PHP et/ou passer à React. :wave: devs !
 - Mettre à jour le design.
 
-## Technologies utilisées : 
+## Dépendances :
+- Altorouter
+- Glide
 - Plyr.io 3.7.3
 - RadioDJ 2.0.3.9
 - Bootstrap 5.3-alpha1 
