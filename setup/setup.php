@@ -1,7 +1,8 @@
 <?php
-include('../../app/config/constants.php');
-include('../../ressources/classes/static.class.php');
-include('../../ressources/lang/lang-fr.php');
+require_once '../vendor/autoload.php';
+include('../app/config/constants.php');
+include('../ressources/classes/static.class.php');
+include('../ressources/lang/lang-fr.php');
 ?>
 <html>
 <head>
@@ -20,7 +21,7 @@ include('../../ressources/lang/lang-fr.php');
         <div class="card-body">
          <pre>
 <?php
- require_once '../../vendor/autoload.php';
+
     if (isset($_POST['prefix'])) {
     $prefix = $_POST['prefix'];
     session_start();
@@ -373,9 +374,9 @@ echo "Added a category for the website events.<br>";
 
     ('Tips for working from home', 'With many people now working from home due to the COVID-19 pandemic, we thought we would share some tips for making the most of your home office. Stay productive, healthy, and happy while working from home!', NOW(), '1', 'tips-for-working-from-home', 'pexels-nati-14642654.jpg',1,1,1,1,0),
 
-    ('Bénévolat chez rewindRadio', 'test volunteer page', NOW(), '1', 'benevolat-chez-rewindradio', 'pexels-nati-14642654.jpg',1,1,1,1,0),
+    ('Bénévolat chez rewindRadio', 'test volunteer page', NOW(), '1', 'benevolat-chez-rewindradio', 'pexels-nati-14642654.jpg',2,1,1,1,0),
 
-    ('Politique de confidentialité', 'privacy policiy text', NOW(), '1', 'privacy-policy', 'pexels-nati-14642654.jpg',1,1,1,1,0);";
+    ('Politique de confidentialité', 'privacy policiy text', NOW(), '1', 'privacy-policy', 'pexels-nati-14642654.jpg',2,1,1,1,0);";
     
     $conn->exec($sql);
     echo "Added fake data to the post table.<br>";
@@ -383,7 +384,7 @@ $sql = "INSERT INTO ".$prefix."_users( username, PASSWORD, avatar, last_login, m
 
 VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker03.png', NULL, NULL, 'My bio', 'Founder & CEO', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'Osakari', 'Yasuhiro', 'Osakari Yasuhiro', '$firstUserEmail' , 'background_image.jpg', 'Be yourself. Everyone else is already taken. ― Oscar Wilde', 0),
 
-('Gallo2002', 'Iethue9ohph', 'AvatarMaker02.png', '2016-02-09 21:12:40', '2016-01-10 14:52:54', 'Certified explorer. Beer scholar. Food expert. Bacon lover. Creator. Troublemaker. Music junkie.', 'Directrice de création', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'Jennifer', 'Galloway', 'Jennifer Galloway', 'gallo2002@example.com', 'background_image', 'Create with the heart; build with the mind.', 0),";
+('Gallo2002', 'Iethue9ohph', 'AvatarMaker02.png', '2016-02-09 21:12:40', '2016-01-10 14:52:54', 'Certified explorer. Beer scholar. Food expert. Bacon lover. Creator. Troublemaker. Music junkie.', 'Directrice de création', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'Jennifer', 'Galloway', 'Jennifer Galloway', 'gallo2002@example.com', 'background_image', 'Create with the heart; build with the mind.', 0)";
 
 $conn->exec($sql);
 echo "Added fake data to the news_user table. Don't worry, it won't mess with rdj users table.<br>";
@@ -420,26 +421,13 @@ echo "Added fake data to the news_user table. Don't worry, it won't mess with rd
     $config .= "define('DBUSER', '{$username}');\n";
     $config .= "define('DBPASSWORD', '{$password}');\n\n";
     $config .= "?>";
-    file_put_contents('../../app/config/config.php', $config, FILE_APPEND);
+    file_put_contents('../app/config/config.php', $config, FILE_APPEND);
 
     // Append the site constants to the constants.php file
     $constants = "\ndefine('SITE_NAME', '{$site_name}');\n";
     $constants .= "define('LANG', '{$language}');\n";
-    file_put_contents('../../app/config/constants.php', $constants, FILE_APPEND);
+    file_put_contents('../app/config/constants.php', $constants, FILE_APPEND);
     echo "Setup completed successfully!</pre>
-    <br><br>
-    <p>Voici le code à ajouter dans vos vhosts pour la redirection vers le dossier /public</p>
-    <pre>
-<VirtualHost *:80>\n
-DocumentRoot /var/www/nom_de_votre_projet/public\n
-ServerName nom_de_votre_projet\n
-ErrorLog path/to/error.log\n
-CustomLog path/to/access.log combined\n
-<Directory /var/www/nom_de_votre_projet\n
-AllowOverride All\n
-</Directory>\n
-</VirtualHost>   
-</pre>
 <a href='/'><button class='btn btn-dark'>Aller sur votre site web</button></a>";
     }
     } ?>
