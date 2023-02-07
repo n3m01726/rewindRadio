@@ -428,7 +428,7 @@ echo "Added fake data to the news_user table. Don't worry, it won't mess with rd
     $constants .= "define('LANG', '{$language}');\n";
     file_put_contents('../app/config/constants.php', $constants, FILE_APPEND);
     echo "Setup completed successfully!</pre>
-<a href='/'><button class='btn btn-dark'>Aller sur votre site web</button></a>";
+    <a href='/'><button class='btn btn-dark'>Aller sur votre site web</button></a>";
     }
     } ?>
     </div>

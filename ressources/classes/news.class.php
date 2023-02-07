@@ -22,14 +22,18 @@ LEFT JOIN " . PREFIX . "_tags ON " . PREFIX . "_posts.tag_id = " . PREFIX . "_ta
 
                 <!-- Display the articles -->
                 <div class="row border-bottom border-3 bg-light p-2">
-                    <div class="col-2 mx-3"><img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="rounded-4 img-cover" width="105" height="105"></div>
+                    <div class="col-2 mx-3">
+                    <a href="posts.php?id=<?=$row['id'];?>">
+                        <img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="rounded-4 img-cover" width="105" height="105"></a></div>
                     <div class="col-9">
-                        <div class="title text-uppercase fw-bold"><?= $row['clean_date']; ?> -
-                            <a href="#"><?= Text::cutText($row['title'], 80) ?></a>
-                        </div>
+                        
+                            <a href="posts.php?id=<?=$row['id'];?>" class="title text-uppercase fw-bold">
+                                <?= $row['clean_date']; ?> -
+                                <?= Text::cutText($row['title'], 80) ?></a>
+                        
                         <div class='artist'><?= Text::cutText(shortcodes::remove_shortcodes($row['content']), 100); ?></div>
                         <div class="meta">
-                            <?= $lang['posted_by']; ?><a href="#">
+                            <?= $lang['posted_by']; ?><a href="profile.php?id=<?=$row['posted_by'];?>">
                                 <?php if (isset($row['nice_nickname'])) {
                                     echo $row['nice_nickname'];
                                 } else {
