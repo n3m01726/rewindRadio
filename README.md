@@ -16,7 +16,6 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 - Mettre à jour le design.
 
 ## Dépendances :
-- Altorouter
 - Glide
 - Plyr.io 3.7.3
 - RadioDJ 2.0.3.9
