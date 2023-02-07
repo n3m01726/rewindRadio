@@ -4,7 +4,7 @@ use RewindRadio\Date;
 ?>
 <section>
   <?php
-  $id = $match['params']['id_subcat'];
+  $id = $_GET['id'];
   $db = new RewindRadio\Database();
   $db_conx_rdj = $db->connect();
   $reponse = $db_conx_rdj->query("SELECT " . PREFIX . "_subcategory_info.*, subcategory.* 

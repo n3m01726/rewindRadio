@@ -7,8 +7,8 @@
                         <div class="title"><?= $lang['mobileApp']; ?></div>
                         <span><?= $lang['lnk_download_simpleRadio']; ?></span>
                         <div style="margin-top:10px;">
-                            <a style="margin-right:10px;" href="https://itunes.apple.com/us/app/simple-radio-by-streema-tunein/id891132290?mt=8" target="_blank"><img src="../images/app_store.svg" width="143" height="45"></a>
-                            <a href="https://play.google.com/store/apps/details?id=com.streema.simpleradio" target="_blank"> <img src="../images/google-play.png" width="143" height="45"></a>
+                            <a style="margin-right:10px;" href="https://itunes.apple.com/us/app/simple-radio-by-streema-tunein/id891132290?mt=8" target="_blank"><img src="images/app_store.svg" width="143" height="45"></a>
+                            <a href="https://play.google.com/store/apps/details?id=com.streema.simpleradio" target="_blank"> <img src="images/google-play.png" width="143" height="45"></a>
                         </div>
                         <div style="margin-top: 10px;"><small><?php echo ($lang['lnk_req_simpleRadio']); ?></small></div>
                     </nav>
@@ -20,9 +20,9 @@
                         <li class="title"><?php echo SITE_NAME; ?></li>
                         <li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal"><?= $lang['about']; ?></a></li>
                         <li class='nav-item'><a href="https://www.bonfire.com" target="_blank"><?= $lang['merch']; ?></a></li>
-                        <li class='nav-item' id="teams"><a href="<?= $router->generate('team');?>"><?= $lang['team']; ?></a></li>
-                        <li class='nav-item' id="join_us"><a href="<?= $router->generate('benevolat');?>"><?= $lang['volunteering']; ?></a></li>
-                        <li class='nav-item' id="privacy_policy"><a href='<?= $router->generate('privacy-policy');?>'><?= $lang['privacyPolicy']; ?></a></li>
+                        <li class='nav-item' id="teams"><a href="team.php"><?= $lang['team']; ?></a></li>
+                        <li class='nav-item' id="join_us"><a href="posts.php?id=8"><?= $lang['volunteering']; ?></a></li>
+                        <li class='nav-item' id="privacy_policy"><a href='posts.php?id=5'><?= $lang['privacyPolicy']; ?></a></li>
                     </ul>
                 </nav>
             </div>

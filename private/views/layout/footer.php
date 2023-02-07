@@ -14,7 +14,6 @@ const imageUrlInput = document.getElementById('imageUrl');
 insertImageButton.addEventListener('click', () => {
     const imageUrl = imageUrlInput.value;
     textarea.value += `[image url="${imageUrl}"]`;
-    $('#imageModal').modal('hide');
 });
 
 imageModal.addEventListener('shown.bs.modal', () => {
@@ -34,7 +33,6 @@ insertGalleryButton.addEventListener('click', () => {
     const url3 = url3Input.value;
     const url4 = url4Input.value;
     textarea.value += `[gallery url1="${url1}" url2="${url2}" url3="${url3}" url4="${url4}"]`;
-    $('#galleryModal').modal('hide');
 });
 
 galleryModal.addEventListener('shown.bs.modal', () => {

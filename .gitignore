@@ -1,6 +1,6 @@
 .DS_Store
-public/covers/
-public/social/
+/public/covers/
+/public/social/
 app/config/config.php
 
 # Dev stuff 

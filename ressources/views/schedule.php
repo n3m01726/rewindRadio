@@ -2,7 +2,7 @@
   use rewindRadio\radioDJFunctions; 
 ?>
 <section>
-    <div class="posts-img" style="background-image: url('uploads/posts/pexels-fauxels-3184431'); padding-top:15%;">
+    <div class="posts-img" style="background-image: url('uploads/posts/pexels-pixabay-164425.jpg'); padding-top:15%;">
         <h3 class="text-center post-title"><b>Horaire <?= SITE_NAME; ?></b></h3>
     </div>
     <div>

@@ -1,6 +1,6 @@
 <?php use RewindRadio\Team; ?>
 <section>
-    <div class="posts-img" style="background-image: url('uploads/posts/pexels-fauxels-3184431'); padding-top:15%;">
+    <div class="posts-img" style="background-image: url('uploads/posts/pexels-george-milton-6954180.jpg'); padding-top:15%;">
         <h3 class="text-center post-title"><b>L'équipe <?= SITE_NAME; ?></b></h3>
     </div>
     <div>

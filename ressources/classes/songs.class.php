@@ -160,7 +160,7 @@ WHERE catID=$catID  ORDER BY events.time ASC");
             ?>
                <div class="row border-bottom border-3 bg-light p-2">
                     <div class="col-2 mx-3">
-                        <img src="uploads/events/<?php echo $event['image']; ?>" alt='cover' class='rounded-4 img-cover'>
+                        <img src="uploads/events/<?php echo $event['image']; ?>" alt='cover' class='rounded-4 img-cover' width="105" height="105">
                     </div>
                     <div class="col-5">
                         <div class='song_title'><?php echo $event['name']; ?></div>
@@ -202,16 +202,16 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
                 
             ?>
 
-               <div class="row border-bottom-3 bg-light p-2 mb-2" style="background-image: url('uploads/shows/<?php echo $donnees['image']; ?>');">
-                    <h4 class="text-light p-3 text-uppercase fw-bolder"><?php echo $donnees['name']; ?></h4>
+               <div class="row border-bottom-3 bg-light p-2 mb-2" style="background-image: url('uploads/shows/<?= $donnees['image']; ?>');">
+                    <h4 class="text-light p-3 text-uppercase fw-bolder"><?= $donnees['name']; ?></h4>
                     <div class="description mb-3 p-2 bg-light text-dark"><?= Text::cutText($donnees['description'], 120); ?>
                     <div class="tags m-2 px-3 py-2" style="background-color: #eaeaea;">
-                    <i class="bi bi-tags-fill" style="margin-right: 10px;"></i> <?php echo $donnees['tags']; ?>
+                    <i class="bi bi-tags-fill" style="margin-right: 10px;"></i> <?= $donnees['tags']; ?>
                     </div>
                 </div>
                     
                     <div class="d-grid gap-2 d-md-block">
-                        <a class="btn btn-dark" href="<?php $id = $donnees['ID']; echo $router->generate('single_show', ['id_subcat' => $id]);?>"> <?= $lang['btn_moreInfoPodcast']; ?></a>
+                        <a class="btn btn-dark" href="shows.php?id=<?= $donnees['id']; ?>"> <?= $lang['btn_moreInfoPodcast']; ?></a>
                         <a class="btn btn-dark" href="audio/<?= strtolower(str_replace(' ', '_', (string) $donnees['name'])); ?>/podcasts_rss.php">
                             <?= $lang['btn_subscPodcast']; ?></a>
                     </div>
@@ -262,7 +262,7 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
  <div class="col-md-6">
    <div class="timetable-item">
  <div class="timetable-item-img">
-   <img src="/public/images/' . $event['image'] . '" alt="' . $eventName . '">
+   <img src="/public/images/' . $event['image'] . '" alt="' . $eventName . '" width="105" height="105">
  </div>
  <div class="timetable-item-main">
    <div class="timetable-item-time">' . $hours . '</div>

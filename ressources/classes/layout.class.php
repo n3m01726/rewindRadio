@@ -29,12 +29,12 @@ class Layout
 
   public static function getBrandLogo()
   {
-    echo "<a class='navbar-brand' href='/'>";
+    echo "<a class='navbar-brand' href='/public'>";
     if (LOGO) {
       echo "<img src='" . LOGO_URL . "' width='30' height='24'>";
     } else {
       echo '
-<a href="/" type="button" class="btn btn-dark">
+<a href="/public" type="button" class="btn btn-dark">
 <span class="badge text-dark" style="background-color:#f19135;">
 <i class="bi bi-headphones m-0"></i></span><span style="text-transform: uppercase;font-weight: bold;"> ' . SITE_NAME . '</span>
 </a>';

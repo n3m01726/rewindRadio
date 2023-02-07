@@ -2,7 +2,7 @@
 use RewindRadio\shortcodes;
 
 // Get the post ID from the URL
-$post_id = $match['params']['id'];
+$post_id = $_GET['id'];
 $db = new RewindRadio\Database();
 $db_conx_rdj = $db->connect();
 // Prepare and execute the SELECT query
@@ -12,7 +12,7 @@ $stmt->execute([':post_id' => $post_id]);
 // Fetch the result
 $post = $stmt->fetch();
 ?>
- <div class="posts-img" style="background-image: url('../uploads/posts/<?= $post['featured_image']; ?>'); padding-top:15%;">
+ <div class="posts-img" style="background-image: url('uploads/posts/<?= $post['featured_image']; ?>'); padding-top:15%;">
 
  <h3 class="text-center post-title"><b><?= $post['title']; ?></b></h3>
 </div>

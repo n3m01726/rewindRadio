@@ -1,15 +1,14 @@
 <?php
-include("layout/header.php");
-
+include('../app/config/config.php');
+include('../ressources/classes/database.class.php');
 use RewindRadio\Database;
-if (isset($_SESSION['user_id'])) {
     // L'utilisateur est connecté
     // Récupérez les informations de l'utilisateur à partir de la base de données
     $db = new Database;
     $db_conx_rdj = $db->connect();
     $query = "SELECT * FROM ".PREFIX."_users WHERE id = :id";
     $statement = $db_conx_rdj->prepare($query);
-    $statement->execute([':id' => $_SESSION['user_id']]);
+    $statement->execute([':id' => 1]);
     $user = $statement->fetch(PDO::FETCH_ASSOC); ?>
 <nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
     <div class="container-fluid">
@@ -35,13 +34,6 @@ if (isset($_SESSION['user_id'])) {
     <li class="mb-1"><h2><a style="text-decoration:none;"  href="post-list.php">Liste des articles</a></h2></li>
     <li class="mb-1"><h2><a style="text-decoration:none;"  href="user-add.php">Ajouter un utilisateur</a></h2></li></ul>
     </nav>
-
-<?php
-} else {
-    // L'utilisateur n'est pas connecté, renvoyez-le à la page de connexion
-    header('Location: login.php');
-}
-?>
 </div>
       </div>
     </div>

@@ -8,15 +8,16 @@ include('../ressources/classes/news.class.php');
 
 use RewindRadio\Database;
 use RewindRadio\Posts;
-session_start();
-if (isset($_SESSION['user_id'])) {
+
+
     // L'utilisateur est connecté
     // Récupérez les informations de l'utilisateur à partir de la base de données
+
     $db = new Database;
     $db_conx_rdj = $db->connect();
     $query = "SELECT * FROM ".PREFIX."_users WHERE id = :id";
     $statement = $db_conx_rdj->prepare($query);
-    $statement->execute([':id' => $_SESSION['user_id']]);
+    $statement->execute([':id' => 1]);
     $user = $statement->fetch(PDO::FETCH_ASSOC); ?>
 <nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
     <div class="container-fluid">
@@ -63,12 +64,6 @@ Posts::listNews();
 
 </tbody>
 </table></section>
-<?php
-} else {
-    // L'utilisateur n'est pas connecté, renvoyez-le à la page de connexion
-    header('Location: login.php');
-}
-?>
 </div>
       </div>
     </div>

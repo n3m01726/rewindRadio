@@ -5,11 +5,8 @@ namespace RewindRadio;
 use RewindRadio\Database;
 use \PDOException;
 
-class Posts
-{
-    public static function displayNews($limitNews)
-    {
-        require '../app/routes/router.php';
+class Posts {
+    public static function displayNews($limitNews) {
         include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $db = new Database();
         $db_conx_rdj = $db->connect();
@@ -25,16 +22,14 @@ LEFT JOIN " . PREFIX . "_tags ON " . PREFIX . "_posts.tag_id = " . PREFIX . "_ta
 
                 <!-- Display the articles -->
                 <div class="row border-bottom border-3 bg-light p-2">
-                    <div class="col-2 mx-3"><img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="rounded-4 img-cover"></div>
+                    <div class="col-2 mx-3"><img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="rounded-4 img-cover" width="105" height="105"></div>
                     <div class="col-9">
                         <div class="title text-uppercase fw-bold"><?= $row['clean_date']; ?> -
-                            <a href="<?php $id = $row['id'];
-                                        echo $router->generate('article', ['id' => $id]); ?>"><?= Text::cutText($row['title'], 80) ?></a>
+                            <a href="#"><?= Text::cutText($row['title'], 80) ?></a>
                         </div>
                         <div class='artist'><?= Text::cutText(shortcodes::remove_shortcodes($row['content']), 100); ?></div>
                         <div class="meta">
-                            <?= $lang['posted_by']; ?><a href="<?php $id = $row['posted_by'];
-                                                                echo $router->generate('profile', ['id' => $id]); ?>">
+                            <?= $lang['posted_by']; ?><a href="#">
                                 <?php if (isset($row['nice_nickname'])) {
                                     echo $row['nice_nickname'];
                                 } else {
@@ -54,7 +49,7 @@ LEFT JOIN " . PREFIX . "_tags ON " . PREFIX . "_posts.tag_id = " . PREFIX . "_ta
     }
     public static function displayMegaNews($limitNews)
     {
-        require '../app/routes/router.php';
+
         include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $db = new Database();
         $db_conx_rdj = $db->connect();
@@ -72,13 +67,11 @@ LEFT JOIN " . PREFIX . "_tags ON " . PREFIX . "_posts.tag_id = " . PREFIX . "_ta
                 <div class="card" style="width: 25rem;">
                     <img src="uploads/posts/<?= $row['featured_image']; ?>" class="card-img-top" alt="<?= $row['title']; ?>" height="200">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $row['clean_date']; ?> - <a href="<?php $id = $row['id'];
-                                                                                        echo $router->generate('article', ['id' => $id]); ?>"><?= Text::cutText($row['title'], 80) ?></a></span></h5>
+                        <h5 class="card-title"><?= $row['clean_date']; ?> - <a href="#"><?= Text::cutText($row['title'], 80) ?></a></span></h5>
                         <p class="card-text"><?= Text::cutText(shortcodes::remove_shortcodes($row['content']), 80); ?></p>
                     </div>
                     <div class="card-footer">
-                        <?= $lang['posted_by']; ?><a href="<?php $user_id = $row['posted_by'];
-                                                            echo $router->generate('profile', ['id' => $user_id]); ?>">
+                        <?= $lang['posted_by']; ?><a href="#">
                             <?php if (isset($row['nice_nickname'])) {
                                 echo $row['nice_nickname'];
                             } else {
