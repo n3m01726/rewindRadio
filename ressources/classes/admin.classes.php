@@ -4,7 +4,7 @@ class ManagePosts {
 // Function to handle the upload of post's featured image
 public static function imageUpload($featured_image, $target_dir) {
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($featured_image, PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo((string) $featured_image, PATHINFO_EXTENSION));
 
     // Check if image file is a actual image or fake image
     if (isset($_POST["submit"])) {
