@@ -1,8 +1,4 @@
 <?php
-
-include('../app/config/config.php');
-include('../ressources/classes/database.class.php');
-include('../ressources/classes/login.class.php');
 use RewindRadio\Database;
 
 $db = new Database;
