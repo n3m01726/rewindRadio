@@ -1,8 +1,14 @@
 <?php
+
+use RewindRadio\Database;
 use RewindRadio\Posts;
+use RewindRadio\User;
 include(RESSOURCES_PATH.'lang/lang-' . LANG . '.php'); 
 include(CONFIG_PATH.'functions.php');
-include(CONFIG_PATH.'config.php');  ?>
+include(CONFIG_PATH.'config.php');
+include('../app/routes/router.php');
+
+?>
 <!DOCTYPE html>
 <html lang="<?= LANG ?>">
 <head>
@@ -10,7 +16,7 @@ include(CONFIG_PATH.'config.php');  ?>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php StaticContent::get_header();?>
-  <title>Document</title>
+  <title><?= SITE_NAME; ?> </title>
 </head>
 <body>
 <header>
@@ -42,9 +48,7 @@ include(CONFIG_PATH.'config.php');  ?>
       </ul>
     </div>
   </nav>
-  
 <div class="bg-light">
-
     <nav class="navbar navbar-expand-lg mx-5">
       <div class="container-fluid">
         <?php RewindRadio\Layout::getBrandLogo(); ?>
@@ -52,12 +56,14 @@ include(CONFIG_PATH.'config.php');  ?>
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item" style="margin-left: 40px;"><a class="nav-link" aria-label="menuitem" href="/public"><?= $lang['home'] ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="charts.php"><?= $lang['charts'] ?></a></li>
-            <li class="nav-item"><a class="nav-link" href="schedule.php"><?= $lang['schedule'] ?></a></li>
-            <li class="nav-item"><a class="nav-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" href="#"><?= $lang['magazine'] ?></a></li>
-          </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <li class="nav-item" style="margin-left: 40px;"><a class="nav-link" aria-label="menuitem" href="<?= $router->generate('home'); ?>"><?= $lang['home']; ?></a></li>
+  <li class="nav-item"><a class="nav-link" href="<?= $router->generate('charts'); ?>"><?= $lang['charts']; ?></a></li>
+  <li class="nav-item"><a class="nav-link" href="<?= $router->generate('schedule'); ?>"><?= $lang['schedule']; ?></a></li>
+  <li class="nav-item"><a class="nav-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" href="#"><?= $lang['magazine']; ?></a></li>
+</ul>
+<?= User::getAvatar(); ?>
+
         </div>
       </div>
     </nav>
