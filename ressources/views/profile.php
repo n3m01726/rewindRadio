@@ -6,15 +6,7 @@ use RewindRadio\Database;
 use RewindRadio\Text;
 
 $id = $match['params']['id'];
-$query = "SELECT ". PREFIX. "_posts.id, ". PREFIX ."_posts.featured_image,". PREFIX ."_posts.date_posted, ". PREFIX ."_posts.title, ". PREFIX ."_posts.content, ". PREFIX ."_users.username, ". PREFIX ."_users.nice_nickname, ". PREFIX ."_users.sm_facebook,". PREFIX ."_users.job_title, ". 
-PREFIX ."_users.sm_twitter,". PREFIX ."_users.sm_instagram, ". PREFIX ."_users.avatar, ". PREFIX ."_users.bio,". PREFIX ."_users.email, ". PREFIX ."_users.sm_tiktok,". PREFIX ."_categories.name as category_name, ". PREFIX ."_tags.name as tag_name,
-DATE_FORMAT(DATE(date_posted), '%d/%m/%Y') AS clean_date
-FROM ". PREFIX ."_posts
-LEFT JOIN ".PREFIX."_users ON ".PREFIX."_posts.posted_by = ".PREFIX."_users.id 
-LEFT JOIN ".PREFIX."_categories ON ".PREFIX."_posts.category_id = ".PREFIX."_categories.id 
-LEFT JOIN ".PREFIX."_tags ON ".PREFIX."_posts.tag_id = ".PREFIX."_tags.id WHERE ". PREFIX ."_users.id = $id AND ". PREFIX ."_posts.posted_by = $id 
-ORDER BY ".PREFIX."_posts.date_posted ASC
-"; 
+$query = "SELECT * from ".PREFIX."_users where id = $id"; 
 
   $db = new Database;
   $db_conx_rdj = $db->connect();
@@ -28,17 +20,6 @@ ORDER BY ".PREFIX."_posts.date_posted ASC
 
 <div class="container">
     <div class="main-body">
-    
-          <!-- Breadcrumb -->
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item"><a href="javascript:void(0)"><?= $donnees['username']; ?></a></li>
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-            </ol>
-          </nav>
-          <!-- /Breadcrumb -->
-    
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
               <div class="card">
@@ -58,7 +39,7 @@ ORDER BY ".PREFIX."_posts.date_posted ASC
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><i class="bi bi-box-arrow-up-right me-2"></i>Website</h6>
-                    <span class="text-secondary">https://rewind.radio</span>
+                    <span class="text-secondary">https://yoursite.com</span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><i class="bi bi-github me-2"></i>Github</h6>
@@ -116,17 +97,17 @@ ORDER BY ".PREFIX."_posts.date_posted ASC
                             FROM ". PREFIX ."_posts
 
                             LEFT JOIN ".PREFIX."_categories ON ".PREFIX."_posts.category_id = ".PREFIX."_categories.id 
-                            LEFT JOIN ".PREFIX."_tags ON ".PREFIX."_posts.tag_id = ".PREFIX."_tags.id WHERE ". PREFIX ."_posts.posted_by = $id 
+                            LEFT JOIN ".PREFIX."_tags ON ".PREFIX."_posts.tag_id = ".PREFIX."_tags.id WHERE ". PREFIX ."_posts.posted_by = $id AND post_type = 1
                             ORDER BY ".PREFIX."_posts.date_posted ASC"; 
 
   $db = new Database;
   $db_conx_rdj = $db->connect();
   $stmt = $db_conx_rdj->prepare($query);
   $stmt->execute();
-  if ($stmt->rowCount() > 0) {
+  if ($stmt->rowCount() > 0) { 
       while ($donnees = $stmt->fetch()) { 
       ?>
-                      <small><a style="text-decoration:underline;" href="<?php $id = $donnees['id']; global $router; echo $router->generate('article', ['id' => $id]);?>"><?= $donnees['title']; ?></a></small>
+                      <small><a style="text-decoration:underline;" href="<?php $id = $donnees['id']; global $router; echo $router->generate('single_post', ['id' => $id]);?>"><?= $donnees['title']; ?></a></small>
                       <div>
                         <div class="mb-4">
                         <small><?php 
@@ -134,7 +115,7 @@ ORDER BY ".PREFIX."_posts.date_posted ASC
                         </div>
                       </div>
                       <hr>
-                      <?php }} ?>
+                      <?php }} else { echo"Aucun article.";} ?>
                     </div>
                   </div>
                 </div>

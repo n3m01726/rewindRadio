@@ -1,39 +1,26 @@
 <?php
+require '../vendor/autoload.php';
 
-$request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = $_SERVER['REQUEST_URI'];
+$router = new AltoRouter();
 
-switch ($request) {
-    case '/' :
-        require 'views/home.php';
-        break;
-    case '/charts' :
-        require 'views/charts.php';
-        break;
-    case '/schedule' :
-        require 'views/schedule.php';
-        break;
-    case '/shows' :
-        if (preg_match('/^\/shows\/([0-9]+)$/', $request, $matches)) {
-            $id = $matches[1];
-            require 'views/shows.php';
-        } else {
-            http_response_code(404);
-            require 'views/404.php';
-        }
-        break;
-    case '/post' :
-        if (preg_match('/^\/post\/([0-9]+)$/', $request, $matches)) {
-            $id = $matches[1];
-            require 'views/post.php';
-        } else {
-            http_response_code(404);
-            require 'views/404.php';
-        }
-        break;
-    default:
-        http_response_code(404);
-        require 'views/404.php';
-        break;
-}
+$router->map('GET', '/', 'home', 'home');
+$router->map('GET', '/charts', 'charts', 'charts');
+$router->map('GET', '/schedule', 'schedule', 'schedule');
+$router->map('GET', '/team', 'team', 'team');
+$router->map('GET', '/benevolat', 'benevolat', 'benevolat');
+$router->map('GET', '/privacy-policy', 'privacy-policy', 'privacy-policy');
+// $router->map('GET', '/[*:slug]', 'single_page', 'single_page');
 
-?>
+$router->map('GET', '/posts/[i:id]', 'single_post', 'single_post');
+$router->map('GET', '/shows/[i:id]', 'single_show', 'single_show');
+$router->map('GET', '/profile/[i:id]', 'profile', 'profile');
+
+$router->map('POST', '/login', 'private/login', 'login');
+$router->map('GET', '/post-add', 'private/post-add', 'post-add');
+$router->map('GET', '/user-add', 'private/user-add', 'user-add');
+$router->map('GET', '/post-list', 'private/post-list', 'post-list');
+$router->map('GET', '/settings', 'private/settings', 'settings');
+$router->map('GET', '/logout', 'private/logout', 'logout');
+
+$match = $router->match();

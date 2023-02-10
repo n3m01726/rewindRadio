@@ -24,10 +24,14 @@ function logout() {
 
 session_start();
 use RewindRadio\Database;
-class login {
-public static function login($username, $password, $db_conx_rdj) {
-  $db = new Database();
-  $db_conx_rdj = $db->connect();
+class Login {
+  public static function login($username, $password) {
+    // Démarrer la session
+
+    // Connecter à la base de données
+    $db = new Database();
+    $db_conx_rdj = $db->connect();
+
     // Vérifiez les informations de connexion de l'utilisateur
     $query = "SELECT * FROM ".PREFIX."_users WHERE username = :username AND password = :password";
     $statement = $db_conx_rdj->prepare($query);
@@ -38,12 +42,14 @@ public static function login($username, $password, $db_conx_rdj) {
     if ($row) {
         // Enregistrez l'identifiant de l'utilisateur dans la session
         $_SESSION['user_id'] = $row['id'];
-        echo '<a href="dashboard.php">dashboard</a>';
+        $_SESSION['logged_in'] = true;
     } else {
         // Échec de la connexion, renvoyez un message d'erreur
         return false;
     }
-}
+  }
+
+
 
 public static function logout() {
     // Supprimez l'identifiant de l'utilisateur de la session

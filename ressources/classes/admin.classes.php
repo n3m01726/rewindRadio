@@ -86,4 +86,64 @@ if ($stmt->execute()) {
   return true;
 } else {
   return false;
-} } }
+} } 
+public static function listNews() {
+    global $router;
+    include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
+    $db = new Database();
+    $db_conx_rdj = $db->connect();
+    $query = "SELECT " . PREFIX . "_posts.id, " . PREFIX . "_posts.featured_image," . PREFIX . "_posts.posted_by, " . PREFIX . "_posts.date_posted, " . PREFIX . "_posts.title, " . PREFIX . "_posts.content, " . PREFIX . "_posts.post_type, " . PREFIX . "_users.username, " . PREFIX . "_users.nice_nickname," . PREFIX . "_categories.name as category_name, " . PREFIX . "_tags.name as tag_name,
+    DATE_FORMAT(DATE(date_posted), '%d/%m/%Y') AS clean_date FROM " . PREFIX . "_posts
+    LEFT JOIN " . PREFIX . "_users ON " . PREFIX . "_posts.posted_by = " . PREFIX . "_users.id 
+    LEFT JOIN " . PREFIX . "_categories ON " . PREFIX . "_posts.category_id = " . PREFIX . "_categories.id 
+    LEFT JOIN " . PREFIX . "_tags ON " . PREFIX . "_posts.tag_id = " . PREFIX . "_tags.id ORDER BY " . PREFIX . "_posts.date_posted DESC";
+    $result = $db_conx_rdj->query($query);
+    if ($result->rowCount() > 0) {
+      while ($row = $result->fetch()) {
+        $id = $row['id'];
+        $posted_by = $row['posted_by'];
+?>
+
+        <!-- Display the articles -->
+ <tr>
+    <td><?php if($row['post_type'] == 2) { echo "Page";} elseif($row['post_type'] == 1)  {echo "Articles";}; ?></td>
+    
+    <td>    <a href="<?= $router->generate('single_post', ['id' => $id]); ?>">
+              <?= Text::cutText($row['title'], 80) ?></a></td>
+    <td>
+    <a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
+                <?php if (isset($row['nice_nickname'])) {
+                  echo $row['nice_nickname'];
+                } else {
+                  echo $row['username'];
+                } ?></a>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+ </tr>       
+      <?php }
+    } else {
+      echo '<div id="widget" style="padding: 20px;">
+<div class="bd-callout bd-callout-info">
+ <p>Pas d\'articles.</p>
+</div>
+</div>';
+    }
+  }
+}
+class User {
+ public static function getAvatar() {
+  if (isset($_SESSION['user_id'])) {
+    // Retrieve user information from the database
+    $db = new Database;
+    $db_conx_rdj = $db->connect();
+    $query = "SELECT * FROM ".PREFIX."_users WHERE id = :id";
+    $statement = $db_conx_rdj->prepare($query);
+    $statement->execute([':id' => $_SESSION['user_id']]);
+    $user = $statement->fetch(\PDO::FETCH_ASSOC);
+    echo '<div class="text-end">
+    <img src="uploads/profile/'.$user['avatar'].'" alt="'.$user['username'].'" class="avatar rounded-circle mx-3" width="36" height="36"></div>';
+  }
+}
+}

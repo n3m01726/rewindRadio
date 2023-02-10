@@ -5,7 +5,6 @@ use RewindRadio\Database;
 include('../../app/config/config.php');
 include('../../ressources/classes/database.class.php');
 
-
 $target_dir = "../../public/uploads/";
 $featured_image = $target_dir . basename((string) $_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
