@@ -3,10 +3,11 @@
 use RewindRadio\Database;
 use RewindRadio\Posts;
 use RewindRadio\User;
-
 include(RESSOURCES_PATH.'lang/lang-' . LANG . '.php'); 
 include(CONFIG_PATH.'functions.php');
 include(CONFIG_PATH.'config.php');
+include('../app/routes/router.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="<?= LANG ?>">
@@ -14,9 +15,8 @@ include(CONFIG_PATH.'config.php');
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <?php StaticContent::get_header();
-  include('../app/routes/router.php');  ?>
-  <title><?= SITE_NAME; ?> <?= $router->generate('home');?> </title>
+  <?php StaticContent::get_header();?>
+  <title><?= SITE_NAME; ?> </title>
 </head>
 <body>
 <header>
