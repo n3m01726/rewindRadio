@@ -80,11 +80,12 @@ $query = "SELECT * from ".PREFIX."_users where id = $id";
                     <?= $donnees['email']; ?>
                     </div>
                   </div>
-                  <hr>
-                  
                 </div>
             </div>
-
+              <div class="row gutters-sm">
+                <div class="col-sm-12 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">d5tidtyidytiy</div></div></div></div>
               <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
