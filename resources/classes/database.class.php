@@ -1,5 +1,4 @@
 <?php
-namespace RewindRadio;
 use \PDO;
 use \PDOException;
 
