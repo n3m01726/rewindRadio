@@ -2,8 +2,8 @@
 <section>
 <?php
 
-use RewindRadio\Database;
-use RewindRadio\Text;
+use App\Database;
+use App\Text;
 
 $id = $match['params']['id'];
 $query = "SELECT * from ".PREFIX."_users where id = $id"; 

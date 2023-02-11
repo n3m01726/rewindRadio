@@ -1,5 +1,5 @@
 <?php
-namespace RewindRadio;
+namespace App;
 class Text {
 
 public static function cutText($text, $lg_max) {
@@ -25,7 +25,7 @@ public static function replaceAccents($str) {
 
 public static function test_replace($day) {
   $lang = [];
-  include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
+  include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
   $arrayDays = ['&1', '&2', '&3', '&4', '&5', '&6', '&0'];
   $nameDays = [$lang['monday'] . ' ', $lang['tuesday'] . ' ', $lang['wednesday'] . ' ',  $lang['thursday'] . ' ', $lang['friday'] . ' ',  $lang['saturday'] . ' ', $lang['sunday']];
 

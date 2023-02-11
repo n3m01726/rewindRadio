@@ -50,9 +50,9 @@ define('F3_LINK4_TXT','Zen Radio'); //
 define('F3_LINK4_LINK','https://www.zenradio.com'); //
 
 // don't touch anything from here!
-define('VIEW_PATH', '../ressources/views/');
-define('RESSOURCES_PATH', '../ressources/');
-define('CONFIG_PATH', '../app/config/');
+define('VIEW_PATH', '../resources/views/');
+define('RESOURCES_PATH', '../resources/');
+define('CONFIG_PATH', '../config/');
 define('UPLOAD_PATH', '/public/uploads/');
 
 define('SITE_NAME', 'rewindRadio');

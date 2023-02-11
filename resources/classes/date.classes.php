@@ -1,5 +1,5 @@
 <?php
-namespace RewindRadio;
+namespace App;
 class Date {
   public static function convertTime($seconds) {
     $H = floor($seconds / 3600);

@@ -1,5 +1,5 @@
 <?php
-namespace RewindRadio;
+namespace App;
 class shortcodes {
 
 public static function shortcode_attrs($text) {

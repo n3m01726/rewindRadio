@@ -1,9 +1,11 @@
 <?php
 
-namespace rewindRadio;
+namespace App;
 
-use rewindRadio\Database;
-use rewindRadio\Text;
+use App\Database;
+use App\Layout as AppLayout;
+use App\Layout\Layout;
+use App\Text;
 use \PDO;
 
 class radioDJFunctions
@@ -17,7 +19,7 @@ class radioDJFunctions
 
     public static function displayCountdown(int $song_count_limit)
     {
-        include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $query = "SELECT * FROM songs WHERE song_type = 0 AND count_played > 0 AND id_subcat != 5 AND enabled = 1 ORDER BY count_played DESC LIMIT $song_count_limit";
         $database_connection = (new Database())->connect();
         $statement = $database_connection->prepare($query);
@@ -34,7 +36,7 @@ class radioDJFunctions
                     <div class="col-1 d-flex align-items-center mx-4">
                         <h4 style="color:var(--dark-text);"><?php echo $rank++; ?></h4>
                     </div>
-                    <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-2 me-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-4">
                         <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
@@ -58,7 +60,7 @@ class radioDJFunctions
      */
     public static function displayLastPlayedSong()
     {
-        include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         // Connect to the database
         $db = new Database();
         $db_conx_rdj = $db->connect();
@@ -87,7 +89,7 @@ class radioDJFunctions
                     <div class="col-1 d-flex align-items-center mx-4">
                         <?= Date::giveMethehour($song['date_played']); ?>
                     </div>
-                    <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-2 me-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
                         <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
@@ -111,7 +113,7 @@ class radioDJFunctions
      */
     public static function displayTopRequests()
     {
-        include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $query = "SELECT songs.ID, songs.artist, songs.title, requests.username, requests.requested, 
 COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID WHERE TIMESTAMPDIFF( DAY, requests.requested, NOW() ) <= 365 AND PLAYED = 0 GROUP BY songs.ID ORDER BY requests DESC LIMIT 0,4";
 
@@ -130,7 +132,7 @@ COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID
                 $fileName = $song['image'];
             ?>
                 <div class="row border-bottom border-3 bg-light p-2">
-                    <div class="col-2 mx-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-2 mx-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
                         <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
@@ -151,7 +153,7 @@ COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID
 
     public static function displayEvents(int $catID)
     {
-        include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $db = new Database();
         $db_conx_rdj = $db->connect();
         $reponse = $db_conx_rdj->query("SELECT * FROM events
@@ -191,7 +193,7 @@ WHERE catID=$catID ORDER BY events.time ASC");
     {
         global $router;
 
-        include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $query = "SELECT * FROM subcategory
 JOIN " . PREFIX . "_subcategory_info
 ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcategory.parentid=$parentID";

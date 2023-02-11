@@ -1,5 +1,8 @@
 <?php
-namespace RewindRadio;
+namespace App;
+
+use App\Text;
+
 class ManagePosts {
 // Function to handle the upload of post's featured image
 public static function imageUpload($featured_image, $target_dir) {
@@ -89,7 +92,7 @@ if ($stmt->execute()) {
 } } 
 public static function listNews() {
     global $router;
-    include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
+    include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
     $db = new Database();
     $db_conx_rdj = $db->connect();
     $query = "SELECT " . PREFIX . "_posts.id, " . PREFIX . "_posts.featured_image," . PREFIX . "_posts.posted_by, " . PREFIX . "_posts.date_posted, " . PREFIX . "_posts.title, " . PREFIX . "_posts.content, " . PREFIX . "_posts.post_type, " . PREFIX . "_users.username, " . PREFIX . "_users.nice_nickname," . PREFIX . "_categories.name as category_name, " . PREFIX . "_tags.name as tag_name,

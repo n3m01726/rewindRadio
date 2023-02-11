@@ -1,5 +1,6 @@
 <?php
-Class StaticContent {
+namespace App;
+class StaticContent {
 public static function get_header() {
     StaticContent::get_meta();
     StaticContent::get_facebook_og();
@@ -95,16 +96,16 @@ public static function get_scriptfiles() {
         </script>';
 }
     public static function get_functions() {
-        include(RESSOURCES_PATH.'classes/common.class.php');
-        include(RESSOURCES_PATH.'classes/songs.class.php');
-        include(RESSOURCES_PATH.'classes/login.class.php');
-        include(RESSOURCES_PATH.'classes/news.class.php');
-        include(RESSOURCES_PATH.'classes/shortcodes.class.php');
-        include(RESSOURCES_PATH.'classes/static.class.php');
+        include(RESOURCES_PATH.'classes/common.class.php');
+        include(RESOURCES_PATH.'classes/songs.class.php');
+        include(RESOURCES_PATH.'classes/login.class.php');
+        include(RESOURCES_PATH.'classes/news.class.php');
+        include(RESOURCES_PATH.'classes/shortcodes.class.php');
+        include(RESOURCES_PATH.'classes/static.class.php');
     }
 public static function noScriptInstalled() {  
         $lang = [];
-        include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         echo'
         <body class="bg-dark">
         <div class="text-center mt-5">

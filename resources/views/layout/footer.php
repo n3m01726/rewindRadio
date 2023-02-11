@@ -41,11 +41,14 @@
             <?php } ?>
             <div class="col-lg-3" id="social">
             <ul class="list-unstyled d-flex me-5 ms-5">
-                <?php use RewindRadio\Layout; 
-                    Layout::socialIcons('twitter', 'https://twitter.com/noordotda');
-                    Layout::socialIcons('instagram', 'https://instagram.com/noordotda');
-                    Layout::socialIcons('github', 'https://github.com/noordotda');
-                    Layout::socialIcons('discord', DISCORD_INVITE);
+                <?php
+
+                use App\Layout as AppLayout;
+                use App\StaticContent; 
+                AppLayout::socialIcons('twitter', 'https://twitter.com/noordotda');
+                AppLayout::socialIcons('instagram', 'https://instagram.com/noordotda');
+                AppLayout::socialIcons('github', 'https://github.com/noordotda');
+                AppLayout::socialIcons('discord', DISCORD_INVITE);
                 ?>
                 </ul>
                 </nav>

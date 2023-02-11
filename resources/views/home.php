@@ -1,5 +1,8 @@
 <?php
-  use RewindRadio\radioDJFunctions;
+
+use App\Posts as AppPosts;
+use App\radioDJFunctions as AppRadioDJFunctions;
+use RewindRadio\radioDJFunctions;
   use RewindRadio\Posts; 
 ?>
 
@@ -8,19 +11,19 @@
     <div class="row">
       <div class="col-lg-6 gx-5">
         <div class="row mt-2"><h3 class="p-3"><?= $lang['news']; ?></h3></div>
-        <?= Posts::displayNews(4)?>
+        <?= AppPosts::displayNews(4)?>
         <div class="row mt-2"><h3 class="p-3"><?= $lang['lastplay']; ?></h3></div>
-        <?= radioDJFunctions::displayLastPlayedSong()?>
+        <?= AppRadioDJFunctions::displayLastPlayedSong()?>
         <div class="row mt-2"><h3 class="p-3"><?= $lang['countdown']; ?></h3></div>
-        <?= radioDJFunctions::displayCountdown(4)?>
+        <?= AppRadioDJFunctions::displayCountdown(4)?>
       </div>
       <div class="col-lg-6">
       <div class="row mt-2"><h3 class="p-3"><?= $lang['requests']; ?></h3></div>
-      <?= radioDJFunctions::displayTopRequests() ?>
+      <?= AppRadioDJFunctions::displayTopRequests() ?>
       <div class="row mt-2"><h3 class="p-3"><?= $lang['shows']; ?></h3></div>
-      <?= radioDJFunctions::displayShows(10)?>
+      <?= AppRadioDJFunctions::displayShows(10)?>
       <div class="row mt-2"><h3 class="p-3"><?= $lang['events']; ?></h3></div>
-      <?= radioDJFunctions::displayEvents(2)?>
+      <?= AppRadioDJFunctions::displayEvents(2)?>
       </div>
     </div>
   </div>

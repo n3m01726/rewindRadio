@@ -1,15 +1,18 @@
 <?php
 
-namespace RewindRadio;
+namespace App;
 
-use RewindRadio\Database;
+use App\Database;
+use App\shortcodes;
+use App\Text as AppText;
+use App\Text\Text;
 use \PDOException;
 
 class Posts {
   public static function displayNews($limitNews) {
     global $router;
-    include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
-    $db = new Database();
+    include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+    $db = new Database;
     $db_conx_rdj = $db->connect();
     $query = "SELECT " . PREFIX . "_posts.id, " . PREFIX . "_posts.featured_image," . PREFIX . "_posts.posted_by, " . PREFIX . "_posts.date_posted, " . PREFIX . "_posts.title, " . PREFIX . "_posts.content, " . PREFIX . "_users.username, " . PREFIX . "_users.nice_nickname," . PREFIX . "_categories.name as category_name, " . PREFIX . "_tags.name as tag_name,
     DATE_FORMAT(DATE(date_posted), '%d/%m/%Y') AS clean_date FROM " . PREFIX . "_posts
@@ -33,9 +36,9 @@ class Posts {
 
             <a href="<?= $router->generate('single_post', ['id' => $id]); ?>" class="title text-uppercase fw-bold">
               <?= $row['clean_date']; ?> -
-              <?= Text::cutText($row['title'], 80) ?></a>
+              <?= AppText::cutText($row['title'], 80) ?></a>
 
-            <div class='artist'><?= Text::cutText(shortcodes::remove_shortcodes($row['content']), 100); ?></div>
+            <div class='artist'><?= AppText::cutText(shortcodes::remove_shortcodes($row['content']), 100); ?></div>
             <div class="meta">
               <?= $lang['posted_by']; ?><a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
                 <?php if (isset($row['nice_nickname'])) {
@@ -56,7 +59,7 @@ class Posts {
     }
   }
   public static function displayMegaNews($limitNews) {
-    include(RESSOURCES_PATH . 'lang/lang-' . LANG . '.php');
+    include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
     global $router;
     $db = new Database();
     $db_conx_rdj = $db->connect();
@@ -76,8 +79,8 @@ class Posts {
           <a href="<?= $router->generate('single_post', ['id' => $id]); ?>">
             <img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="rounded-4 img-cover" width="105" height="105"></a>
           <div class="card-body">
-            <h5 class="card-title"><a href="<?= $router->generate('single_post', ['id' => $id]); ?>"><?= $row['clean_date']; ?> - <?= Text::cutText($row['title'], 80) ?></a></span></h5>
-            <p class="card-text"><?= Text::cutText(shortcodes::remove_shortcodes($row['content']), 80); ?></p>
+            <h5 class="card-title"><a href="<?= $router->generate('single_post', ['id' => $id]); ?>"><?= $row['clean_date']; ?> - <?= AppText::cutText($row['title'], 80) ?></a></span></h5>
+            <p class="card-text"><?= AppText::cutText(shortcodes::remove_shortcodes($row['content']), 80); ?></p>
           </div>
           <div class="card-footer">
             <?= $lang['posted_by']; ?><a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">

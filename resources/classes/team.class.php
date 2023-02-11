@@ -1,5 +1,8 @@
 <?php
-namespace RewindRadio;
+namespace App;
+
+use App\Database;
+
 class Team {
 public static function displayTeam() {
   global $router;

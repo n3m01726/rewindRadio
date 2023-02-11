@@ -1,7 +1,10 @@
 <?php
-require('../app/config/constants.php');
-if(!file_exists('../app/config/config.php')) {
-    require('../ressources/classes/static.class.php');
+
+use App\StaticContent;
+
+require('../config/constants.php');
+if(!file_exists('../config/config.php')) {
+    require('../resources/classes/static.class.php');
 
     StaticContent::get_stylesheet();    
     StaticContent::noScriptInstalled();
@@ -14,16 +17,16 @@ if($uri == "/private" || $uri == "/private/") {
     require("../private/index.php");
 }
 else { 
-    include('../app/routes/router.php');  
+    include('../routes/web.php');  
     if( is_array($match)) {
     
     $params = $match['params'];
-    require '../ressources/views/layout/header.php';
-    require "../ressources/views/{$match['target']}.php";
-    require '../ressources/views/layout/footer.php';
+    require '../resources/views/layout/header.php';
+    require "../resources/views/{$match['target']}.php";
+    require '../resources/views/layout/footer.php';
 } else
 {
-    require "../ressources/views/404.php";
+    require "../resources/views/404.php";
 }
 } }
 ?>

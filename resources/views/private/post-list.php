@@ -1,5 +1,5 @@
 <?php
-use RewindRadio\ManagePosts;
+use App\ManagePosts;
 if (isset($_SESSION['user_id'])) {
   // Afficher le contenu de la page ?>
 <!-- Plugins CSS Styles Sheets -->

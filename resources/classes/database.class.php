@@ -1,7 +1,8 @@
 <?php
+namespace App;
+
 use \PDO;
 use \PDOException;
-
 class Database {
 // Connection variables
   private $host = DBHOST;

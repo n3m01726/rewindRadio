@@ -1,5 +1,5 @@
 <?php
-
+namespace App;
 /*
 // Fonction de connexion
 function login($username, $password) {
@@ -23,7 +23,8 @@ function logout() {
 } */
 
 session_start();
-use RewindRadio\Database;
+use App\Database as Database;
+
 class Login {
   public static function login($username, $password) {
     // Démarrer la session
@@ -36,7 +37,7 @@ class Login {
     $query = "SELECT * FROM ".PREFIX."_users WHERE username = :username AND password = :password";
     $statement = $db_conx_rdj->prepare($query);
     $statement->execute([':username' => $username, ':password' => $password]);
-    $row = $statement->fetch(PDO::FETCH_ASSOC);
+    $row = $statement->fetch(\PDO::FETCH_ASSOC);
 
     // Si les informations de connexion sont valides
     if ($row) {

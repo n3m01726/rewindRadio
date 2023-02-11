@@ -1,9 +1,10 @@
 <?php
-use RewindRadio\Database;
+use App\Database;
+use App\Login;
 
 $db = new Database;
 $db_conx_rdj = $db->connect();
 $username = $_POST['username'];
 $password = $_POST['password'];
-login::login($username,$password,$db_conx_rdj);
+Login::login($username,$password,$db_conx_rdj);
 ?>
