@@ -1,9 +1,9 @@
 <?php 
-use RewindRadio\shortcodes;
+use App\shortcodes;
 
 // Get the post ID from the URL
 $post_id = $match['params']['id'];
-$db = new RewindRadio\Database();
+$db = new Database;
 $db_conx_rdj = $db->connect();
 // Prepare and execute the SELECT query
 $stmt = $db_conx_rdj->prepare("SELECT * FROM ". PREFIX ."_posts LEFT JOIN ". PREFIX ."_users ON ". PREFIX ."_posts.posted_by = ". PREFIX ."_users.id LEFT JOIN ". PREFIX ."_categories ON ". PREFIX ."_posts.category_id = ". PREFIX ."_categories.id LEFT JOIN ". PREFIX ."_tags ON ". PREFIX ."_posts.tag_id = ". PREFIX ."_tags.id WHERE ". PREFIX ."_posts.id = :post_id");
