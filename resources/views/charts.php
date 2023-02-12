@@ -22,7 +22,7 @@
           </thead>
           <tbody>
 <?php
-    $db = new RewindRadio\Database();
+    $db = new App\Database();
     $db_conx_rdj = $db->connect();
           $reponse = $db_conx_rdj->query('SELECT * FROM songs WHERE song_type = 0 AND id_subcat != 18 AND id_subcat != 19 AND id_subcat != 5 AND enabled = 1 ORDER BY count_played DESC LIMIT 40');
           if ($reponse->rowCount() > 0) { $i = 1;

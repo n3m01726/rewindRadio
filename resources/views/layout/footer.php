@@ -43,12 +43,19 @@
             <ul class="list-unstyled d-flex me-5 ms-5">
                 <?php
 
-                use App\Layout as AppLayout;
+                use App\Layout;
                 use App\StaticContent; 
-                AppLayout::socialIcons('twitter', 'https://twitter.com/noordotda');
-                AppLayout::socialIcons('instagram', 'https://instagram.com/noordotda');
-                AppLayout::socialIcons('github', 'https://github.com/noordotda');
-                AppLayout::socialIcons('discord', DISCORD_INVITE);
+                $socialLinks = [
+                    ['twitter', TWITTER],
+                    ['instagram', INSTAGRAM],
+                    ['discord', DISCORD_INVITE],
+                    ['github', GITHUB],
+                    ['trello', TRELLO]
+                ];
+                
+                foreach ($socialLinks as $link) {
+                 echo"<h4>" . Layout::socialIcons($link[0], $link[1]) . "</h4>";
+                }
                 ?>
                 </ul>
                 </nav>

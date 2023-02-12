@@ -4,9 +4,7 @@ namespace App;
 
 use App\Database;
 use App\shortcodes;
-use App\Text as AppText;
-use App\Text\Text;
-use \PDOException;
+use App\Text;
 
 class Posts {
   public static function displayNews($limitNews) {
@@ -36,9 +34,9 @@ class Posts {
 
             <a href="<?= $router->generate('single_post', ['id' => $id]); ?>" class="title text-uppercase fw-bold">
               <?= $row['clean_date']; ?> -
-              <?= AppText::cutText($row['title'], 80) ?></a>
+              <?= Text::cutText($row['title'], 80) ?></a>
 
-            <div class='artist'><?= AppText::cutText(shortcodes::remove_shortcodes($row['content']), 100); ?></div>
+            <div class='artist'><?= Text::cutText(shortcodes::remove_shortcodes($row['content']), 100); ?></div>
             <div class="meta">
               <?= $lang['posted_by']; ?><a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
                 <?php if (isset($row['nice_nickname'])) {
@@ -77,10 +75,10 @@ class Posts {
         <!-- Display the articles -->
         <div class="card" style="width: 25rem;">
           <a href="<?= $router->generate('single_post', ['id' => $id]); ?>">
-            <img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="rounded-4 img-cover" width="105" height="105"></a>
+            <img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="card-img-top" height="200"></a>
           <div class="card-body">
-            <h5 class="card-title"><a href="<?= $router->generate('single_post', ['id' => $id]); ?>"><?= $row['clean_date']; ?> - <?= AppText::cutText($row['title'], 80) ?></a></span></h5>
-            <p class="card-text"><?= AppText::cutText(shortcodes::remove_shortcodes($row['content']), 80); ?></p>
+            <h5 class="card-title"><a href="<?= $router->generate('single_post', ['id' => $id]); ?>"><?= Text::cutText($row['title'], 80) ?></a></span></h5>
+            <p class="card-text"><?= Text::cutText(shortcodes::remove_shortcodes($row['content']), 80); ?></p>
           </div>
           <div class="card-footer">
             <?= $lang['posted_by']; ?><a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">

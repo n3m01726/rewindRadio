@@ -50,9 +50,8 @@ class Layout
    * @return void
    */
 
-  public static function socialIcons(string $name, string $url)
-  {
-    echo "<li class='ms-4'><a class='link-dark' href=" . $url . " target='_blank'><h2><i class='bi bi-" . $name . "'></i></h2></a></li>";
+  public static function socialIcons(string $name, string $url) {
+    return "<li class='nav-item ms-4 my-auto'><a class='link-dark' href=" . $url . " target='_blank'><i class='bi bi-" . $name . "'></i></a></li>";
   }
 
   /**

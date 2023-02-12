@@ -12,6 +12,15 @@ define('LOGO_URL',''); // l'URL du logo du site, définie comme chemin/vers/logo
 
 define('RADIO_URL', 'https://webradio.shoutcast.ca/8010/stream/;'); // Your radio url e.g. https://yourstream.radio.ca/8787/stream or http://10.0.0.148:8787/stream
 
+// Social Medias
+// define('FACEBOOK','');
+define('TWITTER','https://twitter.com/noordotda'); //
+define('INSTAGRAM','https://instagram.com/noordotda'); //
+define('GITHUB','https://github.com/noordotda'); //
+define('TRELLO','https://trello.com/b/12J9zTpE/radiobeats-project'); //
+define('TIKTOK','https://www.tiktok.com/@www.radiobeats.ca'); //
+
+
 define('RESTSERVER_URL','http://127.0.0.1');  // l'URL du serveur REST, définie comme 127.0.0.1.
 define('RESTSERVER_PORT','8080'); // le port utilisé par le serveur REST, défini comme 8080.
 define('RESTSERVER_PASSWRD','khth30n3!!@'); // le mot de passe utilisé pour se connecter au serveur REST, défini comme '' (vide).

@@ -23,20 +23,28 @@ include('../routes/web.php');
 <body>
 <header>
 <nav class="py-2">
-    <div class="container d-flex flex-wrap">
-      <ul class="nav me-auto">
-        <li class="nav-item"><span class="nav-link px-2" aria-current="page">Télécharger l’appli rewindRadio : </span></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 active" aria-current="page"><i class="bi bi-windows"></i></a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 active" aria-current="page"><i class="bi bi-google-play"></i></a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 active" aria-current="page"><i class="bi bi-apple"></i></a></li>
+    <div class="d-flex flex-wrap">
+      <ul class="nav me-auto mx-5 my-auto">
+   
+        <li class="nav-item"><div class="badge text-bg-info p-2">Info importante sur le site web, ou autre chose d'intéressant</div></li>
+
       </ul>
-      <ul class="nav">
-        <li class="nav-item"><a href="#" class="nav-link px-2"><i class='bi bi-facebook'></i></a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2"><i class='bi bi-twitter'></i></a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2"><i class='bi bi-instagram'></i></a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2"><i class='bi bi-youtube'></i></a></li>
+      <ul class="nav me-5">
+<?php
+    $socialLinks = [
+    ['twitter', TWITTER],
+    ['instagram', INSTAGRAM],
+    ['discord', DISCORD_INVITE],
+    ['github', GITHUB],
+    ['trello', TRELLO]
+];
+
+foreach ($socialLinks as $link) {
+ echo Layout::socialIcons($link[0], $link[1]);
+}
+?>
         <li class="nav-item"><a href="#" class="nav-link px-2 text-light btn btn-dark mx-3"><?= $lang['listenPopup'] ?> 
-          <i class=" m-0 bi bi-box-arrow-up-right"></i></a></li>
+        <i class=" m-0 bi bi-box-arrow-up-right"></i></a></li>
 <!--
           <li>
             <select id="theme-select" class="form-select ms-3">
