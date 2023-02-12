@@ -1,12 +1,12 @@
-<link rel="stylesheet" href="../public/css-js/profile.css">
 <section>
-<?php
+  <?php
 
-use App\Database;
-use App\Text;
+  use App\Database;
+  use App\Text;
+  use App\User;
 
-$id = $match['params']['id'];
-$query = "SELECT * from ".PREFIX."_users where id = $id"; 
+  $id = $match['params']['id'];
+  $query = "SELECT * from " . PREFIX . "_users where id = $id";
 
   $db = new Database;
   $db_conx_rdj = $db->connect();
@@ -15,17 +15,17 @@ $query = "SELECT * from ".PREFIX."_users where id = $id";
 
 
   if ($stmt->rowCount() > 0) {
-      while ($donnees = $stmt->fetch()) { 
-      ?>
+    while ($donnees = $stmt->fetch()) {
+  ?>
 
-<div class="container">
-    <div class="main-body">
+      <div class="container">
+        <div class="main-body">
           <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="../uploads/profile/<?=$donnees['avatar']; ?>" alt="<?=$donnees['username']; ?>" class="rounded-circle" width="150">
+                    <img src="../uploads/profile/<?= $donnees['avatar']; ?>" alt="<?= $donnees['username']; ?>" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4><?= $donnees['nice_nickname']; ?></h4>
                       <p class="text-secondary mb-1"><?= $donnees['job_title']; ?></p>
@@ -62,13 +62,14 @@ $query = "SELECT * from ".PREFIX."_users where id = $id";
             </div>
             <div class="col-md-8">
               <div class="card mb-3">
+                <div class="card-header">À propos de moi</div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
                       <h6 class="mb-0">Full Name</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    <?= $donnees['nice_nickname']; ?>
+                      <?= $donnees['nice_nickname']; ?>
                     </div>
                   </div>
                   <hr>
@@ -77,53 +78,84 @@ $query = "SELECT * from ".PREFIX."_users where id = $id";
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                    <?= $donnees['email']; ?>
+                      <?= $donnees['email']; ?>
                     </div>
                   </div>
                 </div>
-            </div>
+              </div>
               <div class="row gutters-sm">
                 <div class="col-sm-12 mb-3">
                   <div class="card h-100">
-                    <div class="card-body">d5tidtyidytiy</div></div></div></div>
+                    <div class="card-header">
+                      Médias
+                    </div>
+                    <div class="card-body">
+                      <?php
+$username = $donnees['username'];
+$albums = User::getAlbumsByUserId($id, $username);
+foreach ($albums as $album) {
+    $photos = User::getPhotosByAlbumId($album['id']);
+    if (count($photos) > 0) {
+        echo "<h5 class='card-header my-2'>" . $album['album_title'] . "</h5>";
+        foreach ($photos as $photo) {
+            echo "<img src='../uploads/profile/" . $username. "/" . $photo['filename'] . "' width='100' height='100' class='m-2 shadow rounded'>";
+        }
+    }
+}
+                        echo "<hr>";
+                      }
+
+                      ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
+                  <div class="card-header">
+                  <i class="bi bi-kanban me-2"></i>Articles publiés
+                    </div>
                     <div class="card-body">
 
-                      <h6 class="d-flex align-items-center mb-3"><i class="bi bi-kanban me-2"></i>Articles publiés</h6>
-                        <?php $id = $match['params']['id'];
-                            $query = "SELECT ". PREFIX. "_posts.id, ". PREFIX ."_posts.featured_image,". PREFIX ."_posts.date_posted, ". PREFIX ."_posts.title, ". PREFIX ."_posts.content,". PREFIX ."_categories.name as category_name, ". PREFIX ."_tags.name as tag_name,
-                            DATE_FORMAT(DATE(date_posted), '%d/%m/%Y') AS clean_date
-                            FROM ". PREFIX ."_posts
+                      
+                      <?php $id = $match['params']['id'];
+                      $query = "SELECT " . PREFIX . "_posts.id, " . PREFIX . "_posts.featured_image," . PREFIX . "_posts.date_posted, " . PREFIX . "_posts.title, " . PREFIX . "_posts.content," . PREFIX . "_categories.name as category_name, " . PREFIX . "_tags.name as tag_name, DATE_FORMAT(DATE(date_posted), '%d/%m/%Y') AS clean_date FROM " . PREFIX . "_posts LEFT JOIN " . PREFIX . "_categories ON " . PREFIX . "_posts.category_id = " . PREFIX . "_categories.id LEFT JOIN " . PREFIX . "_tags ON " . PREFIX . "_posts.tag_id = " . PREFIX . "_tags.id WHERE " . PREFIX . "_posts.posted_by = $id AND post_type = 1 ORDER BY " . PREFIX . "_posts.date_posted ASC";
 
-                            LEFT JOIN ".PREFIX."_categories ON ".PREFIX."_posts.category_id = ".PREFIX."_categories.id 
-                            LEFT JOIN ".PREFIX."_tags ON ".PREFIX."_posts.tag_id = ".PREFIX."_tags.id WHERE ". PREFIX ."_posts.posted_by = $id AND post_type = 1
-                            ORDER BY ".PREFIX."_posts.date_posted ASC"; 
-
-  $db = new Database;
-  $db_conx_rdj = $db->connect();
-  $stmt = $db_conx_rdj->prepare($query);
-  $stmt->execute();
-  if ($stmt->rowCount() > 0) { 
-      while ($donnees = $stmt->fetch()) { 
-      ?>
-                      <small><a style="text-decoration:underline;" href="<?php $id = $donnees['id']; global $router; echo $router->generate('single_post', ['id' => $id]);?>"><?= $donnees['title']; ?></a></small>
-                      <div>
-                        <div class="mb-4">
-                        <small><?php 
-                        Text::cutText(preg_replace('/\[(.*?)\]/', '', (string) $donnees['content']), 100) ?></small>
-                        </div>
-                      </div>
-                      <hr>
-                      <?php }} else { echo"Aucun article.";} ?>
+                      $db = new Database;
+                      $db_conx_rdj = $db->connect();
+                      $stmt = $db_conx_rdj->prepare($query);
+                      $stmt->execute();
+                      if ($stmt->rowCount() > 0) {
+                        while ($donnees = $stmt->fetch()) {
+                      ?>
+                          <small>
+                            <a style="text-decoration:underline;" href="
+<?php $id = $donnees['id'];
+                          global $router;
+                          echo $router->generate('single_post', ['id' => $id]); ?>">
+                              <?= $donnees['title']; ?></a>
+                          </small>
+                          <div>
+                            <div class="mb-4">
+                              <small><?php
+                                      Text::cutText(preg_replace('/\[(.*?)\]/', '', (string) $donnees['content']), 100) ?></small>
+                            </div>
+                          </div>
+                          <hr>
+                      <?php }
+                      } else {
+                        echo "Aucun article.";
+                      } ?>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
+                  <div class="card-header">
+                <i class="bi bi-kanban me-2"></i>Project Status
+                    </div>
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3"><i class="bi bi-kanban me-2"></i>Project Status</h6>
                       <small>Web Design</small>
                       <div class="progress mb-3" style="height: 5px">
                         <div class="progress-bar bg-dark" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
@@ -148,21 +180,19 @@ $query = "SELECT * from ".PREFIX."_users where id = $id";
                   </div>
                 </div>
               </div>
-
-
-
             </div>
           </div>
-
         </div>
-    </div>
-<?php } }?>
+      </div>
+  <?php }
+   ?>
 </section>
-<?php /*   if (isset($_POST['submit'])) {
-      // Check if a file was uploaded
-      if (isset($_FILES['file'])) {
-          uploadFile($_FILES['file'], ['jpg', 'jpeg', 'png', 'gif'], 'public/uploads/users/');
-      } else {
-          echo "No file was selected.";
-        }
-        }*/ ?>
+<?php /* if (isset($_POST['submit'])) {
+// Check if a file was uploaded
+if (isset($_FILES['file'])) {
+uploadFile($_FILES['file'], ['jpg', 'jpeg', 'png', 'gif'], 'public/uploads/users/');
+} else {
+echo "No file was selected.";
+}
+}*/ ?>
+

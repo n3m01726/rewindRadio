@@ -1,5 +1,7 @@
-<?php 
-  use rewindRadio\radioDJFunctions; 
+<?php
+
+use App\radioDJFunctions as AppRadioDJFunctions;
+use rewindRadio\radioDJFunctions; 
 ?>
 <section>
     <div class="posts-img" style="background-image: url('uploads/posts/pexels-pixabay-164425.jpg'); padding-top:15%;">
@@ -30,25 +32,25 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade" id="nav-<?php echo $lang['monday'];?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['monday'];?>-tab" tabindex="0">
-  <?= radioDJFunctions::getSchedule('&1', 1); ?>
+  <?= AppRadioDJFunctions::getSchedule('&1', 1); ?>
   </div>
   <div class="tab-pane fade" id="nav-<?php echo $lang['tuesday'];?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['tuesday'];?>-tab" tabindex="0">
-  <?= radioDJFunctions::getSchedule('&2', 1); ?>
+  <?= AppRadioDJFunctions::getSchedule('&2', 1); ?>
 </div>
   <div class="tab-pane fade" id="nav-<?php echo $lang['wednesday'];?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['wednesday'];?>-tab" tabindex="0">
-  <?= radioDJFunctions::getSchedule('&3', 1); ?>
+  <?= AppRadioDJFunctions::getSchedule('&3', 1); ?>
 </div>
   <div class="tab-pane fade" id="nav-<?php echo $lang['thursday'];?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['thursday'];?>-tab" tabindex="0">
-  <?= radioDJFunctions::getSchedule('&4', 1); ?>
+  <?= AppRadioDJFunctions::getSchedule('&4', 1); ?>
 </div>
   <div class="tab-pane fade" id="nav-<?php echo $lang['friday'];?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['friday'];?>-tab" tabindex="0">
-  <?= radioDJFunctions::getSchedule('&5', 1); ?>
+  <?= AppRadioDJFunctions::getSchedule('&5', 1); ?>
 </div>
   <div class="tab-pane fade" id="nav-<?php echo $lang['saturday'];?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['saturday'];?>-tab" tabindex="0">
-  <?= radioDJFunctions::getSchedule('&6', 1); ?>
+  <?= AppRadioDJFunctions::getSchedule('&6', 1); ?>
 </div>
   <div class="tab-pane fade" id="nav-<?php echo $lang['sunday'];?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['sunday'];?>-tab" tabindex="0">
-  <?= radioDJFunctions::getSchedule('&0', 1); ?>
+  <?= AppRadioDJFunctions::getSchedule('&0', 1); ?>
 </div>
 </div>
 </div>

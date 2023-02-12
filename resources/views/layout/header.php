@@ -1,9 +1,9 @@
 <?php
 
-use App\Layout as AppLayout;
+use App\Layout;
 use App\StaticContent;
-use App\User as AppUser;
-use App\Posts as AppPosts;
+use App\User;
+use App\Posts;
 
 include(RESOURCES_PATH.'lang/lang-' . LANG . '.php'); 
 include(CONFIG_PATH.'functions.php');
@@ -53,7 +53,7 @@ include('../routes/web.php');
 <div class="bg-light">
     <nav class="navbar navbar-expand-lg mx-5">
       <div class="container-fluid">
-        <?php AppLayout::getBrandLogo(); ?>
+        <?php Layout::getBrandLogo(); ?>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -64,7 +64,7 @@ include('../routes/web.php');
   <li class="nav-item"><a class="nav-link" href="<?= $router->generate('schedule'); ?>"><?= $lang['schedule']; ?></a></li>
   <li class="nav-item"><a class="nav-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" href="#"><?= $lang['magazine']; ?></a></li>
 </ul>
-<?= AppUser::getAvatar(); ?>
+<?= User::getAvatar(); ?>
 
         </div>
       </div>
@@ -75,7 +75,7 @@ include('../routes/web.php');
 <div class="collapse px-5 pt-5 pb-5 border-top border-bottom border-3 bg-light" id="collapseExample">
   <div class="menu-content">
   <div class="hstack gap-3">
-<?= AppPosts::DisplayMegaNews(3);?>
+<?= Posts::DisplayMegaNews(3);?>
 </div>
   </div>
 </div>
