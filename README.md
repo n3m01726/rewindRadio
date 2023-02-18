@@ -12,11 +12,11 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 ## Projets futurs
 - Ajouter une section dédicaces pour que les auditeurs puisse en faire via le site web
 - ~~Afficher les dédicaces des auditeurs~~ [DONE]
-- Ajouter un router PHP et/ou passer à React. :wave: devs !
-- Mettre à jour le design.
+- ~~Ajouter un router PHP et/ou passer à React. :wave: devs !~~
 
 ## Dépendances :
 - Glide
+- AltoRouter
 - Plyr.io 3.7.3
 - RadioDJ 2.0.3.9
 - Bootstrap 5.3-alpha1 
