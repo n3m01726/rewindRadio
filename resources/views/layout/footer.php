@@ -1,3 +1,7 @@
+<?php 
+    use App\Layout;
+    use App\StaticContent; 
+?>
 <footer>
     <div class="container">
         <div class="row pt-4">
@@ -17,16 +21,15 @@
             <div class="col-lg-3">
                 <nav>
                     <ul>
-                        <li class="title"><?php echo SITE_NAME; ?></li>
+                        <li class="title"><?= SITE_NAME ?></li>
                         <li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal"><?= $lang['about']; ?></a></li>
                         <li class='nav-item'><a href="https://www.bonfire.com" target="_blank"><?= $lang['merch']; ?></a></li>
-                        <li class='nav-item' id="teams"><a href="<?= $router->generate('team');?>"><?= $lang['team']; ?></a></li>
-                        <li class='nav-item' id="join_us"><a href="<?= $router->generate('benevolat');?>"><?= $lang['volunteering']; ?></a></li>
-                        <li class='nav-item' id="privacy_policy"><a href='<?= $router->generate('privacy-policy');?>'><?= $lang['privacyPolicy']; ?></a></li>
+                        <li class='nav-item' id="teams"><a href="team.php"><?= $lang['team']; ?></a></li>
+                        <li class='nav-item' id="join_us"><a href="page.php?id=4"><?= $lang['volunteering']; ?></a></li>
+                        <li class='nav-item' id="privacy_policy"><a href='page.php?id=5'><?= $lang['privacyPolicy']; ?></a></li>
                     </ul>
                 </nav>
             </div>
-            <?php if (FOOTER3) { ?>
                 <div class="col-2">
                     <nav>
                         <ul>
@@ -38,13 +41,11 @@
                         </ul>
                     </nav>
                 </div>
-            <?php } ?>
             <div class="col-lg-3" id="social">
             <ul class="list-unstyled d-flex me-5 ms-5">
                 <?php
 
-                use App\Layout;
-                use App\StaticContent; 
+
                 $socialLinks = [
                     ['twitter', TWITTER],
                     ['instagram', INSTAGRAM],
@@ -75,7 +76,7 @@
 
 include(VIEW_PATH."layout/modals.php");
 include(VIEW_PATH."layout/shortcodes_modals.php");
-StaticContent::get_scriptfiles();
+StaticContent::getScriptFiles();
 ?>
 
 <script>

@@ -1,8 +1,5 @@
 <?php
-require('../vendor/autoload.php');
 use Intervention\Image\ImageManagerStatic as Image;
-use League\Glide\Server;
-use SebastianBergmann\CodeCoverage\Report\Xml\Source;
 
 class ImageUpload {
     const ALLOWED_FORMATS = ['jpg', 'jpeg', 'png', 'gif'];
@@ -45,19 +42,17 @@ class ImageUpload {
             throw new Exception("Sorry, there was an error uploading your file.");
         }
 
-        // Resize the image with Glide
+        // Resize the image with Intervention/Image
         $imagesize = [
             [100, 100, 'gallery'],
             [25, 25, 'avatar'],
         ];
         foreach ($imagesize as $size) {
-            $server = League\Glide\ServerFactory::create([
-                'source' => 'path/to/source/folder',
-                'cache' => 'path/to/cache/folder',
-            ]);
-    // You could manually pass in the image path and manipulations options
-            $server->getImageResponse('users/1.jpg', ['w' => 300, 'h' => 400]);
-            $server->getImageResponse($path, $_GET);
+            Image::make($targetDir . $fileName)
+                ->fit($size[0], $size[1], function ($constraint) {
+                    $constraint->upsize();
+                })
+                ->save($targetDir . $size[2] . '-' . $fileName);
         }
 
         return [
@@ -66,4 +61,16 @@ class ImageUpload {
             'created_at' => date('Y-m-d H:i:s'),
         ];
     }
+}
+
+try {
+    if (isset($_FILES['image'])) {
+        $username = $user['username']; // Replace with your code to retrieve the username
+        $file = $_FILES['image'];
+        $type = 'post';
+        $result = ImageUpload::upload($file, $username, $type);
+        $message = "<div class='alert alert-success'>Image uploaded successfully!</div>";
+    }
+} catch (Exception $e) {
+    $message = "<div class='alert alert-danger'>" . $e->getMessage() . "</div>";
 }

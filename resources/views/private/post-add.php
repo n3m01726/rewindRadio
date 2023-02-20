@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id'])) {
 <div class="col-lg-8 admin-post-content">
 <h1>Ajouter un article</h1>
 <hr>
-<form action="src/post-send.php" method="post" enctype="multipart/form-data">
+<form action="/post-send" method="post" enctype="multipart/form-data">
 <div class="mb-3">
 <label for="title">Titre :</label><br>
   <input type="text" name="title" id="title" class="form-control">
@@ -40,6 +40,11 @@ Sélectionnez une image à télécharger pour la couverture de votre billet:
 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#galleryModal">
 <i class="bi bi-images me-3"></i><small>ajouter une gallerie d'images</small>
 </button>
+
+<button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#uploadModal">
+<i class="bi bi-images me-3"></i><small>Téléverser des images</small>
+</button>
+
 <textarea name="content" id="content" class="form-control" cols='10' rows="15" ></textarea>
 <div class="form-text">Pour voir la liste des shortcodes, <a href="#" data-bs-toggle="modal" data-bs-target="#shortCodeModal">c'est ici </a> </div>
 </div>

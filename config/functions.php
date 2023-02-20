@@ -11,4 +11,5 @@ include(RESOURCES_PATH.'classes/team.class.php');
 include(RESOURCES_PATH.'classes/text.classes.php');
 include(RESOURCES_PATH.'classes/admin.classes.php');
 include(RESOURCES_PATH.'classes/user.class.php');
+
 ?>

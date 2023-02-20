@@ -18,6 +18,7 @@ $router->map('GET', '/profile/[i:id]', 'profile', 'profile');
 
 $router->map('POST', '/login', 'private/login', 'login');
 $router->map('GET', '/post-add', 'private/post-add', 'post-add');
+$router->map('POST', '/post-send', 'private/post-send', 'post-send');
 $router->map('GET', '/user-add', 'private/user-add', 'user-add');
 $router->map('GET', '/user-list', 'private/user-list', 'user-list');
 $router->map('GET', '/post-list', 'private/post-list', 'post-list');

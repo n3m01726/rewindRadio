@@ -4,17 +4,17 @@
 app/config/config.php
 
 # Dev stuff 
-/node_modules/
-/vendor/
+vendor/
+node_modules/
 composer.json
 composer.lock
+release-it.json
+package-lock.json
+package.json
 rector.php
 toDolist.md
 
 # fake stuff
 *.mp3
-.release-it.json
-package-lock.json
-package.json
 public/htacfdefewfwcess
 examples_texts.txt

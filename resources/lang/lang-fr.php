@@ -19,10 +19,10 @@ $lang['labelUsername'] = "Nom d'utilisateur :";
 $lang['helpUsername'] = "Veuillez écrire votre nom d'utilisateur mySQL. Ne pas utiliser l'utilisateur root. Créez un nouvel utilisateur pour le script.";
 $lang['labelPassword'] = "Mot de passe :";
 $lang['helpPassword'] = "Veuillez écrire votre mot de passe mySQL.";
-$lang['labelDatabase'] = "Base de données :";
+$lang['labelDatabase'] = "Base de données pour le script :";
 $lang['helpDatabase'] = "Veuillez écrire votre base de données mySQL.";
 $lang['labelPrefix'] = "Préfixe de table :";
-$lang['helpPrefix'] = "Un underscore '_' sera ajouté à la fin de votre préfixe, par exemple, prefix_tablename, pour retrouver les tables plus facilement en cas de bug.";
+$lang['helpPrefix'] = "<p>Un underscore '_' sera ajouté à la fin de votre préfixe, par exemple, prefix_tablename, pour retrouver les tables plus facilement en cas de bug. </p><p> Ajouter <code>nomdelabasededonnees.</code> à votre préfixe si vous ne compter pas utliser la même base de données pour le script et RadioDJ.</p>";
 $lang['labelFakeData'] = "Ajouter des données fictives";
 $lang['helpFakeData'] = "Veuillez cocher cette case si vous souhaitez ajouter des données fictives.";
 $lang['labelDeteleFakeData'] = "Supprimer les données fictives";
@@ -63,7 +63,6 @@ $lang['magazine'] = 'magazine';
 $lang['charts'] = 'décomptes';
 $lang['schedule'] = 'horaire';
 $lang['radioShows'] = 'émissions';
-$lang['events'] = 'événements';
 $lang['videos'] = 'vidéos';
 $lang['listenPopup'] = 'Ouvrir la radio';
 
@@ -103,7 +102,7 @@ $lang['btn_subscPodcast'] = "Abonnement RSS";
 $lang['btn_moreInfoPodcast'] = "Sur demande";
 
 // Les évenements sur RadioDJ - La catégorie des évènements est renseignée dans le fichier src/constants.php
-$lang['events'] = 'Événements';
+$lang['events'] = 'Evenements';
 $lang['addToCalendar'] = 'Me le rappeler'; // function in progress
 // Ce qui joue présentement
 $lang['nowplaying'] = "En train de jouer:";

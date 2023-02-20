@@ -3,8 +3,7 @@
 namespace App;
 
 use App\Database;
-use App\Layout as AppLayout;
-use App\Layout\Layout;
+use App\Layout;
 use App\Text;
 use \PDO;
 
@@ -36,8 +35,8 @@ class radioDJFunctions
                     <div class="col-1 d-flex align-items-center mx-4">
                         <h4 style="color:var(--dark-text);"><?php echo $rank++; ?></h4>
                     </div>
-                    <div class="col-2 me-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
-                    <div class="col-4">
+                    <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-6">
                         <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
                     </div>
@@ -65,7 +64,7 @@ class radioDJFunctions
         $db = new Database();
         $db_conx_rdj = $db->connect();
         // Select the last played song with song type 0 from the history table
-        $query = "SELECT * FROM songs WHERE song_type = ? ORDER BY date_played DESC LIMIT ?, ?";
+        $query = "SELECT * FROM songs WHERE song_type = ? AND count_played > 0 ORDER BY date_played DESC LIMIT ?, ?";
         $stmt = $db_conx_rdj->prepare($query);
         $stmt->bindValue(1, 0, PDO::PARAM_INT);
         $stmt->bindValue(2, 1, PDO::PARAM_INT);
@@ -89,7 +88,7 @@ class radioDJFunctions
                     <div class="col-1 d-flex align-items-center mx-4">
                         <?= Date::giveMethehour($song['date_played']); ?>
                     </div>
-                    <div class="col-2 me-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
                         <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
@@ -114,8 +113,13 @@ class radioDJFunctions
     public static function displayTopRequests()
     {
         include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
-        $query = "SELECT songs.ID, songs.artist, songs.title, requests.username, requests.requested, 
-COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID WHERE TIMESTAMPDIFF( DAY, requests.requested, NOW() ) <= 365 AND PLAYED = 0 GROUP BY songs.ID ORDER BY requests DESC LIMIT 0,4";
+        $query = "SELECT songs.ID, songs.artist, songs.title, songs.image, requests.username, requests.requested, COUNT(*) AS requests 
+        FROM songs 
+        LEFT JOIN requests ON songs.ID = requests.songID 
+        WHERE TIMESTAMPDIFF( DAY, requests.requested, NOW() ) <= 365 AND PLAYED = 0 
+        GROUP BY songs.ID, requests.username, requests.requested
+        ORDER BY requests DESC 
+        LIMIT 0,4;";
 
         $db = new Database();
         $db_conx_rdj = $db->connect();
@@ -132,7 +136,7 @@ COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID
                 $fileName = $song['image'];
             ?>
                 <div class="row border-bottom border-3 bg-light p-2">
-                    <div class="col-2 mx-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-2 mx-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
                         <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
@@ -215,7 +219,7 @@ $id = $show['id'];
                     </div>
 
                     <div class="d-grid gap-2 d-md-block">
-                        <a class="btn btn-dark" href="<?= $router->generate('single_show', ['id' => $id]); ?>"> <?= $lang['btn_moreInfoPodcast']; ?></a>
+                        <a class="btn btn-dark" href="show.php?id=<?= $show['id']; ?>"> <?= $lang['btn_moreInfoPodcast']; ?></a>
                         <a class="btn btn-dark" href="audio/<?= strtolower(str_replace(' ', '_', (string) $show['name'])); ?>/podcasts_rss.php">
                             <?= $lang['btn_subscPodcast']; ?></a>
                     </div>

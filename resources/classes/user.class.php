@@ -41,17 +41,17 @@ public static function getAvatar() {
       </div>
 
     <ul class="dropdown-menu text-small">
-      <li><a class="dropdown-item" href="'. $router->generate('post-list').'">Liste des articles</a></li>
-      <li><a class="dropdown-item" href="'. $router->generate('post-add').'">Ajouter un article</a></li>
-      <li><a class="dropdown-item" href="'. $router->generate('add-draft').'">Ajouter une proposition d\'article</a></li>
-      <li><a class="dropdown-item" href="'. $router->generate('view-drafts').'">Voir mes propositions d\'article</a></li>
+      <li><a class="dropdown-item" href="./private/post-list.php">Liste des articles</a></li>
+      <li><a class="dropdown-item" href="./private/post-add.php">Ajouter un article</a></li>
+      <li><a class="dropdown-item" href="./add-draft.php">Ajouter une proposition d\'article</a></li>
+      <li><a class="dropdown-item" href="./view-drafts.php">Voir mes propositions d\'article</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="'. $router->generate('user-add').'">Ajouter un user</a></li>
-      <li><a class="dropdown-item" href="'. $router->generate('user-list').'">Voir les utilisateurs</a></li>
+      <li><a class="dropdown-item" href="./user-add.php">Ajouter un user</a></li>
+      <li><a class="dropdown-item" href="./user-list.php">Voir les utilisateurs</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="'. $router->generate('profile').'">Voir mon profil</a></li>
-      <li><a class="dropdown-item" href="'. $router->generate('settings').'">Paramètres</a></li>
-      <li><a class="dropdown-item" href="'. $router->generate('logout').'">Se déconnecter</a></li>
+      <li><a class="dropdown-item" href="./profile.php">Voir mon profil</a></li>
+      <li><a class="dropdown-item" href="./settings.php">Paramètres</a></li>
+      <li><a class="dropdown-item" href="./logout.php">Se déconnecter</a></li>
     </ul>
   </div>';
     }

@@ -1,11 +1,12 @@
 <?php
-use RewindRadio\Text;
-use RewindRadio\Date;
+use App\Text;
+use App\Date;
+use App\Database;
 ?>
 <section>
   <?php
-  $id = $match['params']['id'];
-  $db = new RewindRadio\Database();
+  $id = $_GET['id'];
+  $db = new Database();
   $db_conx_rdj = $db->connect();
   $reponse = $db_conx_rdj->query("SELECT " . PREFIX . "_subcategory_info.*, subcategory.* 
 FROM " . PREFIX . "_subcategory_info 
@@ -99,12 +100,9 @@ WHERE subcategory_id = " . $id . " LIMIT 1");
         <?php }
         $reponse->closeCursor(); ?>
          <div class="widget p-3">
-          <?php if (!empty(ADS_CODE) && ADMIN_MODE) { ?>
+          
             <div class='bd-callout bd-callout-info' style='background-color:#fff;'>
               Vous avez un Google Ads ou un compte publicitaire? Ajoutez-le ici! Allez dans la section ads block du fichier init.php pour ajouter votre code HTML
-            <?php } else {
-            echo ADS_CODE;
-          } ?>
             </div>
         </div>
       </div>

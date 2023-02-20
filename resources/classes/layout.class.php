@@ -12,7 +12,7 @@ class Layout
    * 
    * @return void
    */
-  public static function get_player()
+  public static function getPlayer()
   {
     echo '
 <div class="wdgt_comingSoon">Artist - Played Song</div>
@@ -28,15 +28,15 @@ class Layout
    */
 
   public static function getBrandLogo()
-  {
-    echo "<a class='navbar-brand' href='/public'>";
-    if (LOGO) {
+  { 
+    echo "<a class='navbar-brand' href='/'>";
+    if (LOGO_URL) {
       echo "<img src='" . LOGO_URL . "' width='30' height='24'>";
     } else {
       echo '
-<a href="/public" type="button" class="btn btn-dark">
+<a href="/" type="button" class="btn btn-dark">
 <span class="badge text-dark" style="background-color:#f19135;">
-<i class="bi bi-headphones m-0"></i></span><span style="text-transform: uppercase;font-weight: bold;"> ' . SITE_NAME . '</span>
+<i class="bi bi-headphones m-0"></i></span><span style="text-transform: uppercase;font-weight: bold;">TAWEBRADIO</span>
 </a>';
     }
   }
