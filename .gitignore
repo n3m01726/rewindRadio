@@ -3,6 +3,7 @@
 /public/social/
 config.php
 constants.php
+
 # Dev stuff 
 vendor/
 node_modules/
