@@ -6,16 +6,10 @@ config.php
 # Dev stuff
 .vagrant/ 
 vendor/
-node_modules/
 composer.json
 composer.lock
 release-it.json
-package-lock.json
-package.json
 rector.php
-toDolist.md
 
 # fake stuff
 *.mp3
-public/htacfdefewfwcess
-examples_texts.txt
