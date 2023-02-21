@@ -4,7 +4,8 @@
 config.php
 constants.php
 
-# Dev stuff 
+# Dev stuff
+.vagrant/ 
 vendor/
 node_modules/
 composer.json
