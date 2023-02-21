@@ -1,0 +1,12 @@
+body {
+    background-color: #121212;
+}
+
+.setup-script {
+    width: 600px;
+    height: auto;
+    background-color: #eaeaea;
+    border: #cecece 4px solid;
+    padding: 50px;
+    margin: 0 auto;
+}
