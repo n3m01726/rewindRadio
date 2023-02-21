@@ -1,8 +1,8 @@
 .DS_Store
 /public/covers/
 /public/social/
-app/config/config.php
-
+config.php
+constants.php
 # Dev stuff 
 vendor/
 node_modules/
@@ -18,6 +18,3 @@ toDolist.md
 *.mp3
 public/htacfdefewfwcess
 examples_texts.txt
-config/config.php
-config/constants.php
-config/constants.php
