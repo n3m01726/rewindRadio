@@ -25,8 +25,8 @@
                         <li class="nav-item"><a href="#" data-bs-toggle="modal" data-bs-target="#aboutModal"><?= $lang['about']; ?></a></li>
                         <li class='nav-item'><a href="https://www.bonfire.com" target="_blank"><?= $lang['merch']; ?></a></li>
                         <li class='nav-item' id="teams"><a href="team.php"><?= $lang['team']; ?></a></li>
-                        <li class='nav-item' id="join_us"><a href="page.php?id=4"><?= $lang['volunteering']; ?></a></li>
-                        <li class='nav-item' id="privacy_policy"><a href='page.php?id=5'><?= $lang['privacyPolicy']; ?></a></li>
+                        <li class='nav-item' id="join_us"><a href="page.php?id=3"><?= $lang['volunteering']; ?></a></li>
+                        <li class='nav-item' id="privacy_policy"><a href='page.php?id=4'><?= $lang['privacyPolicy']; ?></a></li>
                     </ul>
                 </nav>
             </div>

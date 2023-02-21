@@ -7,7 +7,6 @@ require('../resources/lang/lang-fr.php');
 require('../config/functions.php');
 
 if(!file_exists('../config/config.php')) {
-    require('../resources/classes/static.class.php');
 
     StaticContent::getStylesheet();    
     StaticContent::noScriptInstalled();
