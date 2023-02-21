@@ -1,8 +1,7 @@
 .DS_Store
-/public/covers/
-/public/social/
+public/covers/
+public/social/
 config.php
-constants.php
 
 # Dev stuff
 .vagrant/ 
@@ -20,4 +19,3 @@ toDolist.md
 *.mp3
 public/htacfdefewfwcess
 examples_texts.txt
-config/constants.php
