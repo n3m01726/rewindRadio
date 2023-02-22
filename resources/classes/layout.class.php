@@ -81,7 +81,7 @@ class Layout
     // Check if the cover image file exists
     if (file_exists($imgPath)) {
       // If the file exists, output the image element
-      echo "<img src='" . urldecode($imgPath) . "' alt='cover' class='rounded-4 img-cover'>";
+      echo "<img src='" . urldecode($imgPath) . "' alt='cover' class='img-thumbnail'>";
     } else {
       // If the file does not exist, build the URL for the Last.fm API request
       $url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=" . LASTFM_APIKEY . "&artist=" . urlencode($showArtist) . "&track=" . urlencode($showTrack) . "";
@@ -89,7 +89,7 @@ class Layout
       // Check if the XML document is not empty and the image element exists
       if (isset($xml->track->album->image[2])) {
         // If the image element exists, output the image element
-        echo "<img src='", ((string) $xml->track->album->image[2]), "' alt='cover' class='rounded-4 img-cover'>";
+        echo "<img src='", ((string) $xml->track->album->image[2]), "' alt='cover' class='img-thumbnail'>";
         // Check if the cover image file is empty and readable
         if (is_readable($imgPath) && filesize($imgPath) == 0) {
           // If the file is empty and readable, create the file and save the image
@@ -97,7 +97,7 @@ class Layout
         }
       } else {
         // If the image element does not exist, output the default "no cover" image
-        echo "<img src='covers/no_cover.png' alt='cover' class='rounded-4 img-cover'>";
+        echo "<img src='covers/no_cover.png' alt='cover' class='img-thumbnail'>";
       }
     }
   }

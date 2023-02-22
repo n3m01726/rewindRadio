@@ -41,14 +41,29 @@ touch /etc/apache2/sites-available/#{project_name}.conf
     mkdir /var/www/#{project_name}
 
     echo "<VirtualHost *:80>
-            ServerName #{project_url}
-            DocumentRoot /var/www/#{project_name}/public
-            <Directory /var/www/#{project_name}>
-                AllowOverride All
-                Order allow,deny
-                Allow from all
-            </Directory>
-        </VirtualHost>" > /etc/apache2/sites-available/#{project_name}.conf
+    ServerName #{project_url}
+    DocumentRoot /var/www/#{project_name}/public
+    <Directory /var/www/#{project_name}>
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+    </Directory>
+  </VirtualHost>
+  
+  <VirtualHost *:443>
+    ServerName #{project_url}
+    DocumentRoot /var/www/#{project_name}/public
+    <Directory /var/www/#{project_name}>
+      AllowOverride All
+      Order allow,deny
+      Allow from all
+    </Directory>
+  
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
+    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+  </VirtualHost>
+  " > /etc/apache2/sites-available/#{project_name}.conf
 sudo a2ensite #{project_name}.conf
 sudo service apache2 reload
 
@@ -67,7 +82,9 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 sudo curl -o /etc/apt/trusted.gpg.d/mariadb_release_signing_key.asc 'https://mariadb.org/mariadb_release_signing_key.asc'
 sudo sh -c "echo 'deb https://ftp.osuosl.org/pub/mariadb/repo/10.6/debian bullseye main' >>/etc/apt/sources.list"
 sudo apt-get update
-# sudo apt-get install mariadb-server
+sudo apt-get install mariadb-server
 
   SHELL
+  
+
 end

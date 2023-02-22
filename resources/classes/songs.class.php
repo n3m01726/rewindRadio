@@ -89,7 +89,7 @@ class radioDJFunctions
                         <?= Date::giveMethehour($song['date_played']); ?>
                     </div>
                     <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
-                    <div class="col-6">
+                    <div class="col-6 me-4">
                         <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
                     </div>
@@ -169,7 +169,7 @@ WHERE catID=$catID ORDER BY events.time ASC");
             ?>
                 <div class="row border-bottom border-3 bg-light p-2">
                     <div class="col-2 mx-3">
-                        <img src="uploads/events/<?php echo $event['image']; ?>" alt='cover' class='rounded-4 img-cover' width="105" height="105">
+                        <img src="uploads/events/<?php echo $event['image']; ?>" alt='cover'  class='img-thumbnail'>
                     </div>
                     <div class="col-5">
                         <div class='song_title'><?php echo $event['name']; ?></div>

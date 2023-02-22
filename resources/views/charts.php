@@ -1,6 +1,5 @@
 <section>
-    <div class="posts-img" style="background-image: url('uploads/posts/pexels-marlene-leppänen-12529340'); padding-top:15%;">
-
+    <div class="posts-img" style="background-image: url('uploads/posts/pexels-marlene-leppänen-12529340.jpg'); padding-top:15%;">
         <h3 class="text-center post-title"><b>Décompte <?= SITE_NAME; ?></b></h3>
     </div>
     <div>
@@ -11,39 +10,37 @@
                         <div class="container">
 
                             <div class="row">
-                            <table class='table table-light table-striped'>
-            <thead>
-            <tr>
-              <th>Position</th>
-              <th>Titre de la chanson</th>
-              <th>Artiste.s</th>
-            
-            </tr>
-          </thead>
-          <tbody>
-<?php
-    $db = new App\Database();
-    $db_conx_rdj = $db->connect();
-          $reponse = $db_conx_rdj->query('SELECT * FROM songs WHERE song_type = 0 AND id_subcat != 18 AND id_subcat != 19 AND id_subcat != 5 AND enabled = 1 ORDER BY count_played DESC LIMIT 40');
-          if ($reponse->rowCount() > 0) { $i = 1;
-    while ($donnees = $reponse->fetch()) {
-?>
-        <tr>
-            <td><?php echo $i++;?></td>
-            <td><?php echo $donnees['title'];?></td>
-            <td><?php echo $donnees['artist'];?></td>
-            
-        </td>
-        </tr>
+                                <table class='table table-light table-striped'>
+                                    <thead>
+                                        <tr>
+                                            <th>Position</th>
+                                            <th>Titre de la chanson</th>
+                                            <th>Artiste.s</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $db = new App\Database();
+                                        $db_conx_rdj = $db->connect();
+                                        $reponse = $db_conx_rdj->query('SELECT * FROM songs WHERE song_type = 0 AND id_subcat != 18 AND id_subcat != 19 AND id_subcat != 5 AND enabled = 1 ORDER BY count_played DESC LIMIT 40');
+                                        if ($reponse->rowCount() > 0) {
+                                            $i = 1;
+                                            while ($donnees = $reponse->fetch()) {
+                                        ?>
+                                                <tr>
+                                                    <td><?php echo $i++; ?></td>
+                                                    <td><?php echo $donnees['title']; ?></td>
+                                                    <td><?php echo $donnees['artist']; ?></td>
 
-<?php
-    }
-    $reponse->closeCursor(); // Termine le traitement de la requête
-} 
-?>
-    </tbody>
-</table>
-                               
+                                                    </td>
+                                                </tr>
+                                        <?php
+                                            }
+                                            $reponse->closeCursor(); // Termine le traitement de la requête
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -51,4 +48,4 @@
             </div>
         </div>
     </div>
-</main>
+    </main>

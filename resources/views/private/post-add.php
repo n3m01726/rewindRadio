@@ -1,7 +1,3 @@
-<?php
-if (isset($_SESSION['user_id'])) {
-  // Afficher le contenu de la page 
-?>
 <!-- Plugins CSS Styles Sheets -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link href="../public/css/style.css" rel="stylesheet"/> 
@@ -41,10 +37,6 @@ Sélectionnez une image à télécharger pour la couverture de votre billet:
 <i class="bi bi-images me-3"></i><small>ajouter une gallerie d'images</small>
 </button>
 
-<button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#uploadModal">
-<i class="bi bi-images me-3"></i><small>Téléverser des images</small>
-</button>
-
 <textarea name="content" id="content" class="form-control" cols='10' rows="15" ></textarea>
 <div class="form-text">Pour voir la liste des shortcodes, <a href="#" data-bs-toggle="modal" data-bs-target="#shortCodeModal">c'est ici </a> </div>
 </div>
@@ -61,7 +53,3 @@ Sélectionnez une image à télécharger pour la couverture de votre billet:
 </div>
 </div>
 </section>
-<?php } else {
-  // Renvoyer un message d'erreur
-  echo "Vous devez être connecté pour accéder à cette page.";
-} ?>

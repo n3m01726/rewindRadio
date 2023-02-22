@@ -25,7 +25,6 @@ public static function getPhotosByAlbumId($album_id) {
 }
 
 public static function getAvatar() {
-    global $router;
     if (isset($_SESSION['user_id'])) {
       // Retrieve user information from the database
       $db = new Database;

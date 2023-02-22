@@ -102,14 +102,12 @@ $lang['btn_subscPodcast'] = "Abonnement RSS";
 $lang['btn_moreInfoPodcast'] = "Sur demande";
 
 // Les évenements sur RadioDJ - La catégorie des évènements est renseignée dans le fichier src/constants.php
-$lang['events'] = 'Evenements';
+$lang['events'] = 'Évenements';
 $lang['addToCalendar'] = 'Me le rappeler'; // function in progress
 // Ce qui joue présentement
 $lang['nowplaying'] = "En train de jouer:";
 $lang['onAirShow'] = 'En direct maintenant:';
 $lang['NoPlayedSongs'] = "Pas de chansons jouées.";
-
-// Liens Footer
 
 // Footer 01
 $lang['mobileApp'] = "Applications mobile";
@@ -183,11 +181,6 @@ $lang['plsTxt'] = "PLS Playlist Format →";
 $lang['plsLink'] = "path/to/the/file.pls";
 $lang['xspfTxt'] = "XSPF Playlist Format →";
 $lang['xspfLink'] = "path/to/the/file.xspf";
-
-// Contact Modal
-$lang['contact'] = "Nous contacter";
-$lang['contactTxt']= "Vous pouvez nous contacter à tout moment via hello [at] rewind [point] radio ou sur les différentes plateformes sociales.";
-
 
 $lang['lnk_tunein_txt'] = "TuneIn";
 $lang['lnk_tunein_description'] = "La plus grande plateforme de streaming audio et de musique au monde, avec plus de 100 000 stations de radio.";

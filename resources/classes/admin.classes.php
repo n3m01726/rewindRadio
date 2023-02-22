@@ -92,7 +92,8 @@ if ($stmt->execute()) {
 } } 
 public static function listNews() {
     global $router;
-    include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+    include('../../resources/classes/database.class.php');
+    include('../../resources/classes/text.classes.php');
     $db = new Database();
     $db_conx_rdj = $db->connect();
     $query = "SELECT " . PREFIX . "_posts.id, " . PREFIX . "_posts.featured_image," . PREFIX . "_posts.posted_by, " . PREFIX . "_posts.date_posted, " . PREFIX . "_posts.title, " . PREFIX . "_posts.content, " . PREFIX . "_posts.post_type, " . PREFIX . "_users.username, " . PREFIX . "_users.nice_nickname," . PREFIX . "_categories.name as category_name, " . PREFIX . "_tags.name as tag_name,
@@ -111,18 +112,22 @@ public static function listNews() {
  <tr>
     <td><?php if($row['post_type'] == 2) { echo "Page";} elseif($row['post_type'] == 1)  {echo "Articles";}; ?></td>
     
-    <td>    <a href="<?= $router->generate('single_post', ['id' => $id]); ?>">
-              <?= Text::cutText($row['title'], 80) ?></a></td>
+    <td> <?= $row['clean_date']; ?>   </td>
     <td>
-    <a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
+    <a href="#">
+              <?= Text::cutText($row['title'], 80) ?></a>
+    
+    </td>
+    <td>
+    <a href="#">
                 <?php if (isset($row['nice_nickname'])) {
                   echo $row['nice_nickname'];
                 } else {
                   echo $row['username'];
                 } ?></a>
     </td>
-    <td></td>
-    <td></td>
+    <td><?= $row['category_name']; ?>  </td>
+    <td><?= $row['tag_name']; ?></td>
     <td></td>
  </tr>       
       <?php }

@@ -80,8 +80,8 @@
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-<form action="/login" method="post">
-    <img class="mb-4" src="../public/images/logo.png" alt="" width="150" height="150">
+<form action="login.php" method="post">
+    <img class="mb-4" src="../images/logo.png" alt="" width="150" height="150">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">

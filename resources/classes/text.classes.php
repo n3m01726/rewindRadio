@@ -1,6 +1,5 @@
 <?php
 namespace App;
-include RESOURCES_PATH.'/lang/lang-fr.php';
 class Text {
     public static function cutText($text, $lg_max) : string {
         if (mb_strlen((string) $text) > $lg_max) {

@@ -88,11 +88,11 @@ public static function noScriptInstalled() {
   <h5>'. $lang["noInstallScript_tt_fr"] .'</h5>
   <p>'. $lang["noInstallScript_txt_fr"] .'</p>
 
-  <a class="btn btn-dark" href="/setup/index.php?language=fr" class="card-link">'.$lang["startInstallation_fr"].'</a>
+  <a class="btn btn-dark" href="../setup/index.php?language=fr" class="card-link">'.$lang["startInstallation_fr"].'</a>
   <hr>
   <h5>'.$lang["noInstallScript_tt_en"].'</h5>
   <p>'.$lang["noInstallScript_txt_en"].'</p>
-  <a class="btn btn-dark" href="/setup/index.php?language=en" class="card-link">'.$lang["startInstallation_en"].'</a>
+  <a class="btn btn-dark" href="../setup/index.php?language=en" class="card-link">'.$lang["startInstallation_en"].'</a>
   
   </div>
 </div></div></body>';

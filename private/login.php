@@ -1,5 +1,9 @@
 <?php
+require('../../config/constants.php');
+require('../../config/config.php');
 
+require('../../resources/classes/database.class.php');
+require('../../resources/classes/login.class.php');
 use App\Database;
 use App\Login;
 
