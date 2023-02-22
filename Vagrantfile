@@ -49,20 +49,6 @@ touch /etc/apache2/sites-available/#{project_name}.conf
       Allow from all
     </Directory>
   </VirtualHost>
-  
-  <VirtualHost *:443>
-    ServerName #{project_url}
-    DocumentRoot /var/www/#{project_name}/public
-    <Directory /var/www/#{project_name}>
-      AllowOverride All
-      Order allow,deny
-      Allow from all
-    </Directory>
-  
-    SSLEngine on
-    SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
-    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
-  </VirtualHost>
   " > /etc/apache2/sites-available/#{project_name}.conf
 sudo a2ensite #{project_name}.conf
 sudo service apache2 reload
