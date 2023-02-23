@@ -10,6 +10,7 @@ Vagrant.configure("2") do |config|
 
   # Configure a specific port to forward to the guest machine
   config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 3306, host: 3360
 
   config.vm.hostname = project_name+"-vm"
 
@@ -68,9 +69,9 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 sudo curl -o /etc/apt/trusted.gpg.d/mariadb_release_signing_key.asc 'https://mariadb.org/mariadb_release_signing_key.asc'
 sudo sh -c "echo 'deb https://ftp.osuosl.org/pub/mariadb/repo/10.6/debian bullseye main' >>/etc/apt/sources.list"
 sudo apt-get update
-sudo apt-get install mariadb-server
-
-  SHELL
-  
-
+sudo apt-get install mariadb-server -y
+SHELL
+end
+config.vm.provision "shell", path: "provision_mail.sh"
+config.vm.provision "shell", path: "web_provision.sh"
 end

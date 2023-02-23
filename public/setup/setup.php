@@ -422,7 +422,7 @@ echo "Added fake data to the news_user table. Don't worry, it won't mess with rd
     // Create the insert_subcategory_info trigger
     $sql = "DROP TRIGGER IF EXISTS insert_event_info;
     CREATE TRIGGER insert_event_info AFTER INSERT ON events FOR EACH ROW
-    INSERT INTO " . $prefix . "_events_info(subcategory_id)
+    INSERT INTO " . $prefix . "_events_info(event_id)
     VALUES(NEW.id);";
     $conn->exec($sql);
     echo "Created the insert_events_info trigger.<br>";
