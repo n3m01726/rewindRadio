@@ -1,13 +1,13 @@
 # RewindRadio - Interface web pour RadioDJ
 Ce script est conçu pour gérer le site web de votre station de radio en ligne. Il offre les fonctionnalités suivantes :
 
-- Afficher les dernières chansons jouées
-- Faire un décompte des chansons les plus jouées
-- Système de news/blog intégré pour tenir les auditeurs informés
-- Afficher les évènements de la station pour permettre aux auditeurs de s'y inscrire
-- Page horaire pour montrer les heures de diffusion
-- Affichage des émissions enregistrées/podcasts pour une écoute en différé.
-- Ce script offre une interface simple et efficace pour gérer les différents aspects de votre station de radio en ligne. 
+* Afficher les dernières chansons jouées
+* Faire un décompte des chansons les plus jouées
+* Système de news/blog intégré pour tenir les auditeurs informés
+* Afficher les évènements de la station pour permettre aux auditeurs de s'y inscrire
+* Page horaire pour montrer les heures de diffusion
+* Affichage des émissions enregistrées/podcasts pour une écoute en différé.
+* Ce script offre une interface simple et efficace pour gérer les différents aspects de votre station de radio en ligne. 
 
 - PHP v8.1.16
 - MySQL 8.0.26 (looking for switching on MariaDB)
