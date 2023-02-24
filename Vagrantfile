@@ -2,22 +2,21 @@
 # vi: set ft=ruby :
 
 project_name = "zrewindradio"
-project_url = "rewind.radio"
+project_url = "z.rewind.radio"
 
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/bullseye64"
   config.vm.network "private_network", ip: "192.168.33.25"
 
   # Configure a specific port to forward to the guest machine
-  config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "forwarded_port", guest: 3306, host: 3360
+  config.vm.network "forwarded_port", guest: 80, host: 8081
 
   config.vm.hostname = project_name+"-vm"
 
   # Remove the default sync folder
 config.vm.synced_folder ".", "/vagrant", disabled: true
 # Synced folders
-  config.vm.synced_folder "./app/", "/var/www/#{project_name}" 
+  config.vm.synced_folder "./app/", "/var/www/#{project_name}", create:true
   
   config.vm.provider "virtualbox" do |vb|
     vb.name = project_name+"-vm"
@@ -83,7 +82,13 @@ sudo sh -c "echo 'deb https://ftp.osuosl.org/pub/mariadb/repo/10.6/debian bullse
 sudo apt-get update
 sudo apt-get install mariadb-server -y
 
-git clone https://github.com/noordotda/rewindRadio.git
+composer require rector/rector --dev
+composer require PHPUnit/PHPUnit --dev
+composer require league/glide
+composer require altorouter/altorouter
+
+
+
 echo "***************************************** All done! *********************************************
 
 MUST DO mysql_secure_installation to config mariadb properly.
