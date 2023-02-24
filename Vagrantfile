@@ -1,8 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-project_name = "zrewindradio"
-project_url = "z.rewind.radio"
+project_name = "rewindradio"
+project_url = "rewind.radio"
 
 Vagrant.configure("2") do |config|
   config.vm.box = "debian/bullseye64"
@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
   # Remove the default sync folder
 config.vm.synced_folder ".", "/vagrant", disabled: true
 # Synced folders
-  config.vm.synced_folder "./app/", "/var/www/#{project_name}", create:true
+  config.vm.synced_folder "./", "/var/www/#{project_name}", create:true
   
   config.vm.provider "virtualbox" do |vb|
     vb.name = project_name+"-vm"
@@ -81,13 +81,6 @@ sudo curl -o /etc/apt/trusted.gpg.d/mariadb_release_signing_key.asc 'https://mar
 sudo sh -c "echo 'deb https://ftp.osuosl.org/pub/mariadb/repo/10.6/debian bullseye main' >>/etc/apt/sources.list"
 sudo apt-get update
 sudo apt-get install mariadb-server -y
-
-composer require rector/rector --dev
-composer require PHPUnit/PHPUnit --dev
-composer require league/glide
-composer require altorouter/altorouter
-
-
 
 echo "***************************************** All done! *********************************************
 
