@@ -96,7 +96,9 @@ MUST DO mysql_secure_installation to config mariadb properly.
 
 SHELL
 end
-
+# Synced folders
+  config.vm.synced_folder "./app/", "/var/www/#{project_name}", create:true
+end
 # config.vm.provision "shell", path: "provision_mail.sh"
 # config.vm.provision "shell", path: "web_provision.sh"
 # end
