@@ -24,14 +24,22 @@ class Posts {
         $id = $row['id'];
         $posted_by = $row['posted_by'];
 ?>
-
+<style>
+.responsive {
+  width: 105px;
+  max-width: 105px;
+  height: auto;
+  max-height: 105px;
+  
+}
+</style>
         <!-- Display the articles -->
         <div class="row border-bottom border-3 bg-light p-2">
-          <div class="col-2 mx-3">
+          <div class="col-2">
             <a href="post.php?id=<?= $row['id']; ?>">
-              <img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="rounded-4 img-cover" width="105" height="105"></a>
+              <img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class='responsive'></a>
           </div>
-          <div class="col-9">
+          <div class="col-8">
 
           <a href="post.php?id=<?= $row['id']; ?>" class="title text-uppercase fw-bold">
               <?= $row['clean_date']; ?> -
