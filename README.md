@@ -9,22 +9,15 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 - Affichage des émissions enregistrées/podcasts pour une écoute en différé.
 - Ce script offre une interface simple et efficace pour gérer les différents aspects de votre station de radio en ligne. 
 
-## Projets futurs
-- ~~Afficher les dédicaces des auditeurs~~ [DONE]
-- Ajouter un router PHP et/ou passer à React. :wave: devs !
-- Ajouter une section dédicaces pour que les auditeurs puisse en faire via le site web
-- Créer les test unitaires pour PHPUnit
-
-
 - PHP v8.1.16
 - MySQL 8.0.26 (looking for switching on MariaDB)
 - RadioDJ 2.0.3.9
 
 ## Dépendances :
-    - Glide 
-    - Bootstrap 5.3-alpha1 
-    - Bootstrap Icons
-    - Plyr.io 3.7.3
+ - Glide 
+ - Bootstrap 5.3-alpha1 
+ - Bootstrap Icons
+ - Plyr.io 3.7.3
 
  ## Règles de codage
 Les règles de codage sont grandement inspirées du modèle d'AngularJS. 
