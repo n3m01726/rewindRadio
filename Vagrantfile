@@ -14,9 +14,9 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = project_name+"-vm"
 
   # Remove the default sync folder
-config.vm.synced_folder ".", "/vagrant", disabled: true
-# Synced folders
-  config.vm.synced_folder "./", "/var/www/#{project_name}", create:true
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+  # Synced folders
+    config.vm.synced_folder "./", "/var/www/html/#{project_name}", create:true
   
   config.vm.provider "virtualbox" do |vb|
     vb.name = project_name+"-vm"
@@ -42,12 +42,13 @@ config.vm.synced_folder ".", "/vagrant", disabled: true
   touch /etc/apache2/sites-available/#{project_name}.conf
 
  echo "Create directories and virtual hosts for the projects..."
-    mkdir /var/www/#{project_name}
+ sudo su 
+ mkdir /var/www/html/#{project_name}
 
     echo "<VirtualHost *:80>
     ServerName #{project_url}
-    DocumentRoot /var/www/#{project_name}/public
-    <Directory /var/www/#{project_name}>
+    DocumentRoot /var/www/html/#{project_name}/public
+    <Directory /var/www/html/#{project_name}>
       AllowOverride All
       Order allow,deny
       Allow from all
@@ -56,6 +57,8 @@ config.vm.synced_folder ".", "/vagrant", disabled: true
   " > /etc/apache2/sites-available/#{project_name}.conf
 sudo a2ensite #{project_name}.conf
 sudo service apache2 reload
+
+exit
 
 echo "Update and upgrade packages again..."
 sudo apt update && sudo apt upgrade -y

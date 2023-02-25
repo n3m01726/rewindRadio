@@ -20,42 +20,19 @@ class Posts {
 ";
     $result = $db_conx_rdj->query($query);
     if ($result->rowCount() > 0) {
-      while ($row = $result->fetch()) {
-        $id = $row['id'];
-        $posted_by = $row['posted_by'];
-?>
-<style>
-.responsive {
-  width: 105px;
-  max-width: 105px;
-  height: auto;
-  max-height: 105px;
-  
-}
-</style>
-        <!-- Display the articles -->
-        <div class="row border-bottom border-3 bg-light p-2">
-          <div class="col-2">
-            <a href="post.php?id=<?= $row['id']; ?>">
-              <img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class='responsive'></a>
-          </div>
-          <div class="col-8">
-
-          <a href="post.php?id=<?= $row['id']; ?>" class="title text-uppercase fw-bold">
-              <?= $row['clean_date']; ?> -
-              <?= Text::cutText($row['title'], 80) ?></a>
-
-            <div class='artist'><?= Text::cutText(shortcodes::removeShortcodes($row['content']), 100); ?></div>
-            <div class="meta">
-              <?= $lang['posted_by']; ?><a href="profile.php?id=<?= $row['posted_by']; ?>">
-                <?php if (isset($row['nice_nickname'])) {
-                  echo $row['nice_nickname'];
-                } else {
-                  echo $row['username'];
-                } ?></a>
-            </div>
-          </div>
-        </div>
+      while ($post = $result->fetch()) {
+        $id = $post['id'];
+        $posted_by = $post['posted_by'];
+        ?>
+ <div class="grid-item">
+  <picture>
+    <img src="/uploads/posts/<?= $post["featured_image"];?>" alt="<?= $post["title"];?>" class="thumbnail">
+  </picture>
+ </div>
+ <div class="grid-item">
+  title
+  content
+ </div>
       <?php }
     } else {
       echo '<div id="widget" style="padding: 20px;">

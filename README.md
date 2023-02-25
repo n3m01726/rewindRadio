@@ -14,7 +14,6 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 - RadioDJ 2.0.3.9
 
 ## Dépendances :
- - Glide 
  - Bootstrap 5.3-alpha1 
  - Bootstrap Icons
  - Plyr.io 3.7.3

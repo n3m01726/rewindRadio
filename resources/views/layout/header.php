@@ -15,6 +15,7 @@ use App\Posts;
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <?= StaticContent::getHeader(); ?>
+
   <title>Ça c'est un super titre de site web / Change moi ÇAAAAAAA!</title>
 </head>
 <body>

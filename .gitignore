@@ -3,7 +3,7 @@ covers/
 social/
 config.php
 .vagrant/
-
+databases/database.sql
 # Dev stuff
 vendor/
 composer.json
