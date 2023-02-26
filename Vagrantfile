@@ -43,7 +43,6 @@ Vagrant.configure("2") do |config|
 
  echo "Create directories and virtual hosts for the projects..."
  sudo su 
- mkdir /var/www/html/#{project_name}
 
     echo "<VirtualHost *:80>
     ServerName #{project_url}

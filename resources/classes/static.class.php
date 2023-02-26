@@ -39,7 +39,7 @@ class StaticContent
       <!-- Plugins CSS Styles Sheets -->
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
       <link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css" />
       <link href="css/style.css" rel="stylesheet"/> 
@@ -80,24 +80,24 @@ public static function noScriptInstalled() {
   $lang = [];
   include('../resources/lang/lang-fr.php');
   echo'
-  <body class="bg-dark">
-  <div class="text-center mt-5">
-  <img src="images/logo.png" width="150px" height="150px" alt="your awesome logo">
-  </div>
-  <div class="card mx-auto mt-3 text-dark" style="width: 30rem;">
-  <div class="card-header"><h4>'.$lang["setupTitle"].'</h4></div>
+  <body>
+  <div class="setup">
+    <div class="logo">
+      <img src="images/logo.png" width="150px" height="150px" alt="your awesome logo">
+    </div>
+  <div class="card" style="width: 30rem; margin-left:auto; margin-right:auto;">
+  <div class="card-header" style="padding-left:20px;"><h4>'. $lang["noInstallScript_tt_fr"] .'</h4></div>
   <div class="card-body">
-  <h5>'. $lang["noInstallScript_tt_fr"] .'</h5>
   <p>'. $lang["noInstallScript_txt_fr"] .'</p>
 
-  <a class="btn btn-dark" href="../setup/index.php?language=fr" class="card-link">'.$lang["startInstallation_fr"].'</a>
+  <a class="btn" href="../setup/index.php?language=fr" class="card-link">'.$lang["startInstallation_fr"].'</a>
   <hr>
   <h5>'.$lang["noInstallScript_tt_en"].'</h5>
   <p>'.$lang["noInstallScript_txt_en"].'</p>
   <a class="btn btn-dark" href="../setup/index.php?language=en" class="card-link">'.$lang["startInstallation_en"].'</a>
   
   </div>
-</div></div></body>';
+</div></div></div></body>';
 }
 
 }
