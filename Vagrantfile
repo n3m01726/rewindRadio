@@ -57,8 +57,6 @@ Vagrant.configure("2") do |config|
 sudo a2ensite #{project_name}.conf
 sudo service apache2 reload
 
-exit
-
 echo "Update and upgrade packages again..."
 sudo apt update && sudo apt upgrade -y
 

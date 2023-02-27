@@ -64,6 +64,3 @@ define('UPLOAD_PATH', '/public/uploads/');
 
 define('SITE_NAME', 'rewindRadio');
 define('LANG', 'fr');
-
-define('SITE_NAME', 'rewindRadio');
-define('LANG', 'fr');

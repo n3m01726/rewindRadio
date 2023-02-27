@@ -29,7 +29,7 @@ include('../../resources/lang/lang-'.$language.'.php');
             <h4><?= $lang['setupTitle']; ?> 1</h4>
         </div>
         <div class="card-body">
-            <form method="POST" action="../../databases/setup.php">
+            <form method="POST" action="setup.php">
                 <div class="container">
                     <p><?= $lang['intro']; ?></p>
                     <input type="hidden" name="language" value="<?php echo $language; ?>">

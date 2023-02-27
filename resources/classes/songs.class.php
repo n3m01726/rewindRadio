@@ -16,7 +16,7 @@ class radioDJFunctions
      * @param int $song_count_limit The number of songs to display.
      */
 
-    public static function displayCountdown(int $song_count_limit)
+    public static function displayMostPlayed(int $song_count_limit)
     {
         include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $query = "SELECT * FROM songs WHERE song_type = 0 AND count_played > 0 AND id_subcat != 5 AND enabled = 1 ORDER BY count_played DESC LIMIT $song_count_limit";
@@ -110,7 +110,7 @@ class radioDJFunctions
      * Display not already played requests.
      *
      */
-    public static function displayTopRequests()
+    public static function displayRequests()
     {
         include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $query = "SELECT songs.ID, songs.artist, songs.title, songs.image, requests.username, requests.requested, COUNT(*) AS requests 
@@ -193,7 +193,7 @@ WHERE catID=$catID ORDER BY events.time ASC");
         }
         $reponse->closeCursor();
     }
-    public static function displayShows(int $parentID)
+    public static function displayLiveShows(int $parentID)
     {
         global $router;
 

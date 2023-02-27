@@ -190,11 +190,6 @@ a, a:visited, a:active {
   text-transform: uppercase;
   background-color: var(--widget-bg);
 }
-.widget img {
-  width: 105px;
-  height: 105px;
-  border-radius: 15px;
-}
 .widget .song_title {
   text-transform: uppercase;
   font-weight: bold;
