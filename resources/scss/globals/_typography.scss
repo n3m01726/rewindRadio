@@ -1,11 +1,22 @@
+@use '../utils/' as u;
 h1, h2, h3 {
- font-weight: 700;
- line-height: 1.1;
- margin-top: 0;
+  line-height: 1.1;
+  margin-top: 0;
+  letter-spacing: 3px;
+  color:#101010;
+}
+
+h1 {
+  // font-size: clamp(28px, 16px + 2vw, 40px);
+  font-size: clamp(u.rem(36), u.rem(16) + 2vw, u.rem(48));
+  margin-top:u.rem(40);
+  margin-bottom:u.rem(40);
+  font-family: u.$font-title;
 }
 
 p {
   margin-top: 0;
+  font-size: u.rem(16)
 }
 
 a, a:visited, a:active {

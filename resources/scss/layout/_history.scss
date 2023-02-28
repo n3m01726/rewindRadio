@@ -1,12 +1,13 @@
 @use '../utils/' as u;
-.post {
-    &__item{
+.history {
+    &__item {
         background-color: hsl(0, 0%, 100%);
         border-bottom: #212121 1px solid;
-        padding:10px 0 0 10px;
+        padding-left:10px;
         border-radius: 5px;
-        margin-top: 0.5rem;
-        height: auto;
+        min-height: 125px;
+        display: flex;
+        margin-bottom: 0.5rem;
     }
 
     &__featured_image {
@@ -15,20 +16,27 @@
         background-position: center;
         border-radius: 5px;
         float: left;
-        margin-right: 20px;
+        margin-block: auto;
     }
-    
+    &__meta {
+        margin-inline-start: 20px;
+        margin-block: 10px;    
+        }
+
     &__title{
         text-transform: uppercase;
         color: #101010;
         font-weight: 700;
     }
-    
-    &__meta{
-        color: #101010;
+
+    &__artist{
+        color: #6d6d6d;
     }
-    
-    &__content{
-        color: #101010;
+    &__time{
+     font-family: u.$font-content;
+     color: #212121;
+     margin-inline: 1rem;
+     margin-block: auto;
+     width: 5em;
     }
 }
