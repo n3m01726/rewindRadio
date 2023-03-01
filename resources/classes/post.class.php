@@ -5,9 +5,8 @@ namespace App;
 use App\Database;
 use App\shortcodes;
 use App\Text;
-
 class Posts {
-  public static function displayNews($limitNews) {
+  public static function getNews($limitNews) {
     global $router;
     include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
     $db = new Database;
@@ -19,40 +18,28 @@ class Posts {
     LEFT JOIN " . PREFIX . "_tags ON " . PREFIX . "_posts.tag_id = " . PREFIX . "_tags.id WHERE post_type = 1 AND is_featured = 0 ORDER BY " . PREFIX . "_posts.date_posted DESC LIMIT $limitNews
 ";
     $result = $db_conx_rdj->query($query);
+    $articles = [];
     if ($result->rowCount() > 0) {
       while ($row = $result->fetch()) {
-?>
-        <!-- Display the articles -->
-        <div class="row border-bottom border-3 bg-light p-2">
-          <div class="col-lg-2">
-            <a href="post.php?id=<?= $row['id']; ?>">
-              <img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="img-thumbnail"></a>
-          </div>
-          <div class="col-lg-6">
-          <a href="post.php?id=<?= $row['id']; ?>" class="title text-uppercase fw-bold">
-              <?= $row['clean_date']; ?> -
-              <?= Text::cutText($row['title'], 80) ?></a>
-
-            <div class='artist'><?= Text::cutText(shortcodes::removeShortcodes($row['content']), 100); ?></div>
-            <div class="meta">
-              <?= $lang['posted_by']; ?><a href="profile.php?id=<?= $row['posted_by']; ?>">
-                <?php if (isset($row['nice_nickname'])) {
-                  echo $row['nice_nickname'];
-                } else {
-                  echo $row['username'];
-                } ?></a>
-            </div>
-          </div>
-        </div>
-      <?php }
-    } else {
-      echo '<div id="widget" style="padding: 20px;">
-<div class="bd-callout bd-callout-info">
- <p>Pas d\'articles.</p>
-</div>
-</div>';
+        $article = new \stdClass();
+        $article->id = $row['id'];
+        $article->featured_image = $row['featured_image'];
+        $article->posted_by = $row['posted_by'];
+        $article->date_posted = $row['date_posted'];
+        $article->title = $row['title'];
+        $article->content = $row['content'];
+        $article->username = $row['username'];
+        $article->nice_nickname = $row['nice_nickname'];
+        $article->category_name = $row['category_name'];
+        $article->tag_name = $row['tag_name'];
+        $article->clean_date = $row['clean_date'];
+        $articles[] = $article;
+      }
     }
+    return $articles;
   }
+
+
   public static function displayMegaNews($limitNews) {
     include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
     global $router;
@@ -67,8 +54,7 @@ class Posts {
     $result = $db_conx_rdj->query($query);
     if ($result->rowCount() > 0) {
       while ($row = $result->fetch()) { 
-        $id = $row['id'];
-        $posted_by = $row['posted_by'];?>
+?>
         <!-- Display the articles -->
         <div class="card" style="width: 25rem;">
         <a href="post.php?id=<?= $row['id']; ?>">
