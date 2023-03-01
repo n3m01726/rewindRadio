@@ -15,3 +15,4 @@ rector.php
 *.mp3
 .mysql.35730
 public/index.html
+node_modules
