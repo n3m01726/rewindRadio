@@ -2,3 +2,10 @@
 - the_author => name of the author / link to the profile page
 - the_except() => the_content stopped at int XX characters without shortcode/markdown
 - the_content() => the blog post/page content
+
+install rector
+install altorouter
+install PHPUnit
+install Glide
+install uploader
+
