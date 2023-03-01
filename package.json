@@ -1,0 +1,57 @@
+{
+  "name": "changelog",
+  "version": "0.3.2",
+  "description": "",
+  "scripts": {
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noordotda/rewindRadio.git"
+  },
+  "keywords": [],
+  "author": "Noorda Studios",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noordotda/rewindRadio/issues"
+  },
+  "homepage": "https://github.com/noordotda/rewindRadio#readme",
+  "devDependencies": {
+    "release-it": "^15.7.0",
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@release-it/conventional-changelog": "^5.0.0",
+    "commitlint": "^17.4.4",
+    "husky": "^8.0.3"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release v${version}"
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "infile": "CHANGELOG.md",
+        "preset": {
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            },
+            {}
+          ]
+        }
+      }
+    }
+  } 
+}
