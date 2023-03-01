@@ -4,31 +4,12 @@
     display:grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    gap:u.rem(40);
-    width: min(100%, 1400px);
+    width: min(100%, 700px);
     margin-inline: auto;
-
-    @include u.breakpoint(large)  {
-        grid-template-columns: 2fr 2fr;
-        grid-template-rows: auto;
-    }
-
-    &__main, &__sidebar {
-    padding:u.rem(40);
-    }
 
     &__main {
     background-color: #eaeaea;
     color: #eaeaea;
     }
-
-    &__sidebar {
-    background-color: var(--sidebar-bg);
-
-    @include u.breakpoint-down(medium) {
-        text-align: center;
-    }
     
-}
-
 }
