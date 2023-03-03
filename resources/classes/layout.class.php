@@ -62,7 +62,7 @@ class Layout
    * @param string $showTrack The name of the track.
    */
 
-  public static function getCoverImage($showArtist, $showTrack, $fileName)
+  public static function getCoverImage($showArtist, $showTrack)
   {
     // Define the replacements to be made in the file path
     $replacements = [
@@ -73,7 +73,7 @@ class Layout
       "/public" => SITE_URL . "/public/",
       "'", "&#39;"
     ];
-
+$fileName = $showArtist. " - ". $showTrack .".jpg";
     // Build the file path for the cover image
     $imgPath = 'covers/' . $fileName . '.jpg';
     $imgPath = str_replace(array_keys($replacements), array_values($replacements), $imgPath);
