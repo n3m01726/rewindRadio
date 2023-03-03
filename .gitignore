@@ -14,4 +14,3 @@ rector.php
 # fake stuff
 *.mp3
 .mysql.35730
-public/index.html

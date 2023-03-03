@@ -11,14 +11,21 @@ h1 {
   font-size: clamp(u.rem(36), u.rem(16) + 2vw, u.rem(48));
   margin-top:u.rem(40);
   margin-bottom:u.rem(40);
-  font-family: u.$font-title;
+  font-family: u.$font-logo;
 }
 
 p {
   margin-top: 0;
-  font-size: u.rem(16)
+  font-size: u.rem(16);
 }
 
 a, a:visited, a:active {
   text-decoration: none;
+}
+
+.logo { 
+  font-family: u.$font-logo; 
+  font-weight: 700;
+  font-size: u.rem(36);
+  margin-left: 400px;
 }
