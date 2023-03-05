@@ -12,7 +12,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Karla", sans-serif;
-  font-size: 1rem;
+  font-size: 16px;
+  background-color: var(--main-bg);
   color: var(--color-text-default);
 }
 
@@ -25,19 +26,45 @@ a:hover {
   text-decoration: none;
 }
 
-header {
-  background-color: var(--navbar-bg);
+header .nav-link {
+  font-family: Karla, sans-serif;
+  color: var(--color-accent);
+}
+header .navbar .nav-link {
+  font-family: Karla, sans-serif;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+header .nav-link:hover {
+  color: var(--color-text-default);
+}
+header .navbar {
+  min-height: 100px;
 }
 
 main {
-  background-color: var(--main-bg);
-  margin-top: 80px;
-  margin-bottom: 80px;
+  border-top: var(--color-border) 4px solid;
+  border-bottom: var(--color-border) 4px solid;
 }
 
-.article {
-  background-color: var(--widget-bg);
-  border-bottom: var(--color-border) 4px solid;
+nav {
+  border-bottom: var(--color-border) 1px solid;
+}
+
+/*footer*/
+footer .title {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+footer li {
+  list-style-type: none;
+}
+footer nav {
+  text-transform: none;
+  font-weight: 400;
+  float: left;
+  padding: 0;
+  border: 0;
 }
 
 h1, h2, h3 {
@@ -54,55 +81,36 @@ a, a:visited, a:active {
   text-decoration: none;
 }
 
-/* rootColors lightMode */
-@media (prefers-color-scheme: light) {
-  :root {
-    --background-color: #eaeaea;
-    --separator: linear-gradient(
-      65deg,
-      #ffef26,
-      #fec800,
-      #f19135,
-      #e85e31,
-      #e3312d
-    );
-    --main-bg: #eaeaea;
-    --widget-bg: #fff;
-    --bg-white: #fff;
-    --color-title: #212121;
-    --color-text: #212121;
-    --color-footer-title: #e3312d;
-    --color-link: #212121;
-    --color-link-hover: #e3312d;
-    --color-header: #fff;
-    --color-header-footer-border: #e2e1e1;
-    --color-border: #eaeaea;
-    --color-display-border: #fff;
-    --display-h3: #fff;
-    --plyr-audio-controls-background: #fff;
-  } /* :root light/default */
-  footer {
-    min-height: 375px;
-    background-image: url("../images/bg_footer-light.jpg");
-  }
-} /* @media light */
-/* rootColors darkMode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --separator: linear-gradient(65deg, #12151a, #222b3c, #111619);
-    --main-bg: #0d1117;
-    --navbar-bg: #161b22;
-    --widget-bg: #15181d;
-    --color-border: #21262d;
-    --color-text-default: #8b949e;
-    --color-accent: #ec1a62;
-    --plyr-audio-controls-background: #0e1011;
-  } /* :root dark */
-  footer {
-    min-height: 375px;
-    background-image: url("../images/bg_footer-dark.jpg");
-  }
-} /* @media dark */
+:root {
+  --background-color: #eaeaea;
+  --separator: linear-gradient(
+    65deg,
+    #ffef26,
+    #fec800,
+    #f19135,
+    #e85e31,
+    #e3312d
+  );
+  --main-bg: #eaeaea;
+  --widget-bg: #fff;
+  --bg-white: #fff;
+  --color-title: #212121;
+  --color-text: #212121;
+  --color-footer-title: #e3312d;
+  --color-link: #212121;
+  --color-link-hover: #e3312d;
+  --color-header: #fff;
+  --color-header-footer-border: #e2e1e1;
+  --color-border: #eaeaea;
+  --color-display-border: #fff;
+  --display-h3: #fff;
+  --plyr-audio-controls-background: #fff;
+} /* :root light/default */
+footer {
+  min-height: 375px;
+  background-image: url("../images/bg_footer-light.jpg");
+}
+
 .cus-border-bottom {
   border-bottom: 1px var(--color-border) solid;
 }
@@ -162,6 +170,11 @@ a, a:visited, a:active {
   font-weight: 700;
   text-transform: uppercase;
   background-color: var(--widget-bg);
+}
+.widget img {
+  width: 105px;
+  height: 105px;
+  border-radius: 15px;
 }
 .widget .song_title {
   text-transform: uppercase;

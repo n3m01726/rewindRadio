@@ -1,15 +1,20 @@
 .DS_Store
-covers
-config.php
-databases
+/public/covers/
+/public/social/
+app/config/config.php
 
-# Dev stuff
-vendor
+# Dev stuff 
+vendor/
+node_modules/
 composer.json
 composer.lock
 release-it.json
-rector.php
-package.json
 package-lock.json
-node_modules
-composer.phar
+package.json
+rector.php
+toDolist.md
+
+# fake stuff
+*.mp3
+public/htacfdefewfwcess
+examples_texts.txt

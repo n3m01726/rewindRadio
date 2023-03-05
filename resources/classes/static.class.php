@@ -1,13 +1,13 @@
 <?php
-namespace Resources\classes;
+namespace App;
 
 class StaticContent 
 {
     public static function getHeader() 
     {
-      StaticContent::getMeta(); 
-      StaticContent::getIcons();
-      StaticContent::getStyleSheet();   
+        StaticContent::getMeta();
+        StaticContent::getIcons();
+        StaticContent::getStylesheet();
     }
     
     public static function getMeta() 
@@ -40,7 +40,7 @@ class StaticContent
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
       <link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css" />
-      <link href="css/style.css" rel="stylesheet"/> 
+      <link href="../css/style.css" rel="stylesheet"/> 
       ';
 }
 public static function getScriptFiles() {
@@ -76,7 +76,7 @@ public static function getScriptFiles() {
 
 public static function noScriptInstalled() {  
   $lang = [];
-  include('../lang/lang-fr.php');
+  include('setup/lang-setup.php');
   echo'
   <body class="bg-dark">
   <div class="text-center mt-5">
@@ -88,11 +88,11 @@ public static function noScriptInstalled() {
   <h5>'. $lang["noInstallScript_tt_fr"] .'</h5>
   <p>'. $lang["noInstallScript_txt_fr"] .'</p>
 
-  <a class="btn btn-dark" href="../setup/index.php?language=fr" class="card-link">'.$lang["startInstallation_fr"].'</a>
+  <a class="btn btn-dark" href="/setup/index.php?language=fr" class="card-link">'.$lang["startInstallation_fr"].'</a>
   <hr>
   <h5>'.$lang["noInstallScript_tt_en"].'</h5>
   <p>'.$lang["noInstallScript_txt_en"].'</p>
-  <a class="btn btn-dark" href="../setup/index.php?language=en" class="card-link">'.$lang["startInstallation_en"].'</a>
+  <a class="btn btn-dark" href="/setup/index.php?language=en" class="card-link">'.$lang["startInstallation_en"].'</a>
   
   </div>
 </div></div></body>';
@@ -126,5 +126,5 @@ public static function noScriptInstalled() {
         <meta name="twitter:site" content="'. SITE_URL.'">';
 }
 
- 
-} */
+} 
+*/

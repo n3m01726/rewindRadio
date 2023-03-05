@@ -1,8 +1,8 @@
 <?php
 require '../vendor/autoload.php';
-use \AltoRouter;
+
 $uri = $_SERVER['REQUEST_URI'];
-$router = new AltoRouter;
+$router = new AltoRouter();
 
 $router->map('GET', '/', 'home', 'home');
 $router->map('GET', '/charts', 'charts', 'charts');
