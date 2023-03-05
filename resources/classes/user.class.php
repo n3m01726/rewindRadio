@@ -1,6 +1,6 @@
 <?php
-namespace App;
-use App\Database;
+namespace Resources\classes;
+use Resources\classes\Database;
 Class User {
 
  public static function getAlbumsByUserId($user_id) {

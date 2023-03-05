@@ -1,17 +1,15 @@
 .DS_Store
-covers/
-social/
+covers
 config.php
-.vagrant/
-databases/database.sql
+databases
+
 # Dev stuff
-vendor/
+vendor
 composer.json
 composer.lock
 release-it.json
 rector.php
-
-# fake stuff
-*.mp3
-.mysql.35730
-public/index.html
+package.json
+package-lock.json
+node_modules
+composer.phar

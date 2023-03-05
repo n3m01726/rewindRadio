@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace Resources\classes;
 
 class StaticContent 
 {
@@ -76,7 +76,7 @@ public static function getScriptFiles() {
 
 public static function noScriptInstalled() {  
   $lang = [];
-  include('../resources/lang/lang-fr.php');
+  include('../lang/lang-fr.php');
   echo'
   <body class="bg-dark">
   <div class="text-center mt-5">

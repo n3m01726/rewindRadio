@@ -1,7 +1,7 @@
 <?php
-namespace App;
+namespace Resources\classes;
 
-use App\Text;
+use Resources\classes\Text;
 
 class ManagePosts {
 // Function to handle the upload of post's featured image

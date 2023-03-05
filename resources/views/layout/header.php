@@ -49,7 +49,7 @@ foreach ($socialLinks as $link) {
 </ul>
     </div>
   </nav>
-<div class="bg-light">
+<div>
     <nav class="navbar navbar-expand-lg mx-5">
       <div class="container-fluid">
        

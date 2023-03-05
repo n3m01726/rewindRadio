@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace Resources\classes;
 
-use App\Database;
-use App\shortcodes;
-use App\Text;
+use Resources\classes\Database;
+use Resources\classes\shortcodes;
+use Resources\classes\Text;
 
 class Posts {
   public static function displayNews($limitNews) {
     global $router;
-    include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+    include('../lang/lang-' . LANG . '.php');
     $db = new Database;
     $db_conx_rdj = $db->connect();
     $query = "SELECT " . PREFIX . "_posts.id, " . PREFIX . "_posts.featured_image," . PREFIX . "_posts.posted_by, " . PREFIX . "_posts.date_posted, " . PREFIX . "_posts.title, " . PREFIX . "_posts.content, " . PREFIX . "_users.username, " . PREFIX . "_users.nice_nickname," . PREFIX . "_categories.name as category_name, " . PREFIX . "_tags.name as tag_name,
@@ -23,12 +23,12 @@ class Posts {
       while ($row = $result->fetch()) {
 ?>
         <!-- Display the articles -->
-        <div class="row border-bottom border-3 bg-light p-2">
+        <div class="row p-2 article">
           <div class="col-lg-2">
             <a href="post.php?id=<?= $row['id']; ?>">
               <img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="img-thumbnail"></a>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg">
           <a href="post.php?id=<?= $row['id']; ?>" class="title text-uppercase fw-bold">
               <?= $row['clean_date']; ?> -
               <?= Text::cutText($row['title'], 80) ?></a>
@@ -54,7 +54,7 @@ class Posts {
     }
   }
   public static function displayMegaNews($limitNews) {
-    include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+    include('../lang/lang-' . LANG . '.php');
     global $router;
     $db = new Database();
     $db_conx_rdj = $db->connect();

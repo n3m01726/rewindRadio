@@ -1,6 +1,6 @@
 <?php
 
-use App\StaticContent;
+use Resources\classes\StaticContent;
 
 require('../config/constants.php');
 require('../resources/lang/lang-fr.php');

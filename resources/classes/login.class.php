@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace Resources\classes;
 /*
 // Fonction de connexion
 function login($username, $password) {

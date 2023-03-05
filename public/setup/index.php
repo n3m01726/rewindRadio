@@ -5,7 +5,7 @@ use App\StaticContent;
 $language = $_GET["language"];
 include('../../config/constants.php');
 include('../../resources/classes/static.class.php');
-include('../../resources/lang/lang-'.$language.'.php');
+include('../../lang/lang-'.$language.'.php');
 ?>
 <html>
 <head>
