@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace Resources\classes;
 class Text {
     public static function cutText($text, $lg_max) : string {
         if (mb_strlen((string) $text) > $lg_max) {

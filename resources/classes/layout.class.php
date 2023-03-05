@@ -3,25 +3,11 @@
 RewindRadio\Class::functionName();
 */
 
-namespace App;
+namespace Resources\classes;
 
 class Layout
 {
-  /**
-   * Displays a player widget with artist and played song information
-   * 
-   * @return void
-   */
-  public static function getPlayer()
-  {
-    echo '
-<div class="wdgt_comingSoon">Artist - Played Song</div>
-</div> 
-<div class="col-12"></div>
-';
-  }
-
-  /**
+/**
    * Displays the site's brand logo or text
    * 
    * @return void

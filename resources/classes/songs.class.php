@@ -1,9 +1,9 @@
 <?php
-namespace App;
+namespace Resources\classes;
 
-use App\Database;
-use App\Layout;
-use App\Text;
+use Resources\classes\Database;
+use Resources\classes\Layout;
+use Resources\classes\Text;
 use \PDO;
 
 class radioDJFunctions

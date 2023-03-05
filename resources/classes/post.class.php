@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace Resources\classes;
 
-use App\Database;
-use App\shortcodes;
-use App\Text;
+use Resources\classes\Database;
+use Resources\classes\shortcodes;
+use Resources\classes\Text;
 
 class Posts {
   public static function displayNews($limitNews) {

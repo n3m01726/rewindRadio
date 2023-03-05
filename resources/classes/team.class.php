@@ -1,7 +1,7 @@
 <?php
-namespace App;
+namespace Resources\classes;
 
-use App\Database;
+use Resources\classes\Database;
 
 class Team {
 public static function displayTeam() {

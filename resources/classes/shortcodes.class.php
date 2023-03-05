@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace Resources\classes;
 class shortcodes {
 
 public static function shortcodeAttrs($text) {
