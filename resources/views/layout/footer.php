@@ -67,7 +67,7 @@
 <div class="player">
     <div class="comingSoon"> artist- songs goes here </div>
     <audio class="js-player">
-        <source src="'. RADIO_URL .'" />
+        <source src="<?= RADIO_URL ?>" />
     </audio>
 </div>
 <?php
