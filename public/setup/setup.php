@@ -9,7 +9,7 @@ include('../../resources/lang/lang-fr.php');
 <html>
 <head>
   <style> pre { line-height: 20px; } </style>  
-<?= StaticContent::getStyleSheet();?>
+<?= StaticContent ::getStyleSheet();?>
     <title>noordotda RadioDJ Plugin Setup Script</title>
 </head>
 <body class="bg-dark">
@@ -22,6 +22,11 @@ include('../../resources/lang/lang-fr.php');
         <div class="card-body">
          <pre>
 <?php
+
+    if (isset($_POST['prefix'])) {
+    $prefix = $_POST['prefix'];
+    session_start();
+    $_SESSION['prefix'] = $prefix;
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -120,10 +125,8 @@ include('../../resources/lang/lang-fr.php');
         enabled INT(1) DEFAULT NULL,
         backtime DATE DEFAULT NULL,
         is_fake INT(1) DEFAULT 0,
-        INDEX (subcategory_id),
         FOREIGN KEY (subcategory_id) REFERENCES subcategory(id)
-        ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
-";
+        ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
     $conn->exec($sql);
     echo "Created the subcategory_info table.<br>";
     } else {
@@ -132,17 +135,15 @@ include('../../resources/lang/lang-fr.php');
 
     // Create the events_info table
     $sql = "CREATE TABLE " . $prefix . "_events_info (
-        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-        events_id INT NOT NULL, 
-        image VARCHAR(80) DEFAULT NULL,
-        guests VARCHAR(20) DEFAULT NULL,
-        curator VARCHAR(20) DEFAULT NULL,
-        tags VARCHAR(80) DEFAULT NULL,
-        is_fake INT(1) DEFAULT 0,
-        INDEX (events_id),
-        CONSTRAINT FOREIGN KEY (events_id) REFERENCES events(id)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-    ";
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+     events_id INT NOT NULL, 
+    image VARCHAR(80) DEFAULT NULL,
+    guests VARCHAR(20) DEFAULT NULL,
+    curator VARCHAR(20) DEFAULT NULL,
+    tags VARCHAR(80) DEFAULT NULL,
+    is_fake INT(1) DEFAULT 0,
+    FOREIGN KEY  (events_id) REFERENCES events(id)
+    ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
     $conn->exec($sql);
     echo "Created the events_info table.<br>";
 
@@ -153,15 +154,13 @@ include('../../resources/lang/lang-fr.php');
     echo "Alter the events table for detecting the fake events created with this script.<br>We will remove it when you delete the fake content.<br>";
 
     // Create the likes table
-    $sql = "CREATE TABLE " . $prefix . "_likes (
+    $sql = "CREATE TABLE likes (
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         user_id INT UNSIGNED NOT NULL,
         song_id INT UNSIGNED NOT NULL,
         type ENUM('like','dislike') NOT NULL,
-        INDEX(song_id),
         FOREIGN KEY (song_id) REFERENCES songs(id) ON DELETE CASCADE
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-";
+    ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
     $conn->exec($sql);
     echo "Created the likes table.<br>";
 
@@ -175,14 +174,13 @@ include('../../resources/lang/lang-fr.php');
     member_since DATETIME,
     bio VARCHAR(255),
     job_title VARCHAR(255),
-    facebook VARCHAR(255),
-    instagram VARCHAR(255),
-    twitter VARCHAR(255),
-    twitch VARCHAR(255),
-    tiktok VARCHAR(255),
-    snapchat VARCHAR(255),
-    discord VARCHAR(255),
-    linkedin VARCHAR(255),
+    sm_facebook VARCHAR(255),
+    sm_instagram VARCHAR(255),
+    sm_twitter VARCHAR(255),
+    sm_twitch VARCHAR(255),
+    sm_tiktok VARCHAR(255),
+    sm_snapchat VARCHAR(255),
+    sm_discord VARCHAR(255),
     first_name VARCHAR(255),
     last_name VARCHAR(255),
     nice_nickname VARCHAR(255),
@@ -213,9 +211,8 @@ $sql = "CREATE TABLE " . $prefix . "_user_level (
         (5, 'author', 'Auteur.trice',NULL),
         (6, 'host', 'Host / DJ',NULL),
         (7, 'contributor', 'Contributeur.trice',NULL),
-        (8, 'subscriber', 'Abonné.e',NULL)";
-$conn->exec($sql);
-
+        (8, 'subscriber', 'Abonné.e',NULL);";
+      $conn->exec($sql);
       echo "Insert the user levels . <br>";
 
       $sql = "CREATE TABLE " . $prefix . "_capabilities (
@@ -224,7 +221,7 @@ $conn->exec($sql);
         `nice_capname` varchar(50) NOT NULL
       );";
       $conn->exec($sql);
-      echo "Created the capabilities table. <br>";
+      echo "Created the capabalities table. <br>";
       
       $sql = "INSERT INTO " . $prefix . "_capabilities (id, capability, nice_capname) VALUES
       (1, 'create_post', 'Créer un article'),
@@ -250,7 +247,7 @@ $conn->exec($sql);
       (21, 'edit_show_page', 'Éditer une page d\'émission'),
       (22, 'delete_show_page', 'supprimer une page d\'émission');";
       $conn->exec($sql);
-      echo "Inserted the capabilities. <br>";
+      echo "Created the capabilities table. <br>";
 
     // Create the news categories tables
     $sql = "CREATE TABLE " . $prefix . "_categories (
@@ -274,47 +271,44 @@ $conn->exec($sql);
 
     // Create the news posts tables
     $sql = "CREATE TABLE " . $prefix . "_posts (
-        id INT NOT NULL AUTO_INCREMENT,
-        title VARCHAR(255) NOT NULL,
-        content TEXT NOT NULL,
-        date_posted DATETIME DEFAULT NULL,
-        posted_by INT DEFAULT NULL,
-        slug VARCHAR(255) NOT NULL,
-        featured_image VARCHAR(255) DEFAULT NULL,
-        post_type VARCHAR(255) DEFAULT NULL,
-        category_id INT DEFAULT NULL,
-        tag_id INT DEFAULT NULL,
-        is_fake INT DEFAULT '0',
-        is_featured INT DEFAULT NULL,
-        PRIMARY KEY (id),
-        KEY fk_posted_by (posted_by),
-        CONSTRAINT fk_posted_by FOREIGN KEY (posted_by) REFERENCES users (id)
-      ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
-      ";
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    date_posted DATETIME,
+    posted_by INTEGER,
+    slug VARCHAR(255) NOT NULL,
+    featured_image VARCHAR(255),
+    post_type VARCHAR(255),
+    category_id INT(11),
+    tag_id INT(11),
+    is_fake INT(1) DEFAULT 0,
+    is_featured INTEGER,
+    FOREIGN KEY (posted_by) REFERENCES users(id)
+    ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
     $conn->exec($sql);
     echo "Created the posts table.<br>";
 
-    $sql = "CREATE TABLE " . $prefix . "_post_categories (
-        id INTEGER PRIMARY KEY AUTO_INCREMENT,
-        post_id INTEGER NOT NULL,
-        category_id INTEGER NOT NULL,
-        is_fake INT(1) DEFAULT 0,
-        FOREIGN KEY (post_id) REFERENCES " . $prefix . "_posts(id),
-        FOREIGN KEY (category_id) REFERENCES " . $prefix . "_categories(id)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
-    ";
+    $sql = "SET FOREIGN_KEY_CHECKS = 0;   
+    CREATE TABLE " . $prefix . "_post_categories (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    post_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+    is_fake INT(1) DEFAULT 0,
+    FOREIGN KEY (post_id) REFERENCES posts(id),
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+    ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
     $conn->exec($sql);
     echo "Created the post_categories table.<br>";
 
-    $sql = "CREATE TABLE " . $prefix . "_post_tags (
-        id INTEGER PRIMARY KEY AUTO_INCREMENT,
-        post_id INTEGER NOT NULL,
-        tag_id INTEGER NOT NULL,
-        is_fake INT(1) DEFAULT 0,
-        FOREIGN KEY (post_id) REFERENCES " . $prefix . "_posts(id),
-        FOREIGN KEY (tag_id) REFERENCES " . $prefix . "_tags(id)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
-    ";
+    $sql = "SET FOREIGN_KEY_CHECKS = 0;  
+    CREATE TABLE " . $prefix . "_post_tags (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    post_id INTEGER NOT NULL,
+    tag_id INTEGER NOT NULL,
+    is_fake INT(1) DEFAULT 0,
+    FOREIGN KEY (post_id) REFERENCES posts(id),
+    FOREIGN KEY (tag_id) REFERENCES tags(id)
+    ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
 $conn->exec($sql);
 echo "Created the post_tags table.<br>";
 
@@ -389,15 +383,15 @@ echo "Added a category for the website events.<br>";
    <p> Il est important de se rappeler que chaque pays et chaque région ont leurs propres lois et réglementations en matière de confidentialité, il est donc important de consulter un avocat pour vous assurer que votre politique de confidentialité est conforme aux lois en vigueur.', NOW(), '1', 'privacy-policy', 'pexels-nati-14642654.jpg',2,1,1,1,0);";
     $conn->exec($sql);
     echo "Added fake data to the post table.<br>";
-$sql = "INSERT INTO ".$prefix."_users( username, PASSWORD, avatar, last_login, member_since, bio, job_title, facebook, twitter, instagram, twitch, tiktok, discord, linkedin, first_name, last_name, nice_nickname, email, background_image, fav_quote, is_fake) 
+$sql = "INSERT INTO ".$prefix."_users( username, PASSWORD, avatar, last_login, member_since, bio, job_title, sm_facebook, sm_twitter, sm_instagram, sm_twitch, sm_tiktok, sm_discord, first_name, last_name, nice_nickname, email, background_image, fav_quote, is_fake) 
 
-VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker03.png', NULL, NULL, 'My bio', 'Founder & CEO', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'Osakari', 'Yasuhiro', 'Osakari Yasuhiro', '$firstUserEmail' , 'background_image.jpg', 'Be yourself. Everyone else is already taken. ― Oscar Wilde', 0),
+VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker03.png', NULL, NULL, 'My bio', 'Founder & CEO', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'Osakari', 'Yasuhiro', 'Osakari Yasuhiro', '$firstUserEmail' , 'background_image.jpg', 'Be yourself. Everyone else is already taken. ― Oscar Wilde', 0),
 
-('Gallo2002', 'Iethue9ohph', 'AvatarMaker02.png', '2016-02-09 21:12:40', '2016-01-10 14:52:54', 'Certified explorer. Beer scholar. Food expert. Bacon lover. Creator. Troublemaker. Music junkie.', 'Directrice de création', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio','rewindRadio', 'Jennifer', 'Galloway', 'Jennifer Galloway', 'gallo2002@example.com', 'background_image', 'Create with the heart; build with the mind.', 0),
+('Gallo2002', 'Iethue9ohph', 'AvatarMaker02.png', '2016-02-09 21:12:40', '2016-01-10 14:52:54', 'Certified explorer. Beer scholar. Food expert. Bacon lover. Creator. Troublemaker. Music junkie.', 'Directrice de création', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'Jennifer', 'Galloway', 'Jennifer Galloway', 'gallo2002@example.com', 'background_image', 'Create with the heart; build with the mind.', 0),
 
-('john_doe', 'password1', 'https://example.com/avatar1.jpg', '2022-12-01 10:00:00', '2022-10-01 10:00:00', 'John Doe is a software engineer with 5 years of experience.', 'Software Engineer', 'https://facebook.com/johndoe', 'https://twitter.com/johndoe', 'https://instagram.com/johndoe', 'https://twitch.com/johndoe', 'https://tiktok.com/johndoe', 'https://discord.com/johndoe', 'https://linkedin.com/johndoe', 'John', 'Doe', 'johndoe', 'john.doe@example.com', 'https://example.com/background1.jpg', 'Code is poetry.', 0),
+('john_doe', 'password1', 'https://example.com/avatar1.jpg', '2022-12-01 10:00:00', '2022-10-01 10:00:00', 'John Doe is a software engineer with 5 years of experience.', 'Software Engineer', 'https://facebook.com/johndoe', 'https://twitter.com/johndoe', 'https://instagram.com/johndoe', 'https://twitch.com/johndoe', 'https://tiktok.com/johndoe', 'https://discord.com/johndoe', 'John', 'Doe', 'johndoe', 'john.doe@example.com', 'https://example.com/background1.jpg', 'Code is poetry.', 0),
 
-('jane_doe', 'password2', 'https://example.com/avatar2.jpg', '2022-11-15 12:00:00', '2022-09-01 10:00:00', 'Jane Doe is a graphic designer with 7 years of experience.', 'Graphic Designer', 'https://facebook.com/janedoe', 'https://twitter.com/janedoe', 'https://instagram.com/janedoe', 'https://twitch.com/janedoe', 'https://tiktok.com/janedoe', 'https://discord.com/janedoe', 'janedoe', 'Jane', 'Doe', 'janedoe', 'jane.doe@example.com', 'https://example.com/background2.jpg', 'Design is not just what it looks like and feels like. Design is how it works.', 0);";
+('jane_doe', 'password2', 'https://example.com/avatar2.jpg', '2022-11-15 12:00:00', '2022-09-01 10:00:00', 'Jane Doe is a graphic designer with 7 years of experience.', 'Graphic Designer', 'https://facebook.com/janedoe', 'https://twitter.com/janedoe', 'https://instagram.com/janedoe', 'https://twitch.com/janedoe', 'https://tiktok.com/janedoe', 'https://discord.com/janedoe', 'Jane', 'Doe', 'janedoe', 'jane.doe@example.com', 'https://example.com/background2.jpg', 'Design is not just what it looks like and feels like. Design is how it works.', 0);";
 
 $conn->exec($sql);
 echo "Added fake data to the news_user table. Don't worry, it won't mess with rdj users table.<br>";
@@ -408,8 +402,7 @@ echo "Added fake data to the news_user table. Don't worry, it won't mess with rd
     }
 
     // Create the insert_subcategory_info trigger
-    $sql = "DROP TRIGGER IF EXISTS insert_subcategory_info;
-    CREATE TRIGGER insert_subcategory_info
+    $sql = "CREATE TRIGGER insert_subcategory_info
     AFTER INSERT ON subcategory
     FOR EACH ROW
     BEGIN
@@ -420,9 +413,8 @@ echo "Added fake data to the news_user table. Don't worry, it won't mess with rd
     echo "Created the insert_subcategory_info trigger.<br>";
 
     // Create the insert_subcategory_info trigger
-    $sql = "DROP TRIGGER IF EXISTS insert_event_info;
-    CREATE TRIGGER insert_event_info AFTER INSERT ON events FOR EACH ROW
-    INSERT INTO " . $prefix . "_events_info(event_id)
+    $sql = "CREATE TRIGGER insert_event_info AFTER INSERT ON EVENTS FOR EACH ROW
+    INSERT INTO noor_events_info(subcategory_id)
     VALUES(NEW.id);";
     $conn->exec($sql);
     echo "Created the insert_events_info trigger.<br>";
@@ -445,7 +437,7 @@ echo "Added fake data to the news_user table. Don't worry, it won't mess with rd
     echo "Setup completed successfully!</pre>
     <a href='/'><button class='btn btn-dark'>Aller sur votre site web</button></a>";
     }
-    ?>
+    } ?>
     </div>
     </div>
     </div>

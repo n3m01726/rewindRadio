@@ -99,8 +99,7 @@ class ManagePosts
   public static function listNews()
   {
     global $router;
-    include('../../resources/classes/database.class.php');
-    include('../../resources/classes/text.classes.php');
+    include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
     $db = new Database();
     $db_conx_rdj = $db->connect();
     $query = "SELECT " . PREFIX . "_posts.id, " . PREFIX . "_posts.featured_image," . PREFIX . "_posts.posted_by, " . PREFIX . "_posts.date_posted, " . PREFIX . "_posts.title, " . PREFIX . "_posts.content, " . PREFIX . "_posts.post_type, " . PREFIX . "_users.username, " . PREFIX . "_users.nice_nickname," . PREFIX . "_categories.name as category_name, " . PREFIX . "_tags.name as tag_name,
@@ -123,31 +122,23 @@ class ManagePosts
                 echo "Articles";
               }; ?></td>
 
-          <td> <?= $row['clean_date']; ?> </td>
+          <td> <a href="<?= $router->generate('single_post', ['id' => $id]); ?>">
+              <?= Text::cutText($row['title'], 80) ?></a></td>
           <td>
-            <a href="#">
-              <?= Text::cutText($row['title'], 80) ?></a>
-
-          </td>
-          <td>
-            <a href="#">
+            <a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
               <?php if (isset($row['nice_nickname'])) {
                 echo $row['nice_nickname'];
               } else {
                 echo $row['username'];
               } ?></a>
           </td>
-          <td><?= $row['category_name']; ?> </td>
-          <td><?= $row['tag_name']; ?></td>
+          <td></td>
+          <td></td>
           <td></td>
         </tr>
 <?php }
     } else {
-      echo '<div id="widget" style="padding: 20px;">
-<div class="bd-callout bd-callout-info">
- <p>Pas d\'articles.</p>
-</div>
-</div>';
+      echo 'no content.';
     }
   }
 }

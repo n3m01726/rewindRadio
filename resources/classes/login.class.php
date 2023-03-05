@@ -23,7 +23,8 @@ function logout() {
   unset($_SESSION['user_id']);
 } */
 
-session_start();
+use App\Database as Database;
+
 class Login
 {
   public static function login($username, $password)
@@ -31,7 +32,7 @@ class Login
     // Démarrer la session
 
     // Connecter à la base de données
-    $db = new Database;
+    $db = new Database();
     $db_conx_rdj = $db->connect();
 
     // Vérifiez les informations de connexion de l'utilisateur
@@ -45,7 +46,6 @@ class Login
       // Enregistrez l'identifiant de l'utilisateur dans la session
       $_SESSION['user_id'] = $row['id'];
       $_SESSION['logged_in'] = true;
-      header('Location: dashboard.php');
     } else {
       // Échec de la connexion, renvoyez un message d'erreur
       return false;
@@ -58,6 +58,5 @@ class Login
   {
     // Supprimez l'identifiant de l'utilisateur de la session
     unset($_SESSION['user_id']);
-    header('/');
   }
 }

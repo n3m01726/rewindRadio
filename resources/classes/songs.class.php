@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Database;
-use App\Layout;
+use App\Layout as AppLayout;
 use App\Text;
 use \PDO;
 
@@ -16,9 +16,9 @@ class radioDJFunctions
      * @param int $song_count_limit The number of songs to display.
      */
 
-    public static function displayMostPlayed(int $song_count_limit)
+    public static function displayCountdown(int $song_count_limit)
     {
-        include('../lang/lang-' . LANG . '.php');
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $query = "SELECT * FROM songs WHERE song_type = 0 AND count_played > 0 AND id_subcat != 5 AND enabled = 1 ORDER BY count_played DESC LIMIT $song_count_limit";
         $database_connection = (new Database())->connect();
         $statement = $database_connection->prepare($query);
@@ -31,11 +31,11 @@ class radioDJFunctions
                 $show_track = Text::replaceAccents($song['title']);
                 $fileName = $song['image'];
 ?>
-                <div class="row p-2 article">
+                <div class="row border-bottom border-3 bg-light p-2">
                     <div class="col-1 d-flex align-items-center mx-4">
                         <h4 style="color:var(--dark-text);"><?php echo $rank++; ?></h4>
                     </div>
-                    <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-2 me-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
                         <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
@@ -59,7 +59,7 @@ class radioDJFunctions
      */
     public static function displayLastPlayedSong()
     {
-        include('../lang/lang-' . LANG . '.php');
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         // Connect to the database
         $db = new Database();
         $db_conx_rdj = $db->connect();
@@ -72,27 +72,30 @@ class radioDJFunctions
         $stmt->execute();
         // Check if a song was found
         if ($stmt->rowCount() > 0) {
-            // Create an array to store the songs
-            $songs = array();
-            // Fetch the songs
-            while ($songData = $stmt->fetch()) {
+            // Fetch the song
+            while ($song = $stmt->fetch()) {
                 // Replace some characters in the artist and title
                 $accents = ["&", "è"];
                 $letters = ["&amp", "e"];
-                $show_artist = str_replace($accents, $letters, (string) $songData['artist']);
-                $show_track = str_replace($accents, $letters, (string) $songData['title']);
-                $fileName = $songData['image'];
-                // Create a song object
-                $song = new \stdClass();
-                $song->date_played = Date::giveMethehour($songData['date_played']);
-                $song->image = Layout::getCoverImage($show_artist, $show_track, $fileName);
-                $song->title = Text::cutText($show_artist, 30);
-                $song->content = Text::cutText($show_track, 40);
-                // Add the song object to the songs array
-                $songs[] = $song;
+                $show_artist = str_replace($accents, $letters, (string) $song['artist']);
+                $show_track = str_replace($accents, $letters, (string) $song['title']);
+                $fileName = $song['image'];
+                // Display the song
+            ?>
+
+                <!-- Display the content-->
+                <div class="row border-bottom border-3 bg-light p-2">
+                    <div class="col-1 d-flex align-items-center mx-4">
+                        <?= Date::giveMethehour($song['date_played']); ?>
+                    </div>
+                    <div class="col-2 me-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-6">
+                        <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
+                        <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
+                    </div>
+                </div>
+            <?php
             }
-            // Include the list-songs partial
-            include('partials/list-songs.php');
         } else {
             // No song was found
             echo '<div id="widget" style="padding: 20px;">';
@@ -107,16 +110,11 @@ class radioDJFunctions
      * Display not already played requests.
      *
      */
-    public static function displayRequests()
+    public static function displayTopRequests()
     {
-        include('../lang/lang-' . LANG . '.php');
-        $query = "SELECT songs.ID, songs.artist, songs.title, songs.image, requests.username, requests.requested, COUNT(*) AS requests 
-        FROM songs 
-        LEFT JOIN requests ON songs.ID = requests.songID 
-        WHERE TIMESTAMPDIFF( DAY, requests.requested, NOW() ) <= 365 AND PLAYED = 0 
-        GROUP BY songs.ID, requests.username, requests.requested
-        ORDER BY requests DESC 
-        LIMIT 0,4;";
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        $query = "SELECT songs.ID, songs.artist, songs.title, songs.image, requests.username, requests.requested, 
+COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID WHERE TIMESTAMPDIFF( DAY, requests.requested, NOW() ) <= 365 AND PLAYED = 0 GROUP BY songs.ID ORDER BY requests DESC LIMIT 0,4";
 
         $db = new Database();
         $db_conx_rdj = $db->connect();
@@ -132,9 +130,9 @@ class radioDJFunctions
                 $show_track = str_replace($accents, $letters, (string) $song['title']);
                 $fileName = $song['image'];
             ?>
-                <div class="row p-2 article">
-                    <div class="col-2 mx-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
-                    <div class="col-lg">
+                <div class="row border-bottom border-3 bg-light p-2">
+                    <div class="col-2 mx-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-6">
                         <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
                         <div class='song_artist'>Demandée par : <?= Text::cutText($username, 40); ?></div>
@@ -154,7 +152,7 @@ class radioDJFunctions
 
     public static function displayEvents(int $catID)
     {
-        include('../lang/lang-' . LANG . '.php');
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $db = new Database();
         $db_conx_rdj = $db->connect();
         $reponse = $db_conx_rdj->query("SELECT * FROM events
@@ -164,9 +162,9 @@ WHERE catID=$catID ORDER BY events.time ASC");
         if ($reponse->rowCount() > 0) {
             foreach ($events as $event) {
             ?>
-                <div class="row p-2 article">
+                <div class="row border-bottom border-3 bg-light p-2">
                     <div class="col-2 mx-3">
-                        <img src="uploads/events/<?php echo $event['image']; ?>" alt='cover' class='img-thumbnail'>
+                        <img src="uploads/events/<?php echo $event['image']; ?>" alt='cover' class='rounded-4 img-cover' width="105" height="105">
                     </div>
                     <div class="col-5">
                         <div class='song_title'><?php echo $event['name']; ?></div>
@@ -190,11 +188,11 @@ WHERE catID=$catID ORDER BY events.time ASC");
         }
         $reponse->closeCursor();
     }
-    public static function displayLiveShows(int $parentID)
+    public static function displayShows(int $parentID)
     {
         global $router;
 
-        include('../lang/lang-' . LANG . '.php');
+        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
         $query = "SELECT * FROM subcategory
 JOIN " . PREFIX . "_subcategory_info
 ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcategory.parentid=$parentID";
@@ -216,7 +214,7 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
                     </div>
 
                     <div class="d-grid gap-2 d-md-block">
-                        <a class="btn btn-dark" href="show.php?id=<?= $show['id']; ?>"> <?= $lang['btn_moreInfoPodcast']; ?></a>
+                        <a class="btn btn-dark" href="<?= $router->generate('single_show', ['id' => $id]); ?>"> <?= $lang['btn_moreInfoPodcast']; ?></a>
                         <a class="btn btn-dark" href="audio/<?= strtolower(str_replace(' ', '_', (string) $show['name'])); ?>/podcasts_rss.php">
                             <?= $lang['btn_subscPodcast']; ?></a>
                     </div>
@@ -284,4 +282,3 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
         }
     }
 }
-?>

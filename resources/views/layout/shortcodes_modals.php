@@ -1,10 +1,10 @@
 <style>
   .bscallout {
     background-color: var(--bs-info-bg-subtle);
-padding:10px 10px 10px 20px;
-margin: 0;
-border-left: var(--bs-info) 4px solid;
-width:99%;
+    padding: 10px 10px 10px 20px;
+    margin: 0;
+    border-left: var(--bs-info) 4px solid;
+    width: 99%;
   }
 </style>
 <!-- Image Modal -->
@@ -16,8 +16,8 @@ width:99%;
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <div class="bscallout form-text mb-3 mt-3">Si vous uploader vos images via FTP, déposez-les dans le dossier /public/uploads/</div>   
-      <form>
+        <div class="bscallout form-text mb-3 mt-3">Si vous uploader vos images via FTP, déposez-les dans le dossier /public/uploads/</div>
+        <form>
           <div class="form-group">
             <label for="imageUrl">Image URL</label>
             <input type="text" class="form-control" id="imageUrl" placeholder="Enter image URL">
@@ -41,8 +41,8 @@ width:99%;
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <form>
-        <div class="bscallout form-text mb-3 mt-3">Si vous uploader vos images via FTP, déposez-les dans le dossier /public/uploads/</div>
+        <form>
+          <div class="bscallout form-text mb-3 mt-3">Si vous uploader vos images via FTP, déposez-les dans le dossier /public/uploads/</div>
           <div class="form-group mb-3">
             <label for="url1">Image URL 1</label>
             <input type="text" class="form-control" id="url1" placeholder="Enter image URL">
@@ -76,8 +76,8 @@ width:99%;
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-uppercase" id="exampleModalLongTitle">Liste des shortcodes</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>    
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
       <div class="modal-body">
         <div id="content-text-modal">
           <p>Ajouter une image<br>
@@ -96,7 +96,8 @@ width:99%;
             <code>[blockquote text="type your text here."]</code>
           </p>
           <a href="http://rewind.radio/posts.php?id=5"> Un exemple de page avec les shortcodes en action</a>
-        </div></div>
+        </div>
+      </div>
     </div>
-  </div> 
-</div> 
+  </div>
+</div>

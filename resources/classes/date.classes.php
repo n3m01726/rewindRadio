@@ -1,7 +1,5 @@
 <?php
-
 namespace App;
-
 class Date {
   public static function convertTime($seconds) {
     $H = floor($seconds / 3600);
@@ -13,7 +11,7 @@ class Date {
 public static function giveMetheHour($hourset) {
     $phpdate = strtotime((string) $hourset);
     $mysqldate = date('H:i', $phpdate);
-    return $mysqldate;
+    echo "<span class='timeSet'>" . $mysqldate . "</span>";
     } 
 
 /**
@@ -62,4 +60,3 @@ public static function giveMetheHour($hourset) {
 }
 
 } // End of Date class
-?>
