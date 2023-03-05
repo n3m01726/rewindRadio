@@ -1,11 +1,14 @@
 <?php
+
 use Intervention\Image\ImageManagerStatic as Image;
 
-class ImageUpload {
+class ImageUpload
+{
     const ALLOWED_FORMATS = ['jpg', 'jpeg', 'png', 'gif'];
     const MAX_FILE_SIZE = 8_000_000; // 8 MB
 
-    public static function upload($file, $username, $type) {
+    public static function upload($file, $username, $type)
+    {
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo((string) $file['name'], PATHINFO_EXTENSION));
 

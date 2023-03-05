@@ -1,5 +1,6 @@
 <?php
-namespace Resources\classes;
+
+namespace App;
 /*
 // Fonction de connexion
 function login($username, $password) {
@@ -23,8 +24,10 @@ function logout() {
 } */
 
 session_start();
-class Login {
-  public static function login($username, $password) {
+class Login
+{
+  public static function login($username, $password)
+  {
     // Démarrer la session
 
     // Connecter à la base de données
@@ -32,28 +35,29 @@ class Login {
     $db_conx_rdj = $db->connect();
 
     // Vérifiez les informations de connexion de l'utilisateur
-    $query = "SELECT * FROM ".PREFIX."_users WHERE username = :username AND password = :password";
+    $query = "SELECT * FROM " . PREFIX . "_users WHERE username = :username AND password = :password";
     $statement = $db_conx_rdj->prepare($query);
     $statement->execute([':username' => $username, ':password' => $password]);
     $row = $statement->fetch(\PDO::FETCH_ASSOC);
 
     // Si les informations de connexion sont valides
     if ($row) {
-        // Enregistrez l'identifiant de l'utilisateur dans la session
-        $_SESSION['user_id'] = $row['id'];
-        $_SESSION['logged_in'] = true;
-        header('Location: dashboard.php');
+      // Enregistrez l'identifiant de l'utilisateur dans la session
+      $_SESSION['user_id'] = $row['id'];
+      $_SESSION['logged_in'] = true;
+      header('Location: dashboard.php');
     } else {
-        // Échec de la connexion, renvoyez un message d'erreur
-        return false;
+      // Échec de la connexion, renvoyez un message d'erreur
+      return false;
     }
   }
 
 
 
-public static function logout() {
+  public static function logout()
+  {
     // Supprimez l'identifiant de l'utilisateur de la session
     unset($_SESSION['user_id']);
     header('/');
-}
+  }
 }

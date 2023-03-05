@@ -1,19 +1,25 @@
 <?php
-namespace Resources\classes;
-use Resources\classes\Database;
-Class User {
 
- public static function getAlbumsByUserId($user_id) {
+namespace App;
+
+use App\Database;
+
+class User
+{
+
+  public static function getAlbumsByUserId($user_id)
+  {
     $db = new Database;
     $db_conx_rdj = $db->connect();
     $query = "SELECT id, album_title FROM znoor_albums WHERE user_id = :user_id ORDER BY id ASC;";
-    
+
     $stmt = $db_conx_rdj->prepare($query);
     $stmt->execute(array(":user_id" => $user_id));
     return $stmt->fetchAll();
-}
+  }
 
-public static function getPhotosByAlbumId($album_id) {
+  public static function getPhotosByAlbumId($album_id)
+  {
     $db = new Database;
     $db_conx_rdj = $db->connect();
     $query = "SELECT * FROM znoor_albums
@@ -22,21 +28,22 @@ public static function getPhotosByAlbumId($album_id) {
     $stmt = $db_conx_rdj->prepare($query);
     $stmt->execute(array(":album_id" => $album_id));
     return $stmt->fetchAll();
-}
+  }
 
-public static function getAvatar() {
+  public static function getAvatar()
+  {
     if (isset($_SESSION['user_id'])) {
       // Retrieve user information from the database
       $db = new Database;
       $db_conx_rdj = $db->connect();
-      $query = "SELECT * FROM ".PREFIX."_users WHERE id = :id";
+      $query = "SELECT * FROM " . PREFIX . "_users WHERE id = :id";
       $statement = $db_conx_rdj->prepare($query);
       $statement->execute([':id' => $_SESSION['user_id']]);
       $user = $statement->fetch(\PDO::FETCH_ASSOC);
       echo '
       <div class="dropdown dropstart">
       <div class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="uploads/profile/'.$user['avatar'].'" alt="'.$user['username'].'" class="avatar rounded-circle mx-3" width="32" height="32">
+      <img src="uploads/profile/' . $user['avatar'] . '" alt="' . $user['username'] . '" class="avatar rounded-circle mx-3" width="32" height="32">
       </div>
 
     <ul class="dropdown-menu text-small">
@@ -55,4 +62,4 @@ public static function getAvatar() {
   </div>';
     }
   }
-  }
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Resources\classes;
+namespace App;
 
 class Date {
   public static function convertTime($seconds) {

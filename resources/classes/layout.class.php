@@ -3,18 +3,18 @@
 RewindRadio\Class::functionName();
 */
 
-namespace Resources\classes;
+namespace App;
 
 class Layout
 {
-/**
+  /**
    * Displays the site's brand logo or text
    * 
    * @return void
    */
 
   public static function getBrandLogo()
-  { 
+  {
     echo "<a class='navbar-brand' href='/'>";
     if (LOGO_URL) {
       echo "<img src='" . LOGO_URL . "' width='30' height='24'>";
@@ -36,7 +36,8 @@ class Layout
    * @return void
    */
 
-  public static function socialIcons(string $name, string $url) {
+  public static function socialIcons(string $name, string $url)
+  {
     return "<li class='nav-item ms-4 my-auto'><a class='link-dark' href=" . $url . " target='_blank'><i class='bi bi-" . $name . "'></i></a></li>";
   }
 
@@ -59,7 +60,7 @@ class Layout
       "/public" => SITE_URL . "/public/",
       "'", "&#39;"
     ];
-$fileName = $showArtist. " - ". $showTrack .".jpg";
+    $fileName = $showArtist . " - " . $showTrack . ".jpg";
     // Build the file path for the cover image
     $imgPath = 'covers/' . $fileName . '.jpg';
     $imgPath = str_replace(array_keys($replacements), array_values($replacements), $imgPath);

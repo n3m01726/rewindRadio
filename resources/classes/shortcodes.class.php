@@ -1,8 +1,12 @@
 <?php
-namespace Resources\classes;
-class shortcodes {
 
-public static function shortcodeAttrs($text) {
+namespace App;
+
+class shortcodes
+{
+
+  public static function shortcodeAttrs($text)
+  {
     $atts = [];
     $pattern = '/([^\s=]+)\s*=\s*"([^"]+)"(?:\s|$)|([^\s=]+)\s*=\s*"([^"]+)"(?:\s|$)|([^\s=]+)\s*=\s*([^\s""]+)(?:\s|$)|"([^"]+)"(?:\s|$)|(\S+)(?:\s|$)/';
     preg_match_all($pattern, (string) $text, $matches, PREG_SET_ORDER);
@@ -21,34 +25,38 @@ public static function shortcodeAttrs($text) {
     return $atts;
   }
 
-  public static function makeShortcode($content) {
+  public static function makeShortcode($content)
+  {
     $shortcodes = ['image' => 'shortcode_image', 'caption' => 'shortcode_caption', 'gallery' => 'shortcode_gallery', 'intro' => 'shortcode_intro', 'blockquote' => 'shortcode_blockquote', 'youtube' => 'shortcode_youtube'];
-    
+
     $pattern = '/\[([^\s\]]+)(.*?)\]/';
-  
-    $content = preg_replace_callback($pattern, function($matches) use ($shortcodes, $content) {
+
+    $content = preg_replace_callback($pattern, function ($matches) use ($shortcodes, $content) {
       $tag = $matches[1];
       $atts = shortcodes::shortcodeAttrs($matches[2]);
       $shortcode = $shortcodes[$tag] ?? null;
       if (!$shortcode) return '';
       return call_user_func("RewindRadio\\shortcodes::$shortcode", $atts, $content);
     }, (string) $content);
-  
+
     return $content;
   }
-  
 
-  public static function shortcodeImage($atts, $content) {
+
+  public static function shortcodeImage($atts, $content)
+  {
     $url = $atts['url'] ?? '';
     return '<img class="img-single" src="' . $url . '" />';
   }
 
-  public static function shortcodeCaption($atts, $content) {
+  public static function shortcodeCaption($atts, $content)
+  {
     $text = $atts['text'] ?? '';
     return '<figcaption class="figure-caption text-center">' . $text . '</figcaption>';
   }
 
-  public static function shortcodeGallery($atts, $content) {
+  public static function shortcodeGallery($atts, $content)
+  {
     $html = '<div class="gallery text-center">';
     foreach ($atts as $url) {
       $html .= '<img class="img-gallery" src="' . $url . '"/>';
@@ -56,28 +64,29 @@ public static function shortcodeAttrs($text) {
     $html .= '</div>';
     return $html;
   }
-  
-  public static function shortcodeYoutube($atts, $content) {
+
+  public static function shortcodeYoutube($atts, $content)
+  {
     $video_id = $atts['id'] ?? '';
-    return '<div class="text-center"><iframe style="margin:20px 0 20px 0;" width="560" height="315" src="https://www.youtube.com/embed/'. $video_id . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
+    return '<div class="text-center"><iframe style="margin:20px 0 20px 0;" width="560" height="315" src="https://www.youtube.com/embed/' . $video_id . '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>';
   }
 
-  public static function shortcodeIntro($atts, $content) {
+  public static function shortcodeIntro($atts, $content)
+  {
     $text = $atts['text'] ?? '';
-    return '<p style="font-weight:bold;">'. $text . '</p>';
+    return '<p style="font-weight:bold;">' . $text . '</p>';
   }
 
-  public static function shortcodeBlockquote($atts, $content) {
+  public static function shortcodeBlockquote($atts, $content)
+  {
     $text = $atts['text'] ?? '';
-    return '<blockquote> '. $text .'</blockquote>';
+    return '<blockquote> ' . $text . '</blockquote>';
   }
 
-  public static function removeShortcodes($text) {
+  public static function removeShortcodes($text)
+  {
     $pattern = '/\[([^\s\]]+)(.*?)\]/';
     $text = preg_replace($pattern, '', (string) $text);
     return $text;
+  }
 }
-
-
-}
-
