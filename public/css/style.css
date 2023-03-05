@@ -53,19 +53,26 @@ a, a:visited, a:active {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto;
-  width: min(100%, 700px);
-  margin-inline: auto;
+  gap: 2.5rem;
+  margin: 2.5rem;
 }
-.grid__main {
-  background-color: #eaeaea;
-  color: #eaeaea;
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 2fr 2fr;
+  }
+}
+.grid__left, .grid__right {
+  padding: 40px;
+}
+.grid__left {
+  background-color: hsl(180, 93%, 30%);
+}
+.grid__right {
+  background-color: hsl(271, 83%, 33%);
 }
 
 .post__item {
-  background-color: hsl(0, 0%, 100%);
-  border-bottom: #212121 1px solid;
   padding: 10px 0 0 10px;
-  border-radius: 5px;
   margin-top: 0.5rem;
   height: auto;
 }
@@ -99,23 +106,22 @@ a, a:visited, a:active {
   display: flex;
   margin-bottom: 0.5rem;
 }
-.history__featured_image {
+.history__image {
   width: 105px;
   height: 105px;
   background-position: center;
   border-radius: 5px;
   float: left;
   margin-block: auto;
-}
-.history__meta {
-  -webkit-margin-start: 20px;
-          margin-inline-start: 20px;
-  margin-block: 10px;
+  margin-right: 20px;
 }
 .history__title {
   text-transform: uppercase;
   color: #101010;
   font-weight: 700;
+}
+.history__meta {
+  margin-top: 10px;
 }
 .history__artist {
   color: #6d6d6d;

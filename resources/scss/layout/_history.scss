@@ -10,28 +10,28 @@
         margin-bottom: 0.5rem;
     }
 
-    &__featured_image {
+    &__image {
         width: 105px;
         height: 105px;       
         background-position: center;
         border-radius: 5px;
         float: left;
         margin-block: auto;
+        margin-right:20px;
     }
-    &__meta {
-        margin-inline-start: 20px;
-        margin-block: 10px;    
-        }
 
     &__title{
         text-transform: uppercase;
         color: #101010;
         font-weight: 700;
     }
-
+    &__meta {
+        margin-top: 10px;
+    }
     &__artist{
         color: #6d6d6d;
     }
+    
     &__time{
      color: #212121;
      margin-inline: 1rem;

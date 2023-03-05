@@ -4,12 +4,22 @@
     display:grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    width: min(100%, 700px);
-    margin-inline: auto;
-
-    &__main {
-    background-color: #eaeaea;
-    color: #eaeaea;
-    }
+    gap:u.rem(40);
+    margin: u.rem(40);
     
+@media (min-width:900px) {
+    grid-template-columns: 2fr 2fr;
+    
+}
+
+&__left, &__right {
+    padding: 40px;
+}
+    &__left {
+        background-color: hsl(180, 93%, 30%);
+    }
+    &__right {
+        background-color: hsl(271, 83%, 33%);
+    }
+
 }
