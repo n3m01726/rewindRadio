@@ -121,7 +121,7 @@ class ManagePosts
               } elseif ($row['post_type'] == 1) {
                 echo "Articles";
               }; ?></td>
-
+          <td></td>
           <td> <a href="<?= $router->generate('single_post', ['id' => $id]); ?>">
               <?= Text::cutText($row['title'], 80) ?></a></td>
           <td>
@@ -132,9 +132,9 @@ class ManagePosts
                 echo $row['username'];
               } ?></a>
           </td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>cat</td>
+          <td>tag</td>
+          <td>actions</td>
         </tr>
 <?php }
     } else {

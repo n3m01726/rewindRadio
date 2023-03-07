@@ -6,30 +6,6 @@ use App\Database;
 
 class User
 {
-
-  public static function getAlbumsByUserId($user_id)
-  {
-    $db = new Database;
-    $db_conx_rdj = $db->connect();
-    $query = "SELECT id, album_title FROM znoor_albums WHERE user_id = :user_id ORDER BY id ASC;";
-
-    $stmt = $db_conx_rdj->prepare($query);
-    $stmt->execute(array(":user_id" => $user_id));
-    return $stmt->fetchAll();
-  }
-
-  public static function getPhotosByAlbumId($album_id)
-  {
-    $db = new Database;
-    $db_conx_rdj = $db->connect();
-    $query = "SELECT * FROM znoor_albums
-    JOIN znoor_media ON znoor_albums.id = znoor_media.album_id
-    WHERE znoor_albums.id = :album_id";
-    $stmt = $db_conx_rdj->prepare($query);
-    $stmt->execute(array(":album_id" => $album_id));
-    return $stmt->fetchAll();
-  }
-
   public static function getAvatar()
   {
     global $router;

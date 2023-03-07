@@ -69,7 +69,7 @@
       </div>
       <div class="modal-body" id="content-text-modal">
         <ul>
-
+          <li>Coded with<a href='https://plyr.io' target='_blank'>plyr.io</a></li>
           <li>Player : <a href='https://plyr.io' target='_blank'>plyr.io</a></li>
           <li>Requests section inspired by <a href='https://stewartswebworks.com' target='_blank'>StewartsWebWorks.com</a></li>
           <li>Icons by <a href='https://www.fontawesome.com' target='_blank'>FontAwesome</a></li>
@@ -79,54 +79,3 @@
   </div>
 </div>
 <!-- // credits -->
-<!-- credits -->
-<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title font-weight-bolder text-uppercase" id="exampleModalLongTitle">Téléverser des images</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="content-text-modal">
-        <?php
-        include_once '../../resources/classes/upload.class.php';
-
-        $errors = [];
-        $success = [];
-
-        if (!empty($_FILES)) {
-          try {
-            $username = $_SESSION['user']['username'];
-            $file = $_FILES['file'];
-            $type = 'post';
-
-            $result = ImageUpload::upload($file, $username, $type);
-            $success[] = "Image uploaded successfully: " . $result['file_path'];
-          } catch (Exception $e) {
-            $errors[] = $e->getMessage();
-          }
-        }
-        ?>
-        <div class="container">
-          <?php if (!empty($errors)) : ?>
-            <?php foreach ($errors as $error) : ?>
-              <div class="alert alert-danger" role="alert">
-                <?php echo $error; ?>
-              </div>
-            <?php endforeach; ?>
-          <?php endif; ?>
-
-          <?php if (!empty($success)) : ?>
-            <?php foreach ($success as $message) : ?>
-              <div class="alert alert-success" role="alert">
-                <?php echo $message; ?>
-              </div>
-            <?php endforeach; ?>
-          <?php endif; ?>
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

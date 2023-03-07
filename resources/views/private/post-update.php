@@ -2,7 +2,6 @@
 
 use App\Database;
 
-
 $target_dir = "uploads/posts/";
 $featured_image = $target_dir . basename((string) $_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -56,7 +55,7 @@ if (isset($_POST["submit"])) {
 
 try {
   // Connexion à la base de données
-  $db = new Database;
+  $db = new Database();
   $db_conx_rdj = $db->connect();
 } catch (PDOException $e) {
   echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
@@ -69,18 +68,16 @@ $content = $_POST['content'];
 $slug = strtolower(str_replace(' ', '-', $title));
 $date_posted = date("Y-m-d");
 $featured_image = $_FILES["fileToUpload"]["name"];
-$is_featured = $_POST['is_featured'];
+$id = $match['params']['id'];
 // Requête SQL d'insertion
-$query = "INSERT INTO " . PREFIX . "_posts (title, content, slug, date_posted, featured_image, is_featured) VALUES (:title, :content, :slug, :date_posted, :featured_image,:is_featured)";
-
+$query = "UPDATE " . PREFIX . "_posts SET title = :title, content = :content, slug = :slug, date_posted = :date_posted, featured_image = :featured_image WHERE id=$id";
 $stmt = $db_conx_rdj->prepare($query);
 $stmt->bindParam(':title', $title);
 $stmt->bindParam(':content', $content);
+
 $stmt->bindParam(':slug', $slug);
 $stmt->bindParam(':date_posted', $date_posted);
 $stmt->bindParam(':featured_image', $featured_image);
-$stmt->bindParam(':is_featured', $is_featured);
-
 $result = $stmt->execute();
 
 // Message de confirmation ou d'erreur

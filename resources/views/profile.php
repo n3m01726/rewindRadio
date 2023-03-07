@@ -3,7 +3,6 @@
 
   use App\Database;
   use App\Text;
-  use App\User;
 
   $id = $match['params']['id'];
   $query = "SELECT * from " . PREFIX . "_users where id = $id";
@@ -43,19 +42,19 @@
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><i class="bi bi-github me-2"></i>Github</h6>
-                    <span class="text-secondary"><?= $donnees['sm_facebook']; ?></span>
+                    <span class="text-secondary"><?= $donnees['facebook']; ?></span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><i class="bi bi-twitter me-2"></i>Twitter</h6>
-                    <span class="text-secondary">@<?= $donnees['sm_twitter']; ?></span>
+                    <span class="text-secondary">@<?= $donnees['twitter']; ?></span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0"><i class="bi bi-instagram me-2"></i>Instagram</h6>
-                    <span class="text-secondary"><?= $donnees['sm_instagram']; ?></span>
+                    <span class="text-secondary"><?= $donnees['instagram']; ?></span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0"><i class="bi bi-facebook me-2"></i>Facebook</h6>
-                    <span class="text-secondary"><?= $donnees['sm_facebook']; ?></span>
+                    <h6 class="mb-0"><i class="bi bi-linkedin me-2"></i>Facebook</h6>
+                    <span class="text-secondary"><?= $donnees['linkedin']; ?></span>
                   </li>
                 </ul>
               </div>
@@ -84,41 +83,12 @@
                 </div>
               </div>
               <div class="row gutters-sm">
-                <div class="col-sm-12 mb-3">
-                  <div class="card h-100">
-                    <div class="card-header">
-                      Médias
-                    </div>
-                    <div class="card-body">
-                      <?php
-$username = $donnees['username'];
-$albums = User::getAlbumsByUserId($id, $username);
-foreach ($albums as $album) {
-    $photos = User::getPhotosByAlbumId($album['id']);
-    if (count($photos) > 0) {
-        echo "<h5 class='card-header my-2'>" . $album['album_title'] . "</h5>";
-        foreach ($photos as $photo) {
-            echo "<img src='../uploads/profile/" . $username. "/" . $photo['filename'] . "' width='100' height='100' class='m-2 shadow rounded'>";
-        }
-    }
-}
-                        echo "<hr>";
-                      }
-
-                      ?>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
-                  <div class="card-header">
-                  <i class="bi bi-kanban me-2"></i>Articles publiés
+                    <div class="card-header">
+                      <i class="bi bi-kanban me-2"></i>Articles publiés
                     </div>
                     <div class="card-body">
-
-                      
                       <?php $id = $match['params']['id'];
                       $query = "SELECT " . PREFIX . "_posts.id, " . PREFIX . "_posts.featured_image," . PREFIX . "_posts.date_posted, " . PREFIX . "_posts.title, " . PREFIX . "_posts.content," . PREFIX . "_categories.name as category_name, " . PREFIX . "_tags.name as tag_name, DATE_FORMAT(DATE(date_posted), '%d/%m/%Y') AS clean_date FROM " . PREFIX . "_posts LEFT JOIN " . PREFIX . "_categories ON " . PREFIX . "_posts.category_id = " . PREFIX . "_categories.id LEFT JOIN " . PREFIX . "_tags ON " . PREFIX . "_posts.tag_id = " . PREFIX . "_tags.id WHERE " . PREFIX . "_posts.posted_by = $id AND post_type = 1 ORDER BY " . PREFIX . "_posts.date_posted ASC";
 
@@ -152,8 +122,8 @@ foreach ($albums as $album) {
                 </div>
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
-                  <div class="card-header">
-                <i class="bi bi-kanban me-2"></i>Project Status
+                    <div class="card-header">
+                      <i class="bi bi-kanban me-2"></i>Project Status
                     </div>
                     <div class="card-body">
                       <small>Web Design</small>
@@ -184,8 +154,8 @@ foreach ($albums as $album) {
           </div>
         </div>
       </div>
-  <?php }
-   ?>
+    <?php }
+    ?>
 </section>
 <?php /* if (isset($_POST['submit'])) {
 // Check if a file was uploaded
@@ -194,5 +164,5 @@ uploadFile($_FILES['file'], ['jpg', 'jpeg', 'png', 'gif'], 'public/uploads/users
 } else {
 echo "No file was selected.";
 }
-}*/ ?>
-
+}*/
+  } ?>

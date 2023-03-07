@@ -46,6 +46,7 @@ class Login
       // Enregistrez l'identifiant de l'utilisateur dans la session
       $_SESSION['user_id'] = $row['id'];
       $_SESSION['logged_in'] = true;
+      echo "logged_user";
     } else {
       // Échec de la connexion, renvoyez un message d'erreur
       return false;

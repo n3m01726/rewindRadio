@@ -1,90 +1,72 @@
 <?php
 
 use App\Database;
+use App\shortcodes;
 
-include('../config/config.php');
-include('../../resources/classes/database.class.php');
-
-$target_dir = "../../public/uploads/";
-$featured_image = $target_dir . basename((string) $_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($featured_image,PATHINFO_EXTENSION));
-
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-  if($check !== false) {
-    echo "File is an image - " . $check["mime"] . ".";
-    $uploadOk = 1;
-  } else {
-    echo "File is not an image.";
-    $uploadOk = 0;
-  }
-
-  // Check if file already exists
-  if (file_exists($featured_image)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-  }
-
-  // Check file size
-  if ($_FILES["fileToUpload"]["size"] > 8_000_000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-  }
-
-  // Allow certain file formats
-  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-  && $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadOk = 0;
-  }
-
-  // Check if $uploadOk is set to 0 by an error
-  if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-  // if everything is ok, try to upload file
-  } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $featured_image)) {
-      echo "The file ". basename( (string) $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    } else {
-      echo "Sorry, there was an error uploading your file.";
-    }
-  }
-}
-
-
-try {
-  // Connexion à la base de données
+// Get the post ID from the URL
+$post_id = $match['params']['id'];
 $db = new Database();
 $db_conx_rdj = $db->connect();
-} catch (PDOException $e) {
-  echo "Erreur lors de la connexion à la base de données : " . $e->getMessage();
-  exit;
-}
+// Prepare and execute the SELECT query
+$stmt = $db_conx_rdj->prepare("SELECT id, title, content, date_posted, posted_by
+FROM z_posts WHERE " . PREFIX . "_posts.id = :post_id AND " . PREFIX . "_posts.post_type = 1");
+$stmt->execute([':post_id' => $post_id]);
 
-// Traitement des données du formulaire
-$title = htmlspecialchars((string) $_POST['title']);
-$content = $_POST['content'];
-$slug = strtolower(str_replace(' ','-',$title));
-$date_posted = date("Y-m-d");
-$featured_image = $_FILES["fileToUpload"]["name"];
-$id=$_GET['id'];
-// Requête SQL d'insertion
-$query = "UPDATE ".PREFIX."_posts SET title = :title, content = :content, slug = :slug, date_posted = :date_posted, featured_image = :featured_image WHERE id=$id";
-$stmt = $db_conx_rdj->prepare($query);
-$stmt->bindParam(':title', $title);
-$stmt->bindParam(':content', $content);
+// Fetch the result
+$post = $stmt->fetch();
+?>
+<section>
+  <div class="container justify-content-center align-items-center h-100">
+    <div class="row">
+      <div class="col-lg-8 admin-post-content">
+        <h1>Editer un article</h1>
+        <hr>
+        <form action="/post-update/<?= $post_id ?>" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="title">Titre :</label><br>
+            <input type="text" name="title" id="title" class="form-control" value="<?= $post['title']; ?>">
+          </div>
 
-$stmt->bindParam(':slug', $slug);
-$stmt->bindParam(':date_posted', $date_posted);
-$stmt->bindParam(':featured_image', $featured_image);
-$result = $stmt->execute();
+          <div class="mb-3">
+            Sélectionnez une image à télécharger pour la couverture de votre billet:
+            <input type="file" name="fileToUpload" class="form-control" id="fileToUpload">
+          </div>
+          <div class="p-3 mt-3 mb-3" style="background-color: #eaeaea;">
+            <label for="is_featured">Mettre ce contenu en avant :</label><br>
+            <select name="is_featured" id="is_featured" class="form-control">
+              <option value="1">Mettre ce contenu en avant</option>
+              <option value="0">Ne pas mettre ce contenu en avant</option>
+            </select>
+          </div>
+          <div class="mb-3">
 
-// Message de confirmation ou d'erreur
-if ($result) {
-  echo "Le formulaire a été envoyé avec succès !";
-} else {
-  echo "Erreur lors de l'envoi du formulaire : " . $stmt->errorInfo()[2];
-}
+            <label for="content" style="margin-top: 20px;">Contenu de l'article:</label><br>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#imageModal">
+              <i class="bi bi-card-image me-3"></i><small>ajouter une image</small>
+            </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#galleryModal">
+              <i class="bi bi-images me-3"></i><small>ajouter une gallerie d'images</small>
+            </button>
 
+            <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#uploadModal">
+              <i class="bi bi-images me-3"></i><small>Téléverser des images</small>
+            </button>
+
+            <textarea name="content" id="content" class="form-control" cols='10' rows="15" value="<?= $post['content']; ?>"></textarea>
+            <div class="form-text">Pour voir la liste des shortcodes, <a href="#" data-bs-toggle="modal" data-bs-target="#shortCodeModal">c'est ici </a> </div>
+          </div>
+          <div class="p-3 mt-3 mb-3" style="background-color: #eaeaea;">
+            <label for="post_type">Afficher ce contenu comme :</label><br>
+            <select name="post_type" id="post_type" class="form-control">
+              <option value="1">Un article</option>
+              <option value="2">Une page</option>
+            </select>
+          </div>
+          <button class="btn btn-dark" type="submit" value="Envoyer" name="submit">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
