@@ -2,7 +2,8 @@
 /public/covers/
 /public/social/
 app/config/config.php
-
+public/uploads/posts/*.jpeg
+public/uploads/posts/*.jpg
 # Dev stuff 
 vendor/
 node_modules/
