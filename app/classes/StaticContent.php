@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Classes;
 
 class StaticContent
 {
@@ -39,10 +39,10 @@ class StaticContent
   {
     echo '
       <!-- Plugins CSS Styles Sheets -->
-      <link href="' . LIBRARY_PATH . '/css-js/bootstrap/bootstrap.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="' . LIBRARY_PATH . '/fonts/bootstrap-icons.css">
-      <link rel="stylesheet" href="' . LIBRARY_PATH . '/css-js/plyr/plyr.css" />
-      <link href="' . LIBRARY_PATH . '/css-js/style.css" rel="stylesheet"/> 
+      <link href="lib/css-js/bootstrap/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="lib/fonts/bootstrap-icons.css">
+      <link rel="stylesheet" href="lib/css-js/plyr/plyr.css" />
+      <link href="lib/css-js/style.css" rel="stylesheet"/> 
       ';
   }
   public static function getScriptFiles()

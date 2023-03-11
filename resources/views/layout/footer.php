@@ -1,3 +1,8 @@
+<?php
+
+use App\Classes\Layout as Layout;
+use App\Classes\StaticContent;
+?>
 <footer>
     <div class="container">
         <div class="row pt-4">
@@ -39,11 +44,8 @@
             </div>
             <div class="col-lg-3" id="social">
                 <ul class="list-unstyled d-flex me-5 ms-5">
+
                     <?php
-
-                    use App\Layout;
-                    use App\StaticContent;
-
                     $socialLinks = [
                         ['twitter', TWITTER],
                         ['instagram', INSTAGRAM],

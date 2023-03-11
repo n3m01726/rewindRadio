@@ -3,7 +3,7 @@
 RewindRadio\Class::functionName();
 */
 
-namespace App;
+namespace App\Classes;
 
 class Layout
 {

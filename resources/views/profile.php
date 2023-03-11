@@ -1,8 +1,8 @@
 <section>
   <?php
 
-  use App\Database;
-  use App\Text;
+  use App\Classes\Database;
+  use App\Helpers\Texter;
 
   $id = $match['params']['id'];
   $query = "SELECT * from " . PREFIX . "_users where id = $id";
@@ -109,7 +109,7 @@
                           <div>
                             <div class="mb-4">
                               <small><?php
-                                      Text::cutText(preg_replace('/\[(.*?)\]/', '', (string) $donnees['content']), 100) ?></small>
+                                      Texter::cutText(preg_replace('/\[(.*?)\]/', '', (string) $donnees['content']), 100) ?></small>
                             </div>
                           </div>
                           <hr>

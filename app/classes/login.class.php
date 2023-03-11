@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Classes;
 /*
 // Fonction de connexion
 function login($username, $password) {
@@ -23,7 +23,7 @@ function logout() {
   unset($_SESSION['user_id']);
 } */
 
-use App\Database as Database;
+use App\Classes\Database as Database;
 
 class Login
 {

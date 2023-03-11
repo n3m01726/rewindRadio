@@ -1,14 +1,14 @@
 <?php
 
-use App\Layout;
-use App\StaticContent;
-use App\User;
-use App\Posts;
+use App\Classes\Layout;
+use App\Classes\Posts;
+use App\Classes\StaticContent;
+use App\Classes\User;
 
+require '../vendor/autoload.php';
 include('../config/constants.php');
-include(CONFIG_PATH . 'functions.php');
 include(CONFIG_PATH . 'config.php');
-include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+include('../lang/lang-' . LANG . '.php');
 
 
 ?>
@@ -77,7 +77,7 @@ include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
               <li class="nav-item"><a class="nav-link" href="<?= $router->generate('schedule'); ?>"><?= $lang['schedule']; ?></a></li>
               <li class="nav-item"><a class="nav-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" href="#"><?= $lang['magazine']; ?></a></li>
             </ul>
-            <?= User::getAvatar(); ?>
+
 
           </div>
         </div>
@@ -88,7 +88,7 @@ include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
   <div class="collapse px-5 pt-5 pb-5 border-top border-bottom border-3 bg-light" id="collapseExample">
     <div class="menu-content">
       <div class="hstack gap-3">
-        <?= Posts::DisplayMegaNews(3); ?>
+
       </div>
     </div>
   </div>

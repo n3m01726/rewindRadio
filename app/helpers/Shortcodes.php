@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Helpers;
 
 class shortcodes
 {
@@ -36,7 +36,7 @@ class shortcodes
       $atts = shortcodes::shortcodeAttrs($matches[2]);
       $shortcode = $shortcodes[$tag] ?? null;
       if (!$shortcode) return '';
-      return call_user_func("App\\shortcodes::$shortcode", $atts, $content);
+      return call_user_func("App\\Helpers\\shortcodes::$shortcode", $atts, $content);
     }, (string) $content);
 
     return $content;

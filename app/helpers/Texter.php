@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Helpers;
 
-include RESOURCES_PATH . '/lang/lang-fr.php';
-class Text
+require('../lang/lang-' . LANG . '.php');
+class Texter
 {
   public static function cutText($text, $lg_max): string
   {

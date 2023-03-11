@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Classes;
 
-use App\Database;
+use App\Classes\Database;
 
 class User
 {
