@@ -4,17 +4,13 @@
 app/config/config.php
 public/uploads/posts/*.jpeg
 public/uploads/posts/*.jpg
+
 # Dev stuff 
 vendor/
-node_modules/
 composer.lock
-release-it.json
-package-lock.json
-rector.php
+style.css.map
 toDolist.md
+adminer.php
 
 # fake stuff
 *.mp3
-public/htacfdefewfwcess
-examples_texts.txt
-public/adminer.php
