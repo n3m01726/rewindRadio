@@ -30,7 +30,7 @@ class Posts
         <div class="row border-bottom border-3 bg-light p-2">
           <div class="col-2 mx-3">
             <a href="<?= $router->generate('single_post', ['id' => $id]); ?>">
-              <img src="uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="rounded-4 img-cover" width="105" height="105"></a>
+              <img src="/uploads/posts/<?= $row['featured_image']; ?>" alt="<?= $row['title']; ?>" class="rounded-4 img-cover" width="105" height="105"></a>
           </div>
           <div class="col-9">
 

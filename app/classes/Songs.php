@@ -163,7 +163,7 @@ WHERE catID=$catID ORDER BY events.time ASC");
             ?>
                 <div class="row border-bottom border-3 bg-light p-2">
                     <div class="col-2 mx-3">
-                        <img src="uploads/events/<?php echo $event['image']; ?>" alt='cover' class='rounded-4 img-cover' width="105" height="105">
+                        <img src="/uploads/events/<?php echo $event['image']; ?>" alt='cover' class='rounded-4 img-cover' width="105" height="105">
                     </div>
                     <div class="col-5">
                         <div class='song_title'><?php echo $event['name']; ?></div>
@@ -204,7 +204,7 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
                 $id = $show['id'];
             ?>
 
-                <div class="row border-bottom-3 bg-light p-2 mb-2" style="background-image: url('uploads/shows/<?= $show['image']; ?>'); background-position:center; background-size:cover;">
+                <div class="row border-bottom-3 bg-light p-2 mb-2" style="background-image: url('/uploads/shows/<?= $show['image']; ?>'); background-position:center; background-size:cover;">
                     <h4 class="text-light p-3 text-uppercase fw-bolder"><?= $show['name']; ?></h4>
                     <div class="description mb-3 p-2 bg-light text-dark"><?= Texter::cutText($show['description'], 120); ?>
                         <div class="tags m-2 px-3 py-2" style="background-color: #eaeaea;">
@@ -264,7 +264,7 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
 <div class="col-md-6">
 <div class="timetable-item">
     <div class="timetable-item-img">
-        <img src="/public/images/' . $event['image'] . '" alt="' . $eventName . '" width="105" height="105">
+        <img src="/uploads/' . $event['image'] . '" alt="' . $eventName . '" width="105" height="105">
     </div>
 <div class="timetable-item-main">
     <div class="timetable-item-time">' . $hours . '</div>
