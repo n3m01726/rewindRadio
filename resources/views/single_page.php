@@ -1,7 +1,7 @@
 <?php
 
-use App\Database;
-use App\shortcodes as Shortcodes;
+use App\Classes\Database;
+use App\Helpers\shortcodes;
 
 // Get the post ID from the URL
 $post_id = $match['params']['id'];

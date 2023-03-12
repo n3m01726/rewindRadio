@@ -7,11 +7,9 @@ public/uploads/posts/*.jpg
 # Dev stuff 
 vendor/
 node_modules/
-composer.json
 composer.lock
 release-it.json
 package-lock.json
-package.json
 rector.php
 toDolist.md
 

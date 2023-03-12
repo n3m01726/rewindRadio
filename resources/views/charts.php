@@ -1,3 +1,8 @@
+<?php
+
+use App\Classes\Database;
+?>
+
 <section>
     <div class="posts-img" style="background-image: url('uploads/posts/pexels-marlene-leppänen-12529340.jpg'); padding-top:15%;">
 
@@ -21,8 +26,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <?php
-                                        $db = new App\Database();
+                                        $db = new Database();
                                         $db_conx_rdj = $db->connect();
                                         $reponse = $db_conx_rdj->query('SELECT * FROM songs WHERE song_type = 0 AND id_subcat != 18 AND id_subcat != 19 AND id_subcat != 5 AND enabled = 1 ORDER BY count_played DESC LIMIT 40');
                                         if ($reponse->rowCount() > 0) {

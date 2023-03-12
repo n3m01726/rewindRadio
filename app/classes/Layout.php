@@ -3,7 +3,7 @@
 RewindRadio\Class::functionName();
 */
 
-namespace App;
+namespace App\Classes;
 
 class Layout
 {
@@ -34,7 +34,7 @@ class Layout
       echo "<img src='" . LOGO_URL . "' width='30' height='24'>";
     } else {
       echo '
-<a href="/public" type="button" class="btn btn-dark">
+<a href="/" type="button" class="btn btn-dark">
 <span class="badge text-dark" style="background-color:#f19135;">
 <i class="bi bi-headphones m-0"></i></span><span style="text-transform: uppercase;font-weight: bold;"> ' . SITE_NAME . '</span>
 </a>';

@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Classes;
 
+use App\Helpers\Texter;
 use App\Text;
 
 class ManagePosts
@@ -123,7 +124,7 @@ class ManagePosts
               }; ?></td>
           <td></td>
           <td> <a href="<?= $router->generate('single_post', ['id' => $id]); ?>">
-              <?= Text::cutText($row['title'], 80) ?></a></td>
+              <?= Texter::cutText($row['title'], 80) ?></a></td>
           <td>
             <a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
               <?php if (isset($row['nice_nickname'])) {
