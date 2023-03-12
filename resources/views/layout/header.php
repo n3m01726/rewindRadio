@@ -2,7 +2,7 @@
 
 use App\Classes\Layout;
 use App\Classes\Posts;
-use App\Classes\StaticContent;
+use App\Classes\StaticContent as StaticContent;
 use App\Classes\User;
 
 require '../vendor/autoload.php';
@@ -19,7 +19,7 @@ include('../lang/lang-' . LANG . '.php');
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <?php StaticContent::getHeader(); ?>
+  <?= StaticContent::getHeader(); ?>
   <title><?= SITE_NAME; ?> </title>
 </head>
 

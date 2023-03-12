@@ -2,7 +2,7 @@
 
 namespace App\Classes;
 
-use App\Helpers\Date;
+use App\Helpers\DateFormater;
 use App\Helpers\Texter;
 use PDO;
 
@@ -85,7 +85,7 @@ class Songs
                 <!-- Display the content-->
                 <div class="row border-bottom border-3 bg-light p-2">
                     <div class="col-1 d-flex align-items-center mx-4">
-                        <?= Date::giveMethehour($song['date_played']); ?>
+                        <?= DateFormater::giveMethehour($song['date_played']); ?>
                     </div>
                     <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">

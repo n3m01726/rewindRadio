@@ -27,30 +27,30 @@ class StaticContent
   {
     echo '
         <!-- icons -->
-        <link rel="apple-touch-icon"         href="icons/icon_iphone.png" sizes="180x180">
-        <link rel="icon" type="image/png"    href="icons/icon_48.png" sizes="48x48">
-        <link rel="icon" type="image/png"    href="icons/icon_32.png" sizes="32x32">
-        <link rel="icon" type="image/png"    href="icons/icon_16.png" sizes="16x16">
-        <link rel="shortcut icon"            href="icons/favicon.ico" />
-        <link rel="icon" type="image/x-icon" href="icons/favicon.ico" />
-        <link rel="icon" type="image/png"    href="icons/icon_16.png" />';
+        <link rel="apple-touch-icon"         href="/lib/icons/icon_iphone.png" sizes="180x180">
+        <link rel="icon" type="image/png"    href="/lib/icons/icon_48.png" sizes="48x48">
+        <link rel="icon" type="image/png"    href="/lib/icons/icon_32.png" sizes="32x32">
+        <link rel="icon" type="image/png"    href="/lib/icons/icon_16.png" sizes="16x16">
+        <link rel="shortcut icon"            href="/lib/icons/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/lib/icons/favicon.ico" />
+        <link rel="icon" type="image/png"    href="/lib/icons/icon_16.png" />';
   }
   public static function getStyleSheet()
   {
     echo '
-      <!-- Plugins CSS Styles Sheets -->
-      <link href="/lib/css-js/bootstrap/bootstrap.min.css" rel="stylesheet">
+      <!-- CSS Styles Sheets -->
+      <link href="/lib/css/bootstrap/bootstrap.min.css" rel="stylesheet">
       <link rel="stylesheet" href="/lib/fonts/bootstrap-icons.css">
-      <link rel="stylesheet" href="/lib/css-js/plyr/plyr.css" />
-      <link href="/lib/css-js/style.css" rel="stylesheet"/> 
+      <link rel="stylesheet" href="/lib/css/plyr/plyr.css" />
+      <link href="/lib/css/style.css" rel="stylesheet"/> 
       ';
   }
   public static function getScriptFiles()
   {
     echo '
       <script src="' . LIBRARY_PATH . '/css-js/bootstrap/popper.min.js"></script>
-      <script src="/lib/css-js/bootstrap/bootstrap.min.js"></script>
-      <script src="/lib/css-js/plyr/plyr.js"></script>
+      <script src="/lib/css/bootstrap/bootstrap.min.js"></script>
+      <script src="/lib/css/plyr/plyr.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       <script>
       document.addEventListener("DOMContentLoaded", () => {
