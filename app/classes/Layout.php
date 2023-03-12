@@ -29,7 +29,7 @@ class Layout
 
   public static function getBrandLogo()
   {
-    echo "<a class='navbar-brand' href='/public'>";
+    echo "<a class='navbar-brand' href='/'>";
     if (LOGO_URL) {
       echo "<img src='" . LOGO_URL . "' width='30' height='24'>";
     } else {
@@ -76,7 +76,7 @@ class Layout
     ];
 
     // Build the file path for the cover image
-    $imgPath = 'covers/' . $fileName . '.jpg';
+    $imgPath = '/covers/' . $fileName . '.jpg';
     $imgPath = str_replace(array_keys($replacements), array_values($replacements), $imgPath);
 
     // Check if the cover image file exists
@@ -98,7 +98,7 @@ class Layout
         }
       } else {
         // If the image element does not exist, output the default "no cover" image
-        echo "<img src='covers/no_cover.png' alt='cover' class='rounded-4 img-cover'>";
+        echo "<img src='/covers/no_cover.png' alt='cover' class='rounded-4 img-cover'>";
       }
     }
   }
