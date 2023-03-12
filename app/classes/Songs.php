@@ -1,13 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Classes;
 
-use App\Database;
-use App\Layout as AppLayout;
-use App\Text;
-use \PDO;
+use App\Helpers\Date;
+use App\Helpers\Texter;
+use PDO;
 
-class radioDJFunctions
+class Songs
 {
 
     /**
@@ -18,7 +17,7 @@ class radioDJFunctions
 
     public static function displayCountdown(int $song_count_limit)
     {
-        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        require('../lang/lang-' . LANG . '.php');
         $query = "SELECT * FROM songs WHERE song_type = 0 AND count_played > 0 AND id_subcat != 5 AND enabled = 1 ORDER BY count_played DESC LIMIT $song_count_limit";
         $database_connection = (new Database())->connect();
         $statement = $database_connection->prepare($query);
@@ -27,18 +26,18 @@ class radioDJFunctions
         if ($statement->rowCount() > 0) {
             $rank = 1;
             while ($song = $statement->fetch()) {
-                $show_artist = Text::replaceAccents($song['artist']);
-                $show_track = Text::replaceAccents($song['title']);
+                $show_artist = Texter::replaceAccents($song['artist']);
+                $show_track = Texter::replaceAccents($song['title']);
                 $fileName = $song['image'];
 ?>
                 <div class="row border-bottom border-3 bg-light p-2">
                     <div class="col-1 d-flex align-items-center mx-4">
                         <h4 style="color:var(--dark-text);"><?php echo $rank++; ?></h4>
                     </div>
-                    <div class="col-2 me-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
-                        <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
-                        <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
+                        <div class='song_title'><?= Texter::cutText($show_artist, 30); ?></div>
+                        <div class='song_artist'><?= Texter::cutText($show_track, 40); ?></div>
                     </div>
                 </div>
             <?php
@@ -59,7 +58,7 @@ class radioDJFunctions
      */
     public static function displayLastPlayedSong()
     {
-        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        require('../lang/lang-' . LANG . '.php');
         // Connect to the database
         $db = new Database();
         $db_conx_rdj = $db->connect();
@@ -88,10 +87,10 @@ class radioDJFunctions
                     <div class="col-1 d-flex align-items-center mx-4">
                         <?= Date::giveMethehour($song['date_played']); ?>
                     </div>
-                    <div class="col-2 me-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
-                        <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
-                        <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
+                        <div class='song_title'><?= Texter::cutText($show_artist, 30); ?></div>
+                        <div class='song_artist'><?= Texter::cutText($show_track, 40); ?></div>
                     </div>
                 </div>
             <?php
@@ -112,7 +111,7 @@ class radioDJFunctions
      */
     public static function displayTopRequests()
     {
-        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        require('../lang/lang-' . LANG . '.php');
         $query = "SELECT songs.ID, songs.artist, songs.title, songs.image, requests.username, requests.requested, 
 COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID WHERE TIMESTAMPDIFF( DAY, requests.requested, NOW() ) <= 365 AND PLAYED = 0 GROUP BY songs.ID ORDER BY requests DESC LIMIT 0,4";
 
@@ -131,11 +130,11 @@ COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID
                 $fileName = $song['image'];
             ?>
                 <div class="row border-bottom border-3 bg-light p-2">
-                    <div class="col-2 mx-3"><?= AppLayout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-2 mx-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
-                        <div class='song_title'><?= Text::cutText($show_artist, 30); ?></div>
-                        <div class='song_artist'><?= Text::cutText($show_track, 40); ?></div>
-                        <div class='song_artist'>Demandée par : <?= Text::cutText($username, 40); ?></div>
+                        <div class='song_title'><?= Texter::cutText($show_artist, 30); ?></div>
+                        <div class='song_artist'><?= Texter::cutText($show_track, 40); ?></div>
+                        <div class='song_artist'>Demandée par : <?= Texter::cutText($username, 40); ?></div>
                         <div class='song_artist'>Demandée le : <?= $song['requested']; ?></div>
                     </div>
                 </div>
@@ -152,7 +151,7 @@ COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID
 
     public static function displayEvents(int $catID)
     {
-        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        require('../lang/lang-' . LANG . '.php');
         $db = new Database();
         $db_conx_rdj = $db->connect();
         $reponse = $db_conx_rdj->query("SELECT * FROM events
@@ -171,7 +170,7 @@ WHERE catID=$catID ORDER BY events.time ASC");
                         <div class='song_artist'><?php echo $event['tags']; ?></div>
                         <div class='song_artist'>
                             <?php
-                            echo Text::test_replace($event['day']);
+                            echo Texter::test_replace($event['day']);
                             echo $event['time'];
                             ?>
                         </div>
@@ -192,7 +191,7 @@ WHERE catID=$catID ORDER BY events.time ASC");
     {
         global $router;
 
-        include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+        require('../lang/lang-' . LANG . '.php');
         $query = "SELECT * FROM subcategory
 JOIN " . PREFIX . "_subcategory_info
 ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcategory.parentid=$parentID";
@@ -207,7 +206,7 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
 
                 <div class="row border-bottom-3 bg-light p-2 mb-2" style="background-image: url('uploads/shows/<?= $show['image']; ?>'); background-position:center; background-size:cover;">
                     <h4 class="text-light p-3 text-uppercase fw-bolder"><?= $show['name']; ?></h4>
-                    <div class="description mb-3 p-2 bg-light text-dark"><?= Text::cutText($show['description'], 120); ?>
+                    <div class="description mb-3 p-2 bg-light text-dark"><?= Texter::cutText($show['description'], 120); ?>
                         <div class="tags m-2 px-3 py-2" style="background-color: #eaeaea;">
                             <i class="bi bi-tags-fill" style="margin-right: 10px;"></i> <?= $show['tags']; ?>
                         </div>

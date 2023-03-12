@@ -1,29 +1,22 @@
 <?php
 
-use App\StaticContent;
+use App\Classes\StaticContent as StaticContent;
 
+require '../vendor/autoload.php';
 if (!file_exists('../config/config.php')) {
-    require('../resources/classes/static.class.php');
 
     StaticContent::getStyleSheet();
     StaticContent::noScriptInstalled();
     StaticContent::getScriptFiles();
 } else {
+    require('../routes/web.php');
+    if (is_array($match)) {
 
-    $uri = $_SERVER['REQUEST_URI'];
-    if ($uri == "/private" || $uri == "/private/") {
-        // echo "on a une zone privée.";
-        require("../private/index.php");
+        $params = $match['params'];
+        require '../resources/views/layout/header.php';
+        require "../resources/views/{$match['target']}.php";
+        require '../resources/views/layout/footer.php';
     } else {
-        include('../routes/web.php');
-        if (is_array($match)) {
-
-            $params = $match['params'];
-            require '../resources/views/layout/header.php';
-            require "../resources/views/{$match['target']}.php";
-            require '../resources/views/layout/footer.php';
-        } else {
-            require "../resources/views/404.php";
-        }
+        require "../resources/views/404.php";
     }
 }

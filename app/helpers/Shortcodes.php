@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Helpers;
 
 class shortcodes
 {
@@ -27,7 +27,7 @@ class shortcodes
 
   public static function makeShortcode($content)
   {
-    $shortcodes = ['image' => 'shortcode_image', 'caption' => 'shortcode_caption', 'gallery' => 'shortcode_gallery', 'intro' => 'shortcode_intro', 'blockquote' => 'shortcode_blockquote', 'youtube' => 'shortcode_youtube'];
+    $shortcodes = ['image' => 'shortcodeImage', 'caption' => 'shortcodeCaption', 'gallery' => 'shortcodeGallery', 'intro' => 'shortcodeIntro', 'blockquote' => 'shortcodeBlockquote', 'youtube' => 'shortcodeYoutube'];
 
     $pattern = '/\[([^\s\]]+)(.*?)\]/';
 
@@ -36,7 +36,7 @@ class shortcodes
       $atts = shortcodes::shortcodeAttrs($matches[2]);
       $shortcode = $shortcodes[$tag] ?? null;
       if (!$shortcode) return '';
-      return call_user_func("RewindRadio\\shortcodes::$shortcode", $atts, $content);
+      return call_user_func("App\\Helpers\\shortcodes::$shortcode", $atts, $content);
     }, (string) $content);
 
     return $content;

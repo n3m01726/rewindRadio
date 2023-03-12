@@ -1,14 +1,14 @@
 <?php
 
-use App\Layout;
-use App\StaticContent;
-use App\User;
-use App\Posts;
+use App\Classes\Layout;
+use App\Classes\Posts;
+use App\Classes\StaticContent;
+use App\Classes\User;
 
+require '../vendor/autoload.php';
 include('../config/constants.php');
-include(CONFIG_PATH . 'functions.php');
 include(CONFIG_PATH . 'config.php');
-include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
+include('../lang/lang-' . LANG . '.php');
 
 
 ?>
@@ -29,9 +29,7 @@ include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
       <div class="d-flex flex-wrap">
         <ul class="nav me-auto mx-5 my-auto">
 
-          <li class="nav-item">
-            <div class="badge text-bg-info p-2">Info importante sur le site web, ou autre chose d'intéressant</div>
-          </li>
+          <li class="nav-item"></li>
 
         </ul>
         <ul class="nav me-5">

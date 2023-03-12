@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Classes;
 /*
 // Fonction de connexion
 function login($username, $password) {
@@ -23,7 +23,7 @@ function logout() {
   unset($_SESSION['user_id']);
 } */
 
-use App\Database as Database;
+use App\Classes\Database as Database;
 
 class Login
 {
@@ -46,6 +46,7 @@ class Login
       // Enregistrez l'identifiant de l'utilisateur dans la session
       $_SESSION['user_id'] = $row['id'];
       $_SESSION['logged_in'] = true;
+      echo "logged_user";
     } else {
       // Échec de la connexion, renvoyez un message d'erreur
       return false;
