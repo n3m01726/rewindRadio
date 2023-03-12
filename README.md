@@ -15,7 +15,6 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 - ~~Afficher les dédicaces des auditeurs~~ [DONE]
 - ~~Ajouter un router PHP et/ou passer à React. :wave: devs !~~ [DONE]
 - Ajouter une section dédicaces pour que les auditeurs puisse en faire via le site web
-- Créer les test unitaires pour PHPUnit
 
 ## Technologies utilisées:
 
