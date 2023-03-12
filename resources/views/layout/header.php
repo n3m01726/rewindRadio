@@ -29,9 +29,7 @@ include('../lang/lang-' . LANG . '.php');
       <div class="d-flex flex-wrap">
         <ul class="nav me-auto mx-5 my-auto">
 
-          <li class="nav-item">
-            <div class="badge text-bg-info p-2">Info importante sur le site web, ou autre chose d'intéressant</div>
-          </li>
+          <li class="nav-item"></li>
 
         </ul>
         <ul class="nav me-5">
@@ -77,7 +75,7 @@ include('../lang/lang-' . LANG . '.php');
               <li class="nav-item"><a class="nav-link" href="<?= $router->generate('schedule'); ?>"><?= $lang['schedule']; ?></a></li>
               <li class="nav-item"><a class="nav-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" href="#"><?= $lang['magazine']; ?></a></li>
             </ul>
-
+            <?= User::getAvatar(); ?>
 
           </div>
         </div>
@@ -88,7 +86,7 @@ include('../lang/lang-' . LANG . '.php');
   <div class="collapse px-5 pt-5 pb-5 border-top border-bottom border-3 bg-light" id="collapseExample">
     <div class="menu-content">
       <div class="hstack gap-3">
-
+        <?= Posts::DisplayMegaNews(3); ?>
       </div>
     </div>
   </div>
