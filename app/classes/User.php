@@ -19,7 +19,7 @@ class User
     echo '
       <div class="dropdown dropstart">
       <div class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="uploads/profile/' . $user['avatar'] . '" alt="' . $user['username'] . '" class="avatar rounded-circle mx-3" width="32" height="32">
+      <img src="/uploads/profile/' . $user['avatar'] . '" alt="' . $user['username'] . '" class="avatar rounded-circle mx-3" width="32" height="32">
       </div>
 
     <ul class="dropdown-menu text-small">
