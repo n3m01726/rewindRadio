@@ -27,6 +27,7 @@ use App\Classes\StaticContent;
                         <li class='nav-item'><a href="https://www.bonfire.com" target="_blank"><?= $lang['merch']; ?></a></li>
                         <li class='nav-item' id="teams"><a href="<?= $router->generate('team'); ?>"><?= $lang['team']; ?></a></li>
                         <li class='nav-item' id="join_us"><a href="<?= $router->generate('benevolat'); ?>"><?= $lang['volunteering']; ?></a></li>
+                        <li class='nav-item' id="join_us"><a href="<?= $router->generate('login'); ?>">zone des djs</a></li>
                         <li class='nav-item' id="privacy_policy"><a href='<?= $router->generate('privacy-policy'); ?>'><?= $lang['privacyPolicy']; ?></a></li>
                     </ul>
                 </nav>
@@ -67,7 +68,7 @@ use App\Classes\StaticContent;
 
 </footer>
 <div class="player">
-    <div class="comingSoon"> artist- songs goes here </div>
+    <div class="comingSoon"> artist - songs goes here </div>
     <audio class="js-player">
         <source src="<?= RADIO_URL ?>" />
     </audio>

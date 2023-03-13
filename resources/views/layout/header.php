@@ -2,14 +2,12 @@
 
 use App\Classes\Layout;
 use App\Classes\Posts;
-use App\Classes\StaticContent as StaticContent;
-use App\Classes\User;
+use App\Classes\StaticContent;
 
 require '../vendor/autoload.php';
 include('../config/constants.php');
 include(CONFIG_PATH . 'config.php');
 include('../lang/lang-' . LANG . '.php');
-
 
 ?>
 <!DOCTYPE html>
@@ -25,42 +23,16 @@ include('../lang/lang-' . LANG . '.php');
 
 <body>
   <header>
-    <nav class="py-2">
-      <div class="d-flex flex-wrap">
-        <ul class="nav me-auto mx-5 my-auto">
-
-          <li class="nav-item"></li>
-
-        </ul>
-        <ul class="nav me-5">
-          <?php
-          $socialLinks = [
-            ['twitter', TWITTER],
-            ['instagram', INSTAGRAM],
-            ['discord', DISCORD_INVITE],
-            ['github', GITHUB],
-            ['trello', TRELLO]
-          ];
-
-          foreach ($socialLinks as $link) {
-            echo Layout::socialIcons($link[0], $link[1]);
-          }
-          ?>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light btn btn-dark mx-3"><?= $lang['listenPopup'] ?>
-              <i class=" m-0 bi bi-box-arrow-up-right"></i></a></li>
-          <!--
-          <li>
-            <select id="theme-select" class="form-select ms-3">
-            <option selected>Activez le mode sombre</option>
-            <option value="light">Clair</option>
-            <option value="dark">Sombre</option>
-            <option value="auto">Auto</option>
-          </select>
-          </li>
--->
+    <?php if (isset($_SESSION['user_id'])) { ?>
+      <div class="profile_header" style="background-color:#212121; height:50px;">
+        <ul style="display:flex; color:aliceblue; list-style-type: none; padding-top:10px;">
+          <li style="margin-inline: 10px;"><a href="<?= $router->generate('post-add'); ?>">Ajouter un article</a></li>
+          <li style="margin-inline: 10px;"><a href="<?= $router->generate('user-add'); ?>">Ajouter un utilisateur</a></li>
+          <li style="margin-inline: 10px;"><a href="<?= $router->generate('settings'); ?>">Paramètres</a></li>
+          <li style="margin-inline: 10px;"><a href="<?= $router->generate('post-add'); ?>">Voir mon profil</a></li>
         </ul>
       </div>
-    </nav>
+    <?php } ?>
     <div class="bg-light">
       <nav class="navbar navbar-expand-lg mx-5">
         <div class="container-fluid">
@@ -75,21 +47,13 @@ include('../lang/lang-' . LANG . '.php');
               <li class="nav-item"><a class="nav-link" href="<?= $router->generate('schedule'); ?>"><?= $lang['schedule']; ?></a></li>
               <li class="nav-item"><a class="nav-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" href="#"><?= $lang['magazine']; ?></a></li>
             </ul>
-            <?= User::getAvatar(); ?>
-
+            <ul>
+              <a href="#" class="nav-link text-light mt-2 btn btn-dark p-2"><?= $lang['listenPopup'] ?>
+                <i class=" m-0 bi bi-box-arrow-up-right"></i></a>
+            </ul>
           </div>
         </div>
       </nav>
-    </div>
-    <div class="px-4 py-5 my-5 text-center">
-      <img class="d-block mx-auto mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h1 class="display-5 fw-bold">Centered hero</h1>
-      <div class="col-lg-6 mx-auto">
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
-        </div>
-      </div>
     </div>
   </header>
 
