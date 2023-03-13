@@ -48,9 +48,9 @@ class StaticContent
   public static function getScriptFiles()
   {
     echo '
-      <script src="' . LIBRARY_PATH . '/css-js/bootstrap/popper.min.js"></script>
-      <script src="/lib/css/bootstrap/bootstrap.min.js"></script>
-      <script src="/lib/css/plyr/plyr.js"></script>
+      <script src="/lib/js/bootstrap/popper.min.js"></script>
+      <script src="/lib/js/bootstrap/bootstrap.min.js"></script>
+      <script src="/lib/js/plyr/plyr.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       <script>
       document.addEventListener("DOMContentLoaded", () => {
