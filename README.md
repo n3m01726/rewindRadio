@@ -19,7 +19,7 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 ## Technologies utilisées:
 
 - PHP 8.1.16
-- MariaDB 10.0.16
+- MariaDB 10.6
 - RadioDJ 2.0.3.9
 
 ### Dépendances Back-end
