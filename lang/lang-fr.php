@@ -1,10 +1,10 @@
 <?php
-$lang["alertBetaSetup"] = "Prendre note que ce script est en version alpha. Veuillez consulter <a href='https://github.com/noordotda/rewindRadio'>la page Github</a> pour rester à jour.";
+$lang["alertBetaSetup"] = "Prendre note que ce script est en version alpha. Veuillez consulter <a href='https://github.com/noordotda/rewindRadio' target='_blank'>la page Github</a> pour rester à jour.";
 
 // Configuration & Setup
 $lang["setupTitle"] = "Installation de rewindRadio ";
 $lang["noInstallScript_tt_fr"] = "Installation non-terminée.";
-$lang["noInstallScript_txt_fr"] = "Désolé, il semble que vous n'ayez pas completé le processus d'installation du script. Pour continuer, veuillez suivre les instructions d'installation disponibles en cliquant sur le bouton ci-bas. Si vous rencontrez des problèmes lors de l'installation ou l'utilisation du script, n'hésitez pas à visiter <a href='https://github.com/noordotda/rewindRadio'>la page Github</a> pour obtenir de l'aide.";
+$lang["noInstallScript_txt_fr"] = "Désolé, il semble que vous n'ayez pas completé le processus d'installation du script. Pour continuer, veuillez suivre les instructions d'installation disponibles en cliquant sur le bouton ci-bas. Si vous rencontrez des problèmes lors de l'installation ou l'utilisation du script, n'hésitez pas à visiter <a href='https://github.com/noordotda/rewindRadio'>la section issues</a> pour obtenir de l'aide.";
 
 $lang["noInstallScript_tt_en"] = "Installation not completed";
 $lang["noInstallScript_txt_en"] = "Sorry, it seems that you have not complete the installation process. To proceed, please follow the installation instructions available by cliking on the button below. If you experience any issues while installing or using the script, please don't hesitate to visit <a href='https://github.com/noordotda/rewindRadio'>the Github page</a>.";
@@ -82,7 +82,7 @@ $lang['signOut'] = 'Se déconnecter';
 
 // Section des nouvelles
 $lang['news'] = "Nouvelles";
-$lang['posted_by'] = "Posté par : "; 
+$lang['posted_by'] = "Posté par : ";
 
 //Historique des musiques
 $lang['lastplay'] = 'Joué récemment';
@@ -154,7 +154,7 @@ $lang['aboutUsTxt'] = "rewindRadio est un projet de radio internet fictif pour l
 $lang['listenOptions'] = "Options d'écoute";
 $lang['apps'] = "Applications";
 $lang['description'] = "Notre site fonctionne parfaitement sur votre navigateur de bureau, iPhone, iPad et Android. Mais, si vous souhaitez vraiment utiliser une application pour écouter notre radio, vous pouvez essayer :";
- 
+
 // Tune In
 $lang['modal_tt_tunein'] = "";
 $lang['modal_txt_tunein_web'] = "";
@@ -169,7 +169,7 @@ $lang['modal_tt_smart'] = "";
 $lang['modal_description_smart'] = "";
 $lang['modal_smart_alexa_txt'] = "";
 $lang['modal_smart_alexa'] = "";
-$lang['modal_smart_siri_txt'] = ""; 
+$lang['modal_smart_siri_txt'] = "";
 $lang['modal_smart_siri'] = "";
 $lang['modal_smart_google'] = "";
 $lang['modal_smart_google_txt'] = "";
@@ -187,7 +187,7 @@ $lang['xspfLink'] = "path/to/the/file.xspf";
 
 // Contact Modal
 $lang['contact'] = "Nous contacter";
-$lang['contactTxt']= "Vous pouvez nous contacter à tout moment via hello [at] rewind [point] radio ou sur les différentes plateformes sociales.";
+$lang['contactTxt'] = "Vous pouvez nous contacter à tout moment via hello [at] rewind [point] radio ou sur les différentes plateformes sociales.";
 
 
 $lang['lnk_tunein_txt'] = "TuneIn";

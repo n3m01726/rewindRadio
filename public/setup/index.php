@@ -1,13 +1,18 @@
 <?php
 
-use App\StaticContent;
+use App\Classes\StaticContent as StaticContent;
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 $language = $_GET["language"];
-include('../../config/constants.php');
-include('../../resources/classes/static.class.php');
-include('../../resources/lang/lang-'.$language.'.php');
+require('../../config/constants.php');
+require('../../app/classes/StaticContent.php');
+require('../../lang/lang-' . $language . '.php');
 ?>
 <html>
+
 <head>
     <!-- Plugins CSS Styles Sheets -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -109,7 +114,7 @@ include('../../resources/lang/lang-'.$language.'.php');
         <tr>
             <td width="30%"><label for="userEmail" class="form-label">Adresse courriel</label></td>
             <td> <input type="text" id="userEmail" name="userEmail" class="form-control">
-                <div class="form-text"><?=$lang['userEmailMessage'];?></div>
+                <div class="form-text"><?= $lang['userEmailMessage']; ?></div>
             </td>
         </tr>
         </table>
@@ -119,21 +124,29 @@ include('../../resources/lang/lang-'.$language.'.php');
     </div>
     </div>
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 mt-5 border-top">
-    <div class="col-md-4 d-flex align-items-center">
-      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-      </a>
-      <span class="mb-3 mb-md-0 text-light">Coded with love by noordaStudios</span>
-    </div>
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-light">Coded with love by noordaStudios</span>
+        </div>
 
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex mx-5">
-      <li class="ms-3"><a class="text-light" href="#"><i class="bi bi-twitter"><use xlink:href="#twitter"></use></i></a></li>
-      <li class="ms-3"><a class="text-light" href="#"><i class="bi bi-instagram"><use xlink:href="#instagram"></use></i></a></li>
-      <li class="ms-3"><a class="text-light" href="#"><i class="bi bi-github"><use xlink:href="#github"></use></i></a></li>
-    </ul>
-  </footer>
-  
-<?= StaticContent::getScriptFiles();?>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex mx-5">
+            <li class="ms-3"><a class="text-light" href="#"><i class="bi bi-twitter">
+                        <use xlink:href="#twitter"></use>
+                    </i></a></li>
+            <li class="ms-3"><a class="text-light" href="#"><i class="bi bi-instagram">
+                        <use xlink:href="#instagram"></use>
+                    </i></a></li>
+            <li class="ms-3"><a class="text-light" href="#"><i class="bi bi-github">
+                        <use xlink:href="#github"></use>
+                    </i></a></li>
+        </ul>
+    </footer>
+
+    <?= StaticContent::getScriptFiles(); ?>
 </body>
 
 </html>

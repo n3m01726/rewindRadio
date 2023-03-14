@@ -69,3 +69,6 @@ define('LIBRARY_PATH', SITE_URL . '/lib');
 
 define('SITE_NAME', 'rewindRadio');
 define('LANG', 'fr');
+
+define('SITE_NAME', 'rewindRadio');
+define('LANG', 'fr');
