@@ -31,25 +31,25 @@ use App\Classes\Songs;
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                           <div class="tab-pane fade" id="nav-<?php echo $lang['monday']; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['monday']; ?>-tab" tabindex="0">
-                            <?= Songs::getSchedule('&1', 1); ?>
+                            <?= Songs::getSchedule('&1', 99); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-<?php echo $lang['tuesday']; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['tuesday']; ?>-tab" tabindex="0">
-                            <?= Songs::getSchedule('&2', 1); ?>
+                            <?= Songs::getSchedule('&2', 99); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-<?php echo $lang['wednesday']; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['wednesday']; ?>-tab" tabindex="0">
-                            <?= Songs::getSchedule('&3', 1); ?>
+                            <?= Songs::getSchedule('&3', 99); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-<?php echo $lang['thursday']; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['thursday']; ?>-tab" tabindex="0">
-                            <?= Songs::getSchedule('&4', 1); ?>
+                            <?= Songs::getSchedule('&4', 99); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-<?php echo $lang['friday']; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['friday']; ?>-tab" tabindex="0">
-                            <?= Songs::getSchedule('&5', 1); ?>
+                            <?= Songs::getSchedule('&5', 99); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-<?php echo $lang['saturday']; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['saturday']; ?>-tab" tabindex="0">
-                            <?= Songs::getSchedule('&6', 1); ?>
+                            <?= Songs::getSchedule('&6', 99); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-<?php echo $lang['sunday']; ?>" role="tabpanel" aria-labelledby="nav-<?php echo $lang['sunday']; ?>-tab" tabindex="0">
-                            <?= Songs::getSchedule('&0', 1); ?>
+                            <?= Songs::getSchedule('&0', 99); ?>
                           </div>
                         </div>
                       </div>
