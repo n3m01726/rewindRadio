@@ -8,3 +8,4 @@ vendor/
 style.css.map
 toDolist.md
 adminer.php
+config/config.php
