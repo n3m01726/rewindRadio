@@ -1,10 +1,10 @@
 <?php
 
-use App\Classes\StaticContent as StaticContent;
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
+use App\Classes\StaticContent as StaticContent;
 
 $language = $_GET["language"];
 require('../../config/constants.php');
