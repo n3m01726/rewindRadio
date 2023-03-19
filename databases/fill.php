@@ -139,14 +139,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Create the events_info table
     $sql = "CREATE TABLE " . $prefix . "_events_info (
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-        events_id INT NOT NULL, 
+        event_id INT NOT NULL, 
         image VARCHAR(80) DEFAULT NULL,
         guests VARCHAR(20) DEFAULT NULL,
         curator VARCHAR(20) DEFAULT NULL,
         tags VARCHAR(80) DEFAULT NULL,
         is_fake INT(1) DEFAULT 0,
-        INDEX (events_id),
-        CONSTRAINT FOREIGN KEY (events_id) REFERENCES events(id)
+        INDEX (event_id),
+        CONSTRAINT FOREIGN KEY (event_id) REFERENCES events(id)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
     ";
     $conn->exec($sql);
@@ -339,27 +339,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conn->exec($sql);
         echo "Added fake data to the subcategory_info table.<br>";
 
-        $sql = "INSERT INTO events_categories (ID, NAME) VALUES(50, 'Website Events')";
+        $sql = "INSERT INTO events_categories (ID, NAME) 
+        VALUES(99, 'Website Events'),
+        (98, 'Schedule Events');";
         $conn->exec($sql);
         echo "Added a category for the website events.<br>";
 
-        $sql = "INSERT INTO events ( ID, TYPE, TIME, NAME, DATE, DAY, hours, DATA, enabled, catID, smart, is_fake ) VALUES(1, 0, '21:00:00', 'First Fake Event', '2023-06-18', '&6', '&20', 'Clear Playlist!', TRUE, 50, FALSE, 1 )";
+        $sql = "INSERT INTO events ( ID, TYPE, TIME, NAME, DATE, DAY, hours, DATA, enabled, catID, smart, is_fake ) 
+        VALUES(99, 0, '21:00:00', 'First Fake Event', '2023-06-18', '&6', '&20', 'Clear Playlist!', TRUE, 99, FALSE, 1 ),
+        (98, 0, '15:00:00', 'Second Fake Event', '2023-01-27', '&3', '&18', 'Clear Playlist!', TRUE, 99, FALSE, 1 ),
+        (97, 0, '15:00:00', 'Third Fake Event', '2023-01-25', '&4', '&19', 'Clear Playlist!', TRUE, 99, FALSE, 1 ),
+        (96, 0, '20:00:00', 'First Fake Event', '2023-06-18', '&6', '&20', 'Clear Playlist!', TRUE, 98, FALSE, 1 ),
+        (95, 0, '21:00:00', 'Second Scheduled Fake Event', '2023-06-18', '&6', '&20', 'Clear Playlist!', TRUE, 98, FALSE, 1 ),
+        (94, 0, '22:00:00', 'Third Scheduled Fake Event', '2023-06-18', '&6', '&20', 'Clear Playlist!', TRUE, 98, FALSE, 1 );";
         $conn->exec($sql);
 
-        $sql = "INSERT INTO events ( ID, TYPE, TIME, NAME, DATE, DAY, hours, DATA, enabled, catID, smart, is_fake ) VALUES(2, 0, '15:00:00', 'Second Fake Event', '2023-01-27', '&3', '&18', 'Clear Playlist!', TRUE, 50, FALSE, 1 )";
-        $conn->exec($sql);
-
-        $sql = "INSERT INTO events ( ID, TYPE, TIME, NAME, DATE, DAY, hours, DATA, enabled, catID, smart, is_fake ) VALUES(3, 0, '15:00:00', 'Third Fake Event', '2023-01-25', '&4', '&19', 'Clear Playlist!', TRUE, 50, FALSE, 1 )";
-        $conn->exec($sql);
-
-
-        $sql = "INSERT INTO " . $prefix . "_events_info (events_id, image, guests, curator, tags) VALUES (1, 'fake-image-1.jpg', '', 'John Smith', 'Nature, outdoor, adventure')";
-        $conn->exec($sql);
-        $sql = "INSERT INTO " . $prefix . "_events_info (events_id, image, guests, curator, tags)
-    VALUES (2, 'fake-image-2.jpg', '', 'Jane Doe', 'painting, music')";
-        $conn->exec($sql);
-        $sql = "INSERT INTO " . $prefix . "_events_info (events_id, image, guests, curator, tags)
-    VALUES (3, 'fake-image-3.jpg', '', 'Bob Johnson', 'Food, cooking, wine tasting')";
+        $sql = "INSERT INTO " . $prefix . "_events_info (event_id, image, guests, curator, tags) VALUES (99, 'fake-image-1.jpg', '', 'John Smith', 'Nature, outdoor, adventure'),
+        (98, 'fake-image-2.jpg', '', 'Jane Doe', 'painting, music'),
+        (97, 'fake-image-3.jpg', '', 'Bob Johnson', 'Food, cooking, wine tasting'),
+        (96, 'fake-image-3.jpg', '', 'Osakari Yasuhiro', 'Food, cooking, wine tasting'),
+        (95, 'fake-image-3.jpg', '', 'Johanna Strub', 'Food, cooking, wine tasting'),
+        (94, 'fake-image-3.jpg', '', 'Mia Johnson', 'Food, cooking, wine tasting')";
         $conn->exec($sql);
         echo "Added fake data to the events_info table.<br>";
 
@@ -372,8 +372,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     La semaine dernière, nous avons eu le plaisir d\'accueillir [nom d\'artiste] en direct à notre studio pour un concert exceptionnel. Cette soirée était remplie d\'énergie et de musique enivrante, et nous sommes ravis de partager quelques-uns de nos moments préférés avec vous.
     
     caption: [Nom de l\'artiste] en train de donner un spectacle époustouflant sur scène.
-    
-        
     Ce fut une soirée incroyable et nous remercions [nom de l\'artiste] pour ce moment mémorable.', NOW(), '1', 'chez-rewindradio', 'pexels-nati-14642654.jpg',1,1,1,1,0),
     
     ('Bénévolat chez rewindRadio', '<p>Vous souhaitez vous investir dans votre communauté et faire une différence dans votre ville? Rejoignez notre équipe de bénévoles pour notre organisme de radio communautaire!
@@ -395,18 +393,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    <p> Il est important de se rappeler que chaque pays et chaque région ont leurs propres lois et réglementations en matière de confidentialité, il est donc important de consulter un avocat pour vous assurer que votre politique de confidentialité est conforme aux lois en vigueur.', NOW(), '1', 'privacy-policy', 'pexels-nati-14642654.jpg',2,1,1,1,0);";
         $conn->exec($sql);
         echo "Added fake data to the post table.<br>";
+
         $sql = "INSERT INTO " . $prefix . "_users( username, PASSWORD, avatar, last_login, member_since, bio, job_title, facebook, twitter, instagram, twitch, tiktok, discord, linkedin, first_name, last_name, nice_nickname, email, background_image, fav_quote, is_fake) 
 
 VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker-03.png', NULL, NULL, 'My bio', 'Founder & CEO', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'Osakari', 'Yasuhiro', 'Osakari Yasuhiro', '$firstUserEmail' , 'background_image.jpg', 'Be yourself. Everyone else is already taken. ― Oscar Wilde', 0),
 
-('Gallo2002', 'Iethue9ohph', 'AvatarMaker01.png', '2016-02-09 21:12:40', '2016-01-10 14:52:54', 'Certified explorer. Beer scholar. Food expert. Bacon lover. Creator. Troublemaker. Music junkie.', 'Directrice de création', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio','rewindRadio', 'Jennifer', 'Galloway', 'Jennifer Galloway', 'gallo2002@example.com', 'background_image', 'Create with the heart; build with the mind.', 0),
+('Gallo2002', 'Iethue9ohph', 'AvatarMaker.png', '2016-02-09 21:12:40', '2016-01-10 14:52:54', 'Certified explorer. Beer scholar. Food expert. Bacon lover. Creator. Troublemaker. Music junkie.', 'Directrice de création', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio', 'rewindRadio','rewindRadio', 'Jennifer', 'Galloway', 'Jennifer Galloway', 'gallo2002@example.com', 'background_image', 'Create with the heart; build with the mind.', 0),
 
-('john_doe', 'password1', 'Avatar03.jpg', '2022-12-01 10:00:00', '2022-10-01 10:00:00', 'John Doe is a software engineer with 5 years of experience.', 'Software Engineer', 'https://facebook.com/johndoe', 'https://twitter.com/johndoe', 'https://instagram.com/johndoe', 'https://twitch.com/johndoe', 'https://tiktok.com/johndoe', 'https://discord.com/johndoe', 'https://linkedin.com/johndoe', 'John', 'Doe', 'johndoe', 'john.doe@example.com', 'https://example.com/background1.jpg', 'Code is poetry.', 0),
+('john_doe', 'password1', 'AvatarMaker01.png', '2022-12-01 10:00:00', '2022-10-01 10:00:00', 'John Doe is a software engineer with 5 years of experience.', 'Software Engineer', 'https://facebook.com/johndoe', 'https://twitter.com/johndoe', 'https://instagram.com/johndoe', 'https://twitch.com/johndoe', 'https://tiktok.com/johndoe', 'https://discord.com/johndoe', 'https://linkedin.com/johndoe', 'John', 'Doe', 'John Doe', 'john.doe@example.com', 'https://example.com/background1.jpg', 'Code is poetry.', 0),
 
-('jane_doe', 'password2', 'AvatarMaker.jpg', '2022-11-15 12:00:00', '2022-09-01 10:00:00', 'Jane Doe is a graphic designer with 7 years of experience.', 'Graphic Designer', 'https://facebook.com/janedoe', 'https://twitter.com/janedoe', 'https://instagram.com/janedoe', 'https://twitch.com/janedoe', 'https://tiktok.com/janedoe', 'https://discord.com/janedoe', 'janedoe', 'Jane', 'Doe', 'janedoe', 'jane.doe@example.com', 'https://example.com/background2.jpg', 'Design is not just what it looks like and feels like. Design is how it works.', 0);";
+('jane_doe', 'password2', 'AvatarMaker02.png', '2022-11-15 12:00:00', '2022-09-01 10:00:00', 'Jane Doe is a graphic designer with 7 years of experience.', 'Graphic Designer', 'https://facebook.com/janedoe', 'https://twitter.com/janedoe', 'https://instagram.com/janedoe', 'https://twitch.com/janedoe', 'https://tiktok.com/janedoe', 'https://discord.com/janedoe', 'janedoe', 'Jane', 'Doeker', 'Jane Doeker', 'jane.doe@example.com', 'https://example.com/background2.jpg', 'Design is not just what it looks like and feels like. Design is how it works.', 0);";
 
         $conn->exec($sql);
-        echo "Added fake data to the news_user table. Don't worry, it won't mess with rdj users table.<br>";
+        echo "Added fake data to the prefix_users table. Don't worry, it won't mess with rdj users table.<br>";
 
         $sql = "INSERT INTO " . $prefix . "_categories (name, slug) VALUES('News', 'news'), ('Tech', 'tech'), ('Entertainment', 'entertainment')";
         $conn->exec($sql);
@@ -436,18 +435,18 @@ VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker-03.png', NULL, NULL, 'M
     // Append the database constants to the config.php file
     $language = $_POST["language"];
     $config = "<?php\n";
+    $config .= "// Configuration de la base de données - Database configuration\n";
     $config .= "define('PREFIX', '{$prefix}');\n";
     $config .= "define('DBHOST', '{$hostname}');\n";
     $config .= "define('DBNAME', '{$database}');\n";
     $config .= "define('DBUSER', '{$username}');\n";
     $config .= "define('DBPASSWORD', '{$password}');\n\n";
+    $config .= "// Nom et langue du site web - Name & Language of the website\n";
+    $config .= "define('SITE_NAME', '{$site_name}');\n";
+    $config .= "define('LANG', '{$language}');\n";
     $config .= "?>";
     file_put_contents('../../config/config.php', $config, FILE_APPEND);
 
-    // Append the site constants to the constants.php file
-    $constants = "\ndefine('SITE_NAME', '{$site_name}');\n";
-    $constants .= "define('LANG', '{$language}');\n";
-    file_put_contents('../../config/constants.php', $constants, FILE_APPEND);
     echo "Setup completed successfully!</pre>
     <a href='/'><button class='btn btn-dark'>Aller sur votre site web</button></a>";
 }
