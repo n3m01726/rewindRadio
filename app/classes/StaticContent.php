@@ -79,8 +79,7 @@ class StaticContent
 
   public static function noScriptInstalled()
   {
-    $lang = [];
-    include('setup/lang-setup.php');
+    require '../lang/lang-fr.php';
     echo '
   <body class="bg-dark">
   <div class="text-center mt-5">
