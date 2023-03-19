@@ -10,7 +10,7 @@ $router->map('GET', '/schedule', 'schedule', 'schedule');
 $router->map('GET', '/team', 'team', 'team');
 $router->map('GET', '/benevolat', 'benevolat', 'benevolat');
 $router->map('GET', '/privacy-policy', 'privacy-policy', 'privacy-policy');
-$router->map('GET', '/[*:slug]', 'single_page', 'single_page');
+$router->map('GET', 'pages/[*:slug]', 'single_page', 'single_page');
 
 $router->map('GET', '/posts/[i:id]', 'single_post', 'single_post');
 $router->map('GET', '/shows/[i:id]', 'single_show', 'single_show');
