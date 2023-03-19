@@ -34,7 +34,7 @@ use App\Classes\Songs as Songs;
         <div class="row mt-2">
           <h3 class="p-3"><?= $lang['events']; ?></h3>
         </div>
-        <?= Songs::displayEvents(50); ?>
+        <?= Songs::displayEvents(99); ?>
       </div>
     </div>
   </div>
