@@ -1,12 +1,10 @@
 .DS_Store
-/public/covers/
-/public/social/
 config.php
 public/uploads/posts/*.jpeg
 public/uploads/posts/*.jpg
 
 # Dev stuff 
 vendor/
-node_modules/
+style.css.map
 toDolist.md
 adminer.php

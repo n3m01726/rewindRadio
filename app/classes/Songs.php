@@ -155,7 +155,7 @@ COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID
         $db = new Database();
         $db_conx_rdj = $db->connect();
         $reponse = $db_conx_rdj->query("SELECT * FROM events
-LEFT JOIN " . PREFIX . "_events_info ON events.id = " . PREFIX . "_events_info.events_id
+LEFT JOIN " . PREFIX . "_events_info ON events.id = " . PREFIX . "_events_info.event_id
 WHERE catID=$catID ORDER BY events.time ASC");
         $events = $reponse->fetchAll();
         if ($reponse->rowCount() > 0) {
@@ -244,7 +244,7 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
         $db_conx_rdj = $db->connect();
 
         // Select all events with the specified category and the specified day
-        $stmt = $db_conx_rdj->prepare("SELECT e.*, aei.image FROM events AS e LEFT JOIN " . PREFIX . "_events_info AS aei ON e.ID = aei.events_id WHERE catID = :catID AND day = :day AND enabled = 1;");
+        $stmt = $db_conx_rdj->prepare("SELECT e.*, aei.image FROM events AS e LEFT JOIN " . PREFIX . "_events_info AS aei ON e.ID = aei.event_id WHERE catID = :catID AND day = :day AND enabled = 1;");
         $stmt->bindValue(':catID', $catID);
         $stmt->bindValue(':day', $day);
         $stmt->execute();
