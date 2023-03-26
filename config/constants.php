@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Classes;
+
 define('ADMIN_MODE', '1'); // défini comme 1 pour indiquer que le site est en mode administrateur.
 
 define('SITE_URL', 'http://rewind.radio'); // l'url du site, défini comme rewind.radio.

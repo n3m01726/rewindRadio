@@ -6,10 +6,15 @@ error_reporting(E_ALL);
 
 use App\Classes\StaticContent as StaticContent;
 
-$language = $_GET["language"];
-require('../../config/constants.php');
 require('../../app/classes/StaticContent.php');
-require('../../lang/lang-' . $language . '.php');
+
+$domain = 'main';
+$locale = 'en_US';
+bindtextdomain($domain, dirname(__FILE__) . DIRECTORY_SEPARATOR . 'lang');
+textdomain($domain);
+if (!setlocale(LC_ALL, "$locale.UTF-8")) {
+    throw new \Exception("Locale $locale not supported ");
+};
 ?>
 <html>
 
@@ -17,13 +22,13 @@ require('../../lang/lang-' . $language . '.php');
     <!-- Plugins CSS Styles Sheets -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title><?= $lang['setupTitle']; ?></title>
+    <title><?= _('rewindRadio Installation'); ?></title>
 </head>
 
 <body class="bg-dark">
     <div class="m-3">
         <div class="alert alert-info text-center" role="alert">
-            <?= $lang['alertBetaSetup']; ?>
+            <?= _("This is the alpha version version fo the script. Go to <a href='https://github.com/noordotda/rewindRadio' target='_blank'>Github page</a> to stay up-to-date."); ?>
         </div>
     </div>
     <div class="text-center mt-5">
@@ -31,44 +36,44 @@ require('../../lang/lang-' . $language . '.php');
     </div>
     <div class="card mx-auto mt-3 card-dark" style="width: 50rem;">
         <div class="card-header">
-            <h4><?= $lang['setupTitle']; ?> 1</h4>
+            <h4><?= _("RewindRadio script Installation process, Part 1"); ?> </h4>
         </div>
         <div class="card-body">
             <form method="POST" action="setup.php">
                 <div class="container">
-                    <p><?= $lang['intro']; ?></p>
-                    <input type="hidden" name="language" value="<?php echo $language; ?>">
+                    <p><?= _("Please add your database information below."); ?></p>
+                    <input type="hidden" name="language" value="<?= $language; ?>">
                     <table class="table table-borderless">
                         <tr>
-                            <td width="30%"><label for="hostname" class="form-label"><?= $lang['labelHostname']; ?></label></td>
+                            <td width="30%"><label for="hostname" class="form-label"><?= _("Hostname:"); ?></label></td>
                             <td><input type="text" id="hostname" name="hostname" class="form-control">
-                                <div class="form-text"><?= $lang['helpHostname']; ?></div>
+                                <div class="form-text"><?= _('Please enter your MySQL hostname.') ?></div>
                             </td>
                         </tr>
                         <tr>
-                            <td width="30%"><label for="username" class="form-label"><?= $lang['labelUsername']; ?></label></td>
+                            <td width="30%"><label for="username" class="form-label"><?= _("Username:"); ?></label></td>
                             <td> <input type="text" id="username" name="username" class="form-control">
-                                <div class="form-text"><?= $lang['helpUsername']; ?></div>
+                                <div class="form-text"><?= _("Please enter your MySQL username. Do not use the root user. Create a new user for the script."); ?></div>
                 </div>
                 </td>
                 </tr>
                 <tr>
-                    <td width="30%"><label for="password" class="form-label"><?= $lang['labelPassword'] ?></label></td>
+                    <td width="30%"><label for="password" class="form-label"><?= _("Password"); ?></label></td>
                     <td> <input type="password" id="password" name="password" class="form-control">
-                        <div class="form-text"><?= $lang['helpPassword'] ?></div>
+                        <div class="form-text"><?= _("Please enter your MySQL password."); ?></div>
         </div>
         </td>
         </tr>
         <tr>
             <td width="30%"><label for="database" class="form-label"><?= $lang['labelDatabase'] ?></label></td>
             <td> <input type="text" id="database" name="database" class="form-control">
-                <div class="form-text"><?= $lang['helpDatabase'] ?></div>
+                <div class="form-text"><?= _("Please enter your MySQL database name."); ?></div>
             </td>
         </tr>
         <tr>
             <td width="30%"><label for="prefix" class="form-label"><?= $lang['labelPrefix'] ?></label></td>
             <td> <input type="text" id="prefix" name="prefix" class="form-control">
-                <div class="form-text"><?= $lang['helpPrefix'] ?> </div>
+                <div class="form-text"><?= _("An underscore '_' will be added to the end of your prefix, for example, prefix_tablename, to make it easier to find tables in case of bugs."); ?> </div>
             </td>
         </tr>
         </table>
@@ -76,7 +81,7 @@ require('../../lang/lang-' . $language . '.php');
         <div class="mb-4 mt-4" style="background-color:#eaeaea; padding:15px;">
             <input type="checkbox" class="form-check-input" id="addFakeData" name="addFakeData" value="true">
             <label for="addFakeData" class="form-check-label"><?= $lang['labelFakeData'] ?></label>
-            <div class="form-text"><?= $lang['helpFakeData'] ?></div>
+            <div class="form-text"><?= _("Please check this box if you want to add fake data."); ?></div>
         </div>
 
     </div>
@@ -84,7 +89,7 @@ require('../../lang/lang-' . $language . '.php');
     </div>
     <div class="card mx-auto mt-3 card-dark" style="width: 50rem;">
         <div class="card-header">
-            <h4><?= $lang['setupTitle']; ?> 2</h4>
+            <h4><?= _("RewindRadio script Installation process, Part 2"); ?></h4>
         </div>
         <div class="card-body">
             <div class="container">
@@ -92,33 +97,33 @@ require('../../lang/lang-' . $language . '.php');
                 <input type="hidden" name="language" value="<?php echo $language; ?>">
                 <table class="table table-borderless">
                     <tr>
-                        <td width="30%"><label for="site_name" class="form-label"><?= $lang['labelSite_name']; ?></label></td>
+                        <td width="30%"><label for="site_name" class="form-label"><?= _("Website Name"); ?></label></td>
                         <td><input type="text" id="site_name" name="site_name" class="form-control">
-                            <div class="form-text"><?= $lang['helpSite_name']; ?></div>
+                            <div class="form-text"><?= _("Please enter the name of your website."); ?></div>
                         </td>
                     </tr>
                     <tr>
-                        <td width="30%"><label for="siteUsername" class="form-label"><?= $lang['labelUser_name']; ?></label></td>
+                        <td width="30%"><label for="siteUsername" class="form-label"><?= _("Username"); ?></label></td>
                         <td> <input type="text" id="siteUsername" name="siteUsername" class="form-control">
-                            <div class="form-text"><?= $lang['helpUser_name']; ?></div>
+                            <div class="form-text"><?= _("Please enter a username. It will be used to log in to the private section of the website."); ?></div>
             </div>
             </td>
             </tr>
             <tr>
-                <td width="30%"><label for="sitePassword" class="form-label"><?= $lang['labelPass_word'] ?></label></td>
+                <td width="30%"><label for="sitePassword" class="form-label"><?= _("Password"); ?></label></td>
                 <td> <input type="password" id="sitePassword" name="sitePassword" class="form-control">
-                    <div class="form-text"><?= $lang['helpPass_word'] ?></div>
+                    <div class="form-text"><?= _("Please enter your password. It will be used to log in to the private section of the website."); ?></div>
         </div>
         </td>
         </tr>
         <tr>
-            <td width="30%"><label for="userEmail" class="form-label">Adresse courriel</label></td>
+            <td width="30%"><label for="userEmail" class="form-label"><?= _("Email adress"); ?></label></td>
             <td> <input type="text" id="userEmail" name="userEmail" class="form-control">
-                <div class="form-text"><?= $lang['userEmailMessage']; ?></div>
+                <div class="form-text"><?= _("Please enter your email address here. It will be used to change your password and activate your account."); ?></div>
             </td>
         </tr>
         </table>
-        <input type="submit" class="btn btn-dark" value="<?= $lang['btnSubmitSetup'] ?>">
+        <input type="submit" class="btn btn-dark" value="<?= _("Install plugin"); ?>">
         </form>
     </div>
     </div>

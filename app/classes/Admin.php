@@ -100,7 +100,6 @@ class ManagePosts
   public static function listNews()
   {
     global $router;
-    include(RESOURCES_PATH . 'lang/lang-' . LANG . '.php');
     $db = new Database();
     $db_conx_rdj = $db->connect();
     $query = "SELECT " . PREFIX . "_posts.id, " . PREFIX . "_posts.featured_image," . PREFIX . "_posts.posted_by, " . PREFIX . "_posts.date_posted, " . PREFIX . "_posts.title, " . PREFIX . "_posts.content, " . PREFIX . "_posts.post_type, " . PREFIX . "_users.username, " . PREFIX . "_users.nice_nickname," . PREFIX . "_categories.name as category_name, " . PREFIX . "_tags.name as tag_name,
@@ -118,9 +117,9 @@ class ManagePosts
         <!-- Display the articles -->
         <tr>
           <td><?php if ($row['post_type'] == 2) {
-                echo "Page";
+                echo _('Page');
               } elseif ($row['post_type'] == 1) {
-                echo "Articles";
+                echo _('Article');
               }; ?></td>
           <td></td>
           <td> <a href="<?= $router->generate('single_post', ['id' => $id]); ?>">
@@ -133,13 +132,13 @@ class ManagePosts
                 echo $row['username'];
               } ?></a>
           </td>
-          <td>cat</td>
-          <td>tag</td>
-          <td>actions</td>
+          <td><?= _('Categories'); ?></td>
+          <td><?= _('Tags'); ?></td>
+          <td><?= _('Actions'); ?></td>
         </tr>
 <?php }
     } else {
-      echo 'no content.';
+      echo _('Nothing to show.');
     }
   }
 }
