@@ -1,12 +1,3 @@
-<style>
-  .bscallout {
-    background-color: var(--bs-info-bg-subtle);
-    padding: 10px 10px 10px 20px;
-    margin: 0;
-    border-left: var(--bs-info) 4px solid;
-    width: 99%;
-  }
-</style>
 <!-- Image Modal -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -42,7 +33,7 @@
       </div>
       <div class="modal-body">
         <form>
-          <div class="bscallout form-text mb-3 mt-3">Si vous uploader vos images via FTP, déposez-les dans le dossier /public/uploads/</div>
+          <div class="bscallout form-text mb-3 mt-3">Si vous uploader vos images via FTP</div>
           <div class="form-group mb-3">
             <label for="url1">Image URL 1</label>
             <input type="text" class="form-control" id="url1" placeholder="Enter image URL">
@@ -75,27 +66,26 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-uppercase" id="exampleModalLongTitle">Liste des shortcodes</h5>
+        <h5 class="modal-title text-uppercase" id="exampleModalLongTitle"><?= _("Shortcode List"); ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div id="content-text-modal">
-          <p>Ajouter une image<br>
+          <p><?= _("Add an image shortcode"); ?><br>
             <code>[image url="path/to/image.jpg"]</code>
           </p>
-          <p>Ajouter une gallerie d'image <br>
+          <p><?= _("Add an image gallery shortcode"); ?> <br>
             <code>[gallery url1="path/to/image.jpg" url2="path/to/image.jpg" url3="path/to/image.jpg" url4="path/to/image.jpg"]</code>
           </p>
-          <p>Ajouter une légende<br>
+          <p><?= _("Add a caption shortcode"); ?><br>
             <code>[caption text="caption goes here"]</code>
           </p>
-          <p> Ajouter une video youtube<br>
+          <p><?= _("Add a Youtube video shortcode"); ?><br>
             <code>[youtube id="hf4ji48276h"]</code>
           </p>
-          <p>Ajouter une citation<br>
+          <p><?= _("Add an quote shortcode"); ?><br>
             <code>[blockquote text="type your text here."]</code>
           </p>
-          <a href="http://rewind.radio/posts.php?id=5"> Un exemple de page avec les shortcodes en action</a>
         </div>
       </div>
     </div>

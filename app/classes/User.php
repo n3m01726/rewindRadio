@@ -23,17 +23,17 @@ class User
       </div>
 
     <ul class="dropdown-menu text-small">
-      <li><a class="dropdown-item" href="' . $router->generate('post-list') . '">Liste des articles</a></li>
-      <li><a class="dropdown-item" href="' . $router->generate('post-add') . '">Ajouter un article</a></li>
-      <li><a class="dropdown-item" href="' . $router->generate('add-draft') . '">Ajouter une proposition d\'article</a></li>
-      <li><a class="dropdown-item" href="' . $router->generate('view-drafts') . '">Voir mes propositions d\'article</a></li>
+      <li><a class="dropdown-item" href="' . $router->generate('post-list') . '">' . _("Articles") . '</a></li>
+      <li><a class="dropdown-item" href="' . $router->generate('post-add') . '">' . _("Write an article") . '</a></li>
+      <li><a class="dropdown-item" href="' . $router->generate('add-draft') . '">' . _("Add a draft") . '</a></li>
+      <li><a class="dropdown-item" href="' . $router->generate('view-drafts') . '">' . _("View my drafts") . '</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="' . $router->generate('user-add') . '">Ajouter un user</a></li>
-      <li><a class="dropdown-item" href="' . $router->generate('user-list') . '">Voir les utilisateurs</a></li>
+      <li><a class="dropdown-item" href="' . $router->generate('user-add') . '">' . _("Add a user") . '</a></li>
+      <li><a class="dropdown-item" href="' . $router->generate('user-list') . '">' . _("View userlist") . '</a></li>
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="' . $router->generate('profile', ['id' => $user_id]) . '">Voir mon profil</a></li>
-      <li><a class="dropdown-item" href="' . $router->generate('settings') . '">Paramètres</a></li>
-      <li><a class="dropdown-item" href="' . $router->generate('logout') . '">Se déconnecter</a></li>
+      <li><a class="dropdown-item" href="' . $router->generate('profile', ['id' => $user_id]) . '">' . _("View profile") . '</a></li>
+      <li><a class="dropdown-item" href="' . $router->generate('settings') . '">' . _("Settings") . '</a></li>
+      <li><a class="dropdown-item" href="' . $router->generate('logout') . '">' . _("Logout") . '</a></li>
     </ul>
   </div>';
   }

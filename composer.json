@@ -1,21 +1,17 @@
 {
-"name": "noordotda/rewindradio",
-    "description": "rewindRadio website dependencies",
+    "name": "noordotda/rewindradio",
     "type": "project",
     "require": {
         "altorouter/altorouter": "^2.0"
-    
     },
-    "authors": [
-        {
-            "name": "Noorda Studios",
-            "email": "118871349+noordotda@users.noreply.github.com"
-        }
-    ],
     "autoload": {
         "psr-4": {
-            "App\\Classes\\": "app/classes/",
-            "App\\Helpers\\": "app/helpers/"
+            "App\\Classes\\": "app/classes",
+            "App\\Helpers\\": "app/helpers"
         }
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.21",
+        "rector/rector": "*"
     }
 }

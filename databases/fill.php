@@ -8,7 +8,22 @@ use App\Classes\StaticContent as StaticContent;
 
 require('../../config/constants.php');
 require('../../app/classes/StaticContent.php');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+use App\Classes\StaticContent as StaticContent;
+
+require('../../config/constants.php');
+require('../../app/classes/StaticContent.php');
+
+$domain = 'main';
+$locale = 'en_US';
+bindtextdomain($domain, dirname(__FILE__) . DIRECTORY_SEPARATOR . 'lang');
+textdomain($domain);
+if (!setlocale(LC_ALL, "$locale.UTF-8")) {
+    throw new \Exception("Locale $locale not supported ");
+};
 $domain = 'main';
 $locale = 'en_US';
 bindtextdomain($domain, dirname(__FILE__) . DIRECTORY_SEPARATOR . 'lang');
@@ -27,6 +42,7 @@ if (!setlocale(LC_ALL, "$locale.UTF-8")) {
     </style>
     <?= StaticContent::getStyleSheet(); ?>
     <title><?= _('rewindRadio Installation'); ?></title>
+    <title><?= _('rewindRadio Installation'); ?></title>
 </head>
 
 <body class="bg-dark">
@@ -34,6 +50,7 @@ if (!setlocale(LC_ALL, "$locale.UTF-8")) {
 
     <div class="card mx-auto mt-3 card-dark" style="width: 50rem;">
         <div class="card-header">
+            <h4><?= _("RewindRadio script Installation process"); ?></h4>
             <h4><?= _("RewindRadio script Installation process"); ?></h4>
         </div>
         <div class="card-body">
@@ -60,7 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conn = new PDO("mysql:host=$hostname", $username, $password);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo _("Connected to the database.<br>");
+        echo _(_("Connected to the database."));
+        echo "<br>";
     } catch (PDOException $e) {
         die("Error connecting to the database: " . $e->getMessage());
     }
@@ -78,6 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
         $stmt = $conn->prepare("DELETE * FROM  " . $prefix . "_posts");
         $stmt->execute();
+        echo _("Fake data deleted from the database.");
+        echo "<br>";
         echo _("Fake data deleted from the database.");
         echo "<br>";
     }
@@ -467,9 +487,12 @@ VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker-03.png', NULL, NULL, 'M
     $config .= "// Nom et langue du site web - Name & Language of the website\n";
     $config .= "define('SITE_NAME', '{$site_name}');\n";
     $config .= "define('LANG', 'fr');";
+    $config .= "define('LANG', 'fr');";
     $config .= "?>";
     file_put_contents('../../config/config.php', $config, FILE_APPEND);
 
+    echo _('Setup completed successfully!') . "</pre>
+    <a href='/'><button class='btn btn-dark'>" . _('Go to your website') . "</button></a>";
     echo _('Setup completed successfully!') . "</pre>
     <a href='/'><button class='btn btn-dark'>" . _('Go to your website') . "</button></a>";
 }

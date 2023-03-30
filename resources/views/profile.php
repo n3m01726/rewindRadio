@@ -14,7 +14,7 @@
 
 
   if ($stmt->rowCount() > 0) {
-    while ($donnees = $stmt->fetch()) {
+    while ($user = $stmt->fetch()) {
   ?>
 
       <div class="container">
@@ -24,12 +24,12 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="../uploads/profile/<?= $donnees['avatar']; ?>" alt="<?= $donnees['username']; ?>" class="rounded-circle" width="150">
+                    <img src="../uploads/profile/<?= $user['avatar']; ?>" alt="<?= $user['username']; ?>" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4><?= $donnees['nice_nickname']; ?></h4>
-                      <p class="text-secondary mb-1"><?= $donnees['job_title']; ?></p>
-                      <p class="text-secondary mb-3"><?= $donnees['bio']; ?></p>
-                      <button class="btn btn-outline-dark">Message me on discord</button>
+                      <h4><?= $user['nice_nickname']; ?></h4>
+                      <p class="text-secondary mb-1"><?= $user['job_title']; ?></p>
+                      <p class="text-secondary mb-3"><?= $user['bio']; ?></p>
+                      <button class="btn btn-outline-dark"><?= _("Message me on discord"); ?></button>
                     </div>
                   </div>
                 </div>
@@ -37,47 +37,47 @@
               <div class="card mt-3">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0"><i class="bi bi-box-arrow-up-right me-2"></i>Website</h6>
+                    <h6 class="mb-0"><i class="bi bi-box-arrow-up-right me-2"></i><?= _('Website:'); ?></h6>
                     <span class="text-secondary">https://yoursite.com</span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0"><i class="bi bi-github me-2"></i>Github</h6>
-                    <span class="text-secondary"><?= $donnees['facebook']; ?></span>
+                    <h6 class="mb-0"><i class="bi bi-github me-2"></i><?= _('Github:'); ?></h6>
+                    <span class="text-secondary"><?= $user['facebook']; ?></span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0"><i class="bi bi-twitter me-2"></i>Twitter</h6>
-                    <span class="text-secondary">@<?= $donnees['twitter']; ?></span>
+                    <h6 class="mb-0"><i class="bi bi-twitter me-2"></i><?= _('Twitter:'); ?></h6>
+                    <span class="text-secondary">@<?= $user['twitter']; ?></span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0"><i class="bi bi-instagram me-2"></i>Instagram</h6>
-                    <span class="text-secondary"><?= $donnees['instagram']; ?></span>
+                    <h6 class="mb-0"><i class="bi bi-instagram me-2"></i><?= _('Instagram:'); ?></h6>
+                    <span class="text-secondary"><?= $user['instagram']; ?></span>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0"><i class="bi bi-linkedin me-2"></i>Facebook</h6>
-                    <span class="text-secondary"><?= $donnees['linkedin']; ?></span>
+                    <h6 class="mb-0"><i class="bi bi-linkedin me-2"></i><?= _('Linkedin:'); ?></h6>
+                    <span class="text-secondary"><?= $user['linkedin']; ?></span>
                   </li>
                 </ul>
               </div>
             </div>
             <div class="col-md-8">
               <div class="card mb-3">
-                <div class="card-header">À propos de moi</div>
+                <div class="card-header"><?= _('About the DJ'); ?></div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
+                      <h6 class="mb-0"><?= _('Name'); ?></h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <?= $donnees['nice_nickname']; ?>
+                      <?= $user['nice_nickname']; ?>
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
+                      <h6 class="mb-0"><?= _('Email address'); ?></h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <?= $donnees['email']; ?>
+                      <?= $user['email']; ?>
                     </div>
                   </div>
                 </div>
@@ -86,7 +86,7 @@
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-header">
-                      <i class="bi bi-kanban me-2"></i>Articles publiés
+                      <i class="bi bi-kanban me-2"></i><?= _('Published Articles'); ?>
                     </div>
                     <div class="card-body">
                       <?php $id = $match['params']['id'];
@@ -97,25 +97,25 @@
                       $stmt = $db_conx_rdj->prepare($query);
                       $stmt->execute();
                       if ($stmt->rowCount() > 0) {
-                        while ($donnees = $stmt->fetch()) {
+                        while ($user = $stmt->fetch()) {
                       ?>
                           <small>
                             <a style="text-decoration:underline;" href="
-<?php $id = $donnees['id'];
+                          <?php $id = $user['id'];
                           global $router;
                           echo $router->generate('single_post', ['id' => $id]); ?>">
-                              <?= $donnees['title']; ?></a>
+                              <?= $user['title']; ?></a>
                           </small>
                           <div>
                             <div class="mb-4">
                               <small><?php
-                                      Texter::cutText(preg_replace('/\[(.*?)\]/', '', (string) $donnees['content']), 100) ?></small>
+                                      Texter::cutText(preg_replace('/\[(.*?)\]/', '', (string) $user['content']), 100) ?></small>
                             </div>
                           </div>
                           <hr>
                       <?php }
                       } else {
-                        echo "Aucun article.";
+                        echo _('Nothing found.');
                       } ?>
                     </div>
                   </div>
