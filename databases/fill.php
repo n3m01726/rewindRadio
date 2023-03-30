@@ -446,8 +446,8 @@ VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker-03.png', NULL, NULL, 'M
     VALUES (NEW.id);
     END";
     $conn->exec($sql);
-    echo _("Created the insert_subcategory_info trigger.<br>");
-
+    echo _("Created the insert_subcategory_info trigger.");
+    echo "<br>";
     // Create the insert_subcategory_info trigger
     $sql = "DROP TRIGGER IF EXISTS insert_event_info;
     CREATE TRIGGER insert_event_info AFTER INSERT ON events FOR EACH ROW
