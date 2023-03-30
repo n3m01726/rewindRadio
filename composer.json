@@ -17,5 +17,9 @@
             "App\\Classes\\": "app/classes/",
             "App\\Helpers\\": "app/helpers/"
         }
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.21",
+        "rector/rector": "*"
     }
 }

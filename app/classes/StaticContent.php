@@ -79,23 +79,22 @@ class StaticContent
 
   public static function noScriptInstalled()
   {
-    require '../lang/lang-fr.php';
     echo '
   <body class="bg-dark">
   <div class="text-center mt-5">
   <img src="images/logo.png" width="150px" height="150px" alt="your awesome logo">
   </div>
   <div class="card mx-auto mt-3 text-dark" style="width: 30rem;">
-  <div class="card-header"><h4>' . $lang["setupTitle"] . '</h4></div>
+  <div class="card-header"><h4>' . _('Installation de rewindRadio') . '</h4></div>
   <div class="card-body">
-  <h5>' . $lang["noInstallScript_tt_fr"] . '</h5>
-  <p>' . $lang["noInstallScript_txt_fr"] . '</p>
+  <h5>' . _('Installation non-terminée.') . '</h5>
+  <p>' . _("Désolé, il semble que vous n'ayez pas completé le processus d'installation du script. Pour continuer, veuillez suivre les instructions d'installation disponibles en cliquant sur le bouton ci-bas. Si vous rencontrez des problèmes lors de l'installation ou l'utilisation du script, n'hésitez pas à visiter <a href='https://github.com/noordotda/rewindRadio'>la section issues</a> pour obtenir de l'aide.") . ' </p>
 
-  <a class="btn btn-dark" href="/setup/index.php?language=fr" class="card-link">' . $lang["startInstallation_fr"] . '</a>
+  <a class="btn btn-dark" href="/setup/index.php?language=fr" class="card-link">' . _("Démarrer l'installation") . '</a>
   <hr>
-  <h5>' . $lang["noInstallScript_tt_en"] . '</h5>
-  <p>' . $lang["noInstallScript_txt_en"] . '</p>
-  <a class="btn btn-dark" href="/setup/index.php?language=en" class="card-link">' . $lang["startInstallation_en"] . '</a>
+  <h5>' . _('Installation not completed') . '</h5>
+  <p>' . _("Sorry, it seems that you have not complete the installation process. To proceed, please follow the installation instructions available by cliking on the button below. If you experience any issues while installing or using the script, please don't hesitate to visit <a href='https://github.com/noordotda/rewindRadio'>the Github page</a>.") . '</p>
+  <a class="btn btn-dark" href="/setup/index.php?language=en" class="card-link">' . _('Start Installation') . '</a>
   
   </div>
 </div></div></body>';

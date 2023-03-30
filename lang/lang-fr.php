@@ -1,19 +1,7 @@
 <?php
-$lang["alertBetaSetup"] = "Prendre note que ce script est en version alpha. Veuillez consulter <a href='https://github.com/noordotda/rewindRadio' target='_blank'>la page Github</a> pour rester à jour.";
-
-// Configuration & Setup
-$lang["setupTitle"] = "Installation de rewindRadio ";
-$lang["noInstallScript_tt_fr"] = "Installation non-terminée.";
-$lang["noInstallScript_txt_fr"] = "Désolé, il semble que vous n'ayez pas completé le processus d'installation du script. Pour continuer, veuillez suivre les instructions d'installation disponibles en cliquant sur le bouton ci-bas. Si vous rencontrez des problèmes lors de l'installation ou l'utilisation du script, n'hésitez pas à visiter <a href='https://github.com/noordotda/rewindRadio'>la section issues</a> pour obtenir de l'aide.";
-
-$lang["noInstallScript_tt_en"] = "Installation not completed";
-$lang["noInstallScript_txt_en"] = "Sorry, it seems that you have not complete the installation process. To proceed, please follow the installation instructions available by cliking on the button below. If you experience any issues while installing or using the script, please don't hesitate to visit <a href='https://github.com/noordotda/rewindRadio'>the Github page</a>.";
-$lang["startInstallation_fr"] = "Démarrer l'installation";
-$lang["startInstallation_en"] = "Start Installation";
 
 // Formulaire d'installation et de configuration
-$lang['intro'] = "Veuillez ajouter les informations de votre base de données ci-dessous.";
-$lang['labelHostname'] = "Nom d'hôte :";
+$lang['labelHostname'] = "";
 $lang['helpHostname'] = "Veuillez écrire votre nom d'hôte mySQL. ";
 $lang['labelUsername'] = "Nom d'utilisateur :";
 $lang['helpUsername'] = "Veuillez écrire votre nom d'utilisateur mySQL. Ne pas utiliser l'utilisateur root. Créez un nouvel utilisateur pour le script.";
@@ -28,6 +16,51 @@ $lang['helpFakeData'] = "Veuillez cocher cette case si vous souhaitez ajouter de
 $lang['labelDeteleFakeData'] = "Supprimer les données fictives";
 $lang['helpDeleteFakeData'] = "Veuillez cocher cette case si vous souhaitez supprimer les données fictives.";
 $lang['btnSubmitSetup'] = 'Installer le plugin';
+
+
+
+
+$lang['labelHostname'] = "Hostname:";
+$lang['helpHostname'] = "Please enter your MySQL hostname.";
+$lang['labelUsername'] = "Username:";
+$lang['helpUsername'] = "Please enter your MySQL username. Do not use the root user. Create a new user for the script.";
+$lang['labelPassword'] = "Password:";
+$lang['helpPassword'] = "Please enter your MySQL password.";
+$lang['labelDatabase'] = "Database:";
+$lang['helpDatabase'] = "Please enter your MySQL database name.";
+$lang['labelPrefix'] = "Table prefix:";
+$lang['helpPrefix'] = "An underscore '_' will be added to the end of your prefix, for example, prefix_tablename, to make it easier to find tables in case of bugs.";
+$lang['labelFakeData'] = "Add fake data";
+$lang['helpFakeData'] = "Please check this box if you want to add fake data.";
+$lang['labelDeteleFakeData'] = "Delete fake data";
+$lang['helpDeleteFakeData'] = "Please check this box if you want to delete fake data.";
+$lang['btnSubmitSetup'] = 'Install plugin';
+
+
+
+$lang['labelSite_name'] = "";
+$lang['helpSite_name'] = "Please enter the name of your website.";
+$lang['labelUser_name'] = "Username:";
+$lang['helpUser_name'] = "Please enter your username. It will be used to log in to the private section of the website.";
+$lang['labelPass_word'] = "Password:";
+$lang['helpPass_word'] = "Please enter your password. It will be used to log in to the private section of the website.";
+$lang['userEmailMessage'] = "Please enter your email address here. It will be used to change your password and activate your account.";
+// Error or maintenance
+$lang["404error"] = "<lostCode>I'm lost. Error 404.</lostCode>";
+
+$lang['sqlERROR'] = 'This site is under maintenance. We will be back soon. If this message persists, you can reach us via the usual social platforms or on Discord.';
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 $lang['labelSite_name'] = "Nom de votre site web";
@@ -114,8 +147,8 @@ $lang['NoPlayedSongs'] = "Pas de chansons jouées.";
 
 // Footer 01
 $lang['mobileApp'] = "Applications mobile";
-$lang['lnk_download_simpleRadio'] = "<p>Téléchargez l'application SimpleRadio pour écouter rewindRadio.</p>";
-$lang['lnk_req_simpleRadio'] = "<p>Nécessite iOS 9.0 ou version ultérieure ou Android 4.1 ou version ultérieure.</p>";
+$lang['lnk_download_simpleRadio'] = "";
+$lang['lnk_req_simpleRadio'] = "";
 
 // Footer menu 02
 $lang['lnk_helpfaq_txt'] = 'Aide et FAQ';
@@ -148,7 +181,7 @@ $lang["No_longer_online"] = "Cette émission n'est plus en ligne.";
 // modals.php
 
 // About us Modal
-$lang['aboutUsTxt'] = "rewindRadio est un projet de radio internet fictif pour la démo de plugin RadioDJ noordaStudios. Récupère les informations directement de votre base de données RadioDJ. Les dernières chansons jouées, les plus jouées ainsi que les événements ajoutés dans une catégorie spécifique.";
+$lang['aboutUsTxt'] = "";
 
 // Listen Options Modal
 $lang['listenOptions'] = "Options d'écoute";
