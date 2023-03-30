@@ -65,13 +65,13 @@ if (!setlocale(LC_ALL, "$locale.UTF-8")) {
         </td>
         </tr>
         <tr>
-            <td width="30%"><label for="database" class="form-label"><?= $lang['labelDatabase'] ?></label></td>
+            <td width="30%"><label for="database" class="form-label"><?= _("Database name"); ?></label></td>
             <td> <input type="text" id="database" name="database" class="form-control">
                 <div class="form-text"><?= _("Please enter your MySQL database name."); ?></div>
             </td>
         </tr>
         <tr>
-            <td width="30%"><label for="prefix" class="form-label"><?= $lang['labelPrefix'] ?></label></td>
+            <td width="30%"><label for="prefix" class="form-label"><?= _("Choosen Prefix"); ?></label></td>
             <td> <input type="text" id="prefix" name="prefix" class="form-control">
                 <div class="form-text"><?= _("An underscore '_' will be added to the end of your prefix, for example, prefix_tablename, to make it easier to find tables in case of bugs."); ?> </div>
             </td>
@@ -80,7 +80,7 @@ if (!setlocale(LC_ALL, "$locale.UTF-8")) {
 
         <div class="mb-4 mt-4" style="background-color:#eaeaea; padding:15px;">
             <input type="checkbox" class="form-check-input" id="addFakeData" name="addFakeData" value="true">
-            <label for="addFakeData" class="form-check-label"><?= $lang['labelFakeData'] ?></label>
+            <label for="addFakeData" class="form-check-label"><?= _("Add Fake Data?"); ?></label>
             <div class="form-text"><?= _("Please check this box if you want to add fake data."); ?></div>
         </div>
 
@@ -93,8 +93,7 @@ if (!setlocale(LC_ALL, "$locale.UTF-8")) {
         </div>
         <div class="card-body">
             <div class="container">
-                <p><?= $lang['intro']; ?></p>
-                <input type="hidden" name="language" value="<?php echo $language; ?>">
+                <input type="hidden" name="language" value="<?= $language ?>">
                 <table class="table table-borderless">
                     <tr>
                         <td width="30%"><label for="site_name" class="form-label"><?= _("Website Name"); ?></label></td>

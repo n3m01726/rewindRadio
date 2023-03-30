@@ -4,7 +4,9 @@ namespace App\Classes;
 
 use App\Helpers\DateFormater;
 use App\Helpers\Texter;
-use PDO;
+use \PDO;
+
+// require '../app/helpers/Date.php';
 
 class Songs
 {
@@ -83,7 +85,7 @@ class Songs
                 <!-- Display the content-->
                 <div class="row border-bottom border-3 bg-light p-2">
                     <div class="col-1 d-flex align-items-center mx-4">
-                        <?= DateFormater::giveMethehour($song['date_played']); ?>
+                        <?= DateFormater::giveMetheHour($song['date_played']); ?>
                     </div>
                     <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
@@ -237,7 +239,8 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
         $db_conx_rdj = $db->connect();
 
         // Select all events with the specified category and the specified day
-        $stmt = $db_conx_rdj->prepare("SELECT e.*, aei.image FROM events AS e LEFT JOIN " . PREFIX . "_events_info AS aei ON e.ID = aei.event_id WHERE catID = :catID AND day = :day AND enabled = 1;");
+        $stmt = $db_conx_rdj->prepare("SELECT * FROM events 
+        LEFT JOIN " . PREFIX . "_events_info ON events.ID = " . PREFIX . "_events_info.event_id WHERE catID = :catID AND day = :day AND enabled = 1;");
         $stmt->bindValue(':catID', $catID);
         $stmt->bindValue(':day', $day);
         $stmt->execute();

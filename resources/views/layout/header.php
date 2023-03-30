@@ -1,13 +1,11 @@
 <?php
 
 use App\Classes\Layout;
-use App\Classes\Posts;
 use App\Classes\StaticContent;
 
 require '../vendor/autoload.php';
-include('../config/constants.php');
-include(CONFIG_PATH . 'config.php');
-define('LANG', 'fr');
+require('../config/constants.php');
+require(CONFIG_PATH . 'config.php');
 ?>
 <!DOCTYPE html>
 <html lang="<?= LANG ?>">

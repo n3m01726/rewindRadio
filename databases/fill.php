@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 
 use App\Classes\StaticContent as StaticContent;
 
-
 require('../../config/constants.php');
 require('../../app/classes/StaticContent.php');
 
@@ -356,7 +355,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         VALUES(99, 'Website Events'),
         (98, 'Schedule Events');";
         $conn->exec($sql);
-        echo _("Added a category for the website events.<br>");
+        echo _("Added the categories for the website events.<br>");
 
         $sql = "INSERT INTO events ( ID, TYPE, TIME, NAME, DATE, DAY, hours, DATA, enabled, catID, smart, is_fake ) 
         VALUES(99, 0, '21:00:00', 'First Fake Event', '2023-06-18', '&6', '&20', 'Clear Playlist!', TRUE, 99, FALSE, 1 ),
@@ -446,7 +445,6 @@ VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker-03.png', NULL, NULL, 'M
     echo _("Created the insert_events_info trigger.<br>");
 
     // Append the database constants to the config.php file
-    $language = $_POST["language"];
     $config = "<?php\n";
     $config .= "// Configuration de la base de données - Database configuration\n";
     $config .= "define('PREFIX', '{$prefix}');\n";
@@ -456,12 +454,12 @@ VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker-03.png', NULL, NULL, 'M
     $config .= "define('DBPASSWORD', '{$password}');\n\n";
     $config .= "// Nom et langue du site web - Name & Language of the website\n";
     $config .= "define('SITE_NAME', '{$site_name}');\n";
-    $config .= "define('LANG', '{$language}');\n";
+    $config .= "define('LANG', 'fr');";
     $config .= "?>";
     file_put_contents('../../config/config.php', $config, FILE_APPEND);
 
-    echo _("Setup completed successfully!</pre>
-    <a href='/'><button class='btn btn-dark'>Go to your website</button></a>");
+    echo _('Setup completed successfully!') . "</pre>
+    <a href='/'><button class='btn btn-dark'>" . _('Go to your website') . "</button></a>";
 }
 ?>
     </div>

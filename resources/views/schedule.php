@@ -4,7 +4,7 @@ use App\Classes\Songs;
 ?>
 <section>
   <div class="posts-img" style="background-image: url('uploads/posts/pexels-pixabay-164425.jpg'); padding-top:15%;">
-    <h3 class="text-center post-title"><b><?= _('Horaire'); ?></b></h3>
+    <h3 class="text-center post-title"><b><?= _('Schedule'); ?></b></h3>
   </div>
   <div>
     <div class="container content">
@@ -30,25 +30,25 @@ use App\Classes\Songs;
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                           <div class="tab-pane fade" id="nav-monday" role="tabpanel" aria-labelledby="nav-monday-tab" tabindex="0">
-                            <?= Songs::getSchedule('&1', 99); ?>
+                            <?= Songs::getSchedule('&1', 98); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-tuesday" role="tabpanel" aria-labelledby="nav-tuesday-tab" tabindex="0">
-                            <?= Songs::getSchedule('&2', 99); ?>
+                            <?= Songs::getSchedule('&2', 98); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-wednesday" role="tabpanel" aria-labelledby="nav-wednesday-tab" tabindex="0">
-                            <?= Songs::getSchedule('&3', 99); ?>
+                            <?= Songs::getSchedule('&3', 98); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-thursday" role="tabpanel" aria-labelledby="nav-thursday-tab" tabindex="0">
-                            <?= Songs::getSchedule('&4', 99); ?>
+                            <?= Songs::getSchedule('&4', 98); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-friday" role="tabpanel" aria-labelledby="nav-friday-tab" tabindex="0">
-                            <?= Songs::getSchedule('&5', 99); ?>
+                            <?= Songs::getSchedule('&5', 98); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-saturday" role="tabpanel" aria-labelledby="nav-saturday-tab" tabindex="0">
-                            <?= Songs::getSchedule('&6', 99); ?>
+                            <?= Songs::getSchedule('&6', 98); ?>
                           </div>
                           <div class="tab-pane fade" id="nav-sunday" role="tabpanel" aria-labelledby="nav-sunday-tab" tabindex="0">
-                            <?= Songs::getSchedule('&0', 99); ?>
+                            <?= Songs::getSchedule('&0', 98); ?>
                           </div>
                         </div>
                       </div>
