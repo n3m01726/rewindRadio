@@ -16,17 +16,14 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 - ~~Ajouter un router PHP et/ou passer à React. :wave: devs !~~ [DONE]
 - Ajouter une section dédicaces pour que les auditeurs puisse en faire via le site web
 
-## Dépendances :
-- PHP 8.1.16
-- MariaDB 10.16
-- RadioDJ 2.0.3.9
-
 ## Technologies utilisées:
+
 - PHP 8.1.16
 - MariaDB 10.6
 - RadioDJ 2.0.3.9
 
 ### Dépendances Back-end
+
 - AltoRouter
 
 ### Dépendances Front-end:
