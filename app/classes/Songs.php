@@ -2,9 +2,11 @@
 
 namespace App\Classes;
 
-use App\Helpers\Date;
+use App\Helpers\DateFormater;
 use App\Helpers\Texter;
-use PDO;
+use \PDO;
+
+// require '../app/helpers/Date.php';
 
 class Songs
 {
@@ -17,7 +19,6 @@ class Songs
 
     public static function displayCountdown(int $song_count_limit)
     {
-        require('../lang/lang-' . LANG . '.php');
         $query = "SELECT * FROM songs WHERE song_type = 0 AND count_played > 0 AND id_subcat != 5 AND enabled = 1 ORDER BY count_played DESC LIMIT $song_count_limit";
         $database_connection = (new Database())->connect();
         $statement = $database_connection->prepare($query);
@@ -46,7 +47,7 @@ class Songs
         } else {
             echo '<div id="widget" style="padding: 20px;">
 <div class="bd-callout bd-callout-info">
-<p>' . $lang['NoPlayedSongs'] . '</p>
+<p>' . _('No songs played.') . '</p>
 </div>
 </div>';
         }
@@ -58,7 +59,6 @@ class Songs
      */
     public static function displayLastPlayedSong()
     {
-        require('../lang/lang-' . LANG . '.php');
         // Connect to the database
         $db = new Database();
         $db_conx_rdj = $db->connect();
@@ -85,7 +85,7 @@ class Songs
                 <!-- Display the content-->
                 <div class="row border-bottom border-3 bg-light p-2">
                     <div class="col-1 d-flex align-items-center mx-4">
-                        <?= Date::giveMethehour($song['date_played']); ?>
+                        <?= DateFormater::giveMetheHour($song['date_played']); ?>
                     </div>
                     <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
@@ -99,7 +99,7 @@ class Songs
             // No song was found
             echo '<div id="widget" style="padding: 20px;">';
             echo '<div class="bd-callout bd-callout-info">';
-            echo '<p>' . $lang['NoPlayedSongs'] . '</p>';
+            echo '<p>' . _('Nothing found.') . '</p>';
             echo '</div>';
             echo '</div>';
         }
@@ -111,7 +111,6 @@ class Songs
      */
     public static function displayTopRequests()
     {
-        require('../lang/lang-' . LANG . '.php');
         $query = "SELECT songs.ID, songs.artist, songs.title, songs.image, requests.username, requests.requested, 
 COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID WHERE TIMESTAMPDIFF( DAY, requests.requested, NOW() ) <= 365 AND PLAYED = 0 GROUP BY songs.ID ORDER BY requests DESC LIMIT 0,4";
 
@@ -134,8 +133,8 @@ COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID
                     <div class="col-6">
                         <div class='song_title'><?= Texter::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Texter::cutText($show_track, 40); ?></div>
-                        <div class='song_artist'>Demandée par : <?= Texter::cutText($username, 40); ?></div>
-                        <div class='song_artist'>Demandée le : <?= $song['requested']; ?></div>
+                        <div class='song_artist'><?= _("Asked by"); ?><?= Texter::cutText($username, 40); ?></div>
+                        <div class='song_artist'><?= _("Asked at"); ?> : <?= $song['requested']; ?></div>
                     </div>
                 </div>
             <?php
@@ -144,18 +143,17 @@ COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID
         } else {
             echo '<div id="widget" style="padding: 20px;">
 <div class="bd-callout bd-callout-info">
- <p>' . $lang['NoPlayedSongs'] . '</p></div>
+<p>' . _('Nothing found.') . '</p></div>
 </div>';
         }
     }
 
     public static function displayEvents(int $catID)
     {
-        require('../lang/lang-' . LANG . '.php');
         $db = new Database();
         $db_conx_rdj = $db->connect();
         $reponse = $db_conx_rdj->query("SELECT * FROM events
-LEFT JOIN " . PREFIX . "_events_info ON events.id = " . PREFIX . "_events_info.events_id
+LEFT JOIN " . PREFIX . "_events_info ON events.id = " . PREFIX . "_events_info.event_id
 WHERE catID=$catID ORDER BY events.time ASC");
         $events = $reponse->fetchAll();
         if ($reponse->rowCount() > 0) {
@@ -175,14 +173,14 @@ WHERE catID=$catID ORDER BY events.time ASC");
                             ?>
                         </div>
                     </div>
-                    <div class="col-lg-3 my-auto"><button class="btn btn-dark"><?= $lang['addToCalendar'] ?></button></div>
+                    <div class="col-lg-3 my-auto"><button class="btn btn-dark"><?= _('Add to my calendar'); ?></button></div>
                 </div>
             <?php
             }
         } else {
             echo '<div id="widget" style="padding: 20px;">
 <div class="bd-callout bd-callout-info">
- <p>Pas d\'évenements.</p></div>
+<p>' . _('Nothing found.') . '</p></div>
 </div>';
         }
         $reponse->closeCursor();
@@ -190,8 +188,6 @@ WHERE catID=$catID ORDER BY events.time ASC");
     public static function displayShows(int $parentID)
     {
         global $router;
-
-        require('../lang/lang-' . LANG . '.php');
         $query = "SELECT * FROM subcategory
 JOIN " . PREFIX . "_subcategory_info
 ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcategory.parentid=$parentID";
@@ -213,9 +209,9 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
                     </div>
 
                     <div class="d-grid gap-2 d-md-block">
-                        <a class="btn btn-dark" href="<?= $router->generate('single_show', ['id' => $id]); ?>"> <?= $lang['btn_moreInfoPodcast']; ?></a>
+                        <a class="btn btn-dark" href="<?= $router->generate('single_show', ['id' => $id]); ?>"><?= _("More informations"); ?></a>
                         <a class="btn btn-dark" href="audio/<?= strtolower(str_replace(' ', '_', (string) $show['name'])); ?>/podcasts_rss.php">
-                            <?= $lang['btn_subscPodcast']; ?></a>
+                            <?= _("Subscribe to this podcast"); ?></a>
                     </div>
                 </div>
 <?php }
@@ -223,8 +219,7 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
         } else { {
                 echo '<div id="widget" style="padding: 20px;">
 <div class="bd-callout bd-callout-info">
-<p>Pas d\'émission sur cette station, c\'est peut-etre à toi d\'en proposer une !</p>
-<a href="#" class="button-filled">Proposer une émission</a>
+<p>' . _('Nothing found.') . '</p>
  </div>
 </div>';
             }
@@ -244,7 +239,8 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
         $db_conx_rdj = $db->connect();
 
         // Select all events with the specified category and the specified day
-        $stmt = $db_conx_rdj->prepare("SELECT e.*, aei.image FROM events AS e LEFT JOIN " . PREFIX . "_events_info AS aei ON e.ID = aei.events_id WHERE catID = :catID AND day = :day AND enabled = 1;");
+        $stmt = $db_conx_rdj->prepare("SELECT * FROM events 
+        LEFT JOIN " . PREFIX . "_events_info ON events.ID = " . PREFIX . "_events_info.event_id WHERE catID = :catID AND day = :day AND enabled = 1;");
         $stmt->bindValue(':catID', $catID);
         $stmt->bindValue(':day', $day);
         $stmt->execute();
@@ -277,7 +273,7 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
  </div>';
             }
         } else {
-            echo '<div class="alert alert-info mt-3">No events found for this category and day.</div>';
+            echo '<div class="alert alert-info mt-3">' . _('Nothing found.') . '</div>';
         }
     }
 }

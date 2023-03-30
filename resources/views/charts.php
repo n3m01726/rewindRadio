@@ -6,7 +6,7 @@ use App\Classes\Database;
 <section>
     <div class="posts-img" style="background-image: url('uploads/posts/pexels-marlene-leppänen-12529340.jpg'); padding-top:15%;">
 
-        <h3 class="text-center post-title"><b>Décompte <?= SITE_NAME; ?></b></h3>
+        <h3 class="text-center post-title"><b><?= _('Charts'); ?></b></h3>
     </div>
     <div>
         <div class="container">
@@ -19,9 +19,9 @@ use App\Classes\Database;
                                 <table class='table table-light table-striped'>
                                     <thead>
                                         <tr>
-                                            <th>Position</th>
-                                            <th>Titre de la chanson</th>
-                                            <th>Artiste.s</th>
+                                            <th><?= _('Position'); ?></th>
+                                            <th><?= _('Title'); ?></th>
+                                            <th><?= _('Artists'); ?></th>
 
                                         </tr>
                                     </thead>
@@ -36,10 +36,9 @@ use App\Classes\Database;
                                             while ($donnees = $reponse->fetch()) {
                                         ?>
                                                 <tr>
-                                                    <td><?php echo $i++; ?></td>
-                                                    <td><?php echo $donnees['title']; ?></td>
-                                                    <td><?php echo $donnees['artist']; ?></td>
-
+                                                    <td><?= $i++; ?></td>
+                                                    <td><?= $donnees['title']; ?></td>
+                                                    <td><?= $donnees['artist']; ?></td>
                                                     </td>
                                                 </tr>
 

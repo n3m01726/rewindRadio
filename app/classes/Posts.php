@@ -11,7 +11,6 @@ class Posts
   public static function displayNews($limitNews)
   {
     global $router;
-    require('../lang/lang-' . LANG . '.php');
     $db = new Database;
     $db_conx_rdj = $db->connect();
     $query = "SELECT " . PREFIX . "_posts.id, " . PREFIX . "_posts.featured_image," . PREFIX . "_posts.posted_by, " . PREFIX . "_posts.date_posted, " . PREFIX . "_posts.title, " . PREFIX . "_posts.content, " . PREFIX . "_users.username, " . PREFIX . "_users.nice_nickname," . PREFIX . "_categories.name as category_name, " . PREFIX . "_tags.name as tag_name,
@@ -40,7 +39,7 @@ class Posts
 
             <div class='artist'><?= Texter::cutText(Shortcodes::removeShortcodes($row['content']), 100); ?></div>
             <div class="meta">
-              <?= $lang['posted_by']; ?><a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
+              <?= _('Posted by'); ?><a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
                 <?php if (isset($row['nice_nickname'])) {
                   echo $row['nice_nickname'];
                 } else {
@@ -60,7 +59,7 @@ class Posts
   }
   public static function displayMegaNews($limitNews)
   {
-    require('../lang/lang-' . LANG . '.php');
+
     global $router;
     $db = new Database();
     $db_conx_rdj = $db->connect();
@@ -84,7 +83,7 @@ class Posts
             <p class="card-text"><?= Texter::cutText(shortcodes::removeShortcodes($row['content']), 80); ?></p>
           </div>
           <div class="card-footer">
-            <?= $lang['posted_by']; ?><a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
+            <?= _('Posted by'); ?><a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
               <?php if (isset($row['nice_nickname'])) {
                 echo $row['nice_nickname'];
               } else {

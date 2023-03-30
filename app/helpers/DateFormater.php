@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-class Date
+class DateFormater
 {
     public static function convertTime($seconds)
     {
