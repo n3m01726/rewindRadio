@@ -4,26 +4,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-use App\Classes\StaticContent as StaticContent;
-
-require('../../config/constants.php');
-require('../../app/classes/StaticContent.php');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-use App\Classes\StaticContent as StaticContent;
+use App\Classes\StaticContent;
 
 require('../../config/constants.php');
 require('../../app/classes/StaticContent.php');
 
-$domain = 'main';
-$locale = 'en_US';
-bindtextdomain($domain, dirname(__FILE__) . DIRECTORY_SEPARATOR . 'lang');
-textdomain($domain);
-if (!setlocale(LC_ALL, "$locale.UTF-8")) {
-    throw new \Exception("Locale $locale not supported ");
-};
 $domain = 'main';
 $locale = 'en_US';
 bindtextdomain($domain, dirname(__FILE__) . DIRECTORY_SEPARATOR . 'lang');
