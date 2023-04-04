@@ -6,68 +6,24 @@ use App\Helpers\DateFormater;
 use App\Helpers\Texter;
 use \PDO;
 
-// require '../app/helpers/Date.php';
-
 class Songs
 {
-
-    /**
-     * Display countdown of most played songs.
-     *
-     * @param int $song_count_limit The number of songs to display.
-     */
-
-    public static function displayCountdown(int $song_count_limit)
-    {
-        $query = "SELECT * FROM songs WHERE song_type = 0 AND count_played > 0 AND id_subcat != 5 AND enabled = 1 ORDER BY count_played DESC LIMIT $song_count_limit";
-        $database_connection = (new Database())->connect();
-        $statement = $database_connection->prepare($query);
-        $statement->execute();
-
-        if ($statement->rowCount() > 0) {
-            $rank = 1;
-            while ($song = $statement->fetch()) {
-                $show_artist = Texter::replaceAccents($song['artist']);
-                $show_track = Texter::replaceAccents($song['title']);
-                $fileName = $song['image'];
-?>
-                <div class="row border-bottom border-3 bg-light p-2">
-                    <div class="col-1 d-flex align-items-center mx-4">
-                        <h4 style="color:var(--dark-text);"><?php echo $rank++; ?></h4>
-                    </div>
-                    <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
-                    <div class="col-6">
-                        <div class='song_title'><?= Texter::cutText($show_artist, 30); ?></div>
-                        <div class='song_artist'><?= Texter::cutText($show_track, 40); ?></div>
-                    </div>
-                </div>
-            <?php
-            }
-            $statement->closeCursor(); // End the query processing
-        } else {
-            echo '<div id="widget" style="padding: 20px;">
-<div class="bd-callout bd-callout-info">
-<p>' . _('No songs played.') . '</p>
-</div>
-</div>';
-        }
-    }
     /**
      * 
-     * This function displays the last played song on Rewind Radio.
+     * This function displays the songs on Rewind Radio.
      *
      */
-    public static function displayLastPlayedSong()
+    public static function displaySongs(string $type, string $orderby, int $limit)
     {
         // Connect to the database
         $db = new Database();
         $db_conx_rdj = $db->connect();
         // Select the last played song with song type 0 from the history table
-        $query = "SELECT * FROM songs WHERE song_type = ? AND count_played > 0 ORDER BY date_played DESC LIMIT ?, ?";
+        $query = "SELECT * FROM songs WHERE song_type = ? AND count_played > 0 ORDER BY $orderby DESC LIMIT ?, ?";
         $stmt = $db_conx_rdj->prepare($query);
         $stmt->bindValue(1, 0, PDO::PARAM_INT);
         $stmt->bindValue(2, 1, PDO::PARAM_INT);
-        $stmt->bindValue(3, PLAYINFO, PDO::PARAM_INT);
+        $stmt->bindValue(3, $limit, PDO::PARAM_INT);
         $stmt->execute();
         // Check if a song was found
         if ($stmt->rowCount() > 0) {
@@ -80,12 +36,17 @@ class Songs
                 $show_track = str_replace($accents, $letters, (string) $song['title']);
                 $fileName = $song['image'];
                 // Display the song
-            ?>
+?>
 
                 <!-- Display the content-->
                 <div class="row border-bottom border-3 bg-light p-2">
                     <div class="col-1 d-flex align-items-center mx-4">
-                        <?= DateFormater::giveMetheHour($song['date_played']); ?>
+                        <?php if ($type = "countdown") {
+                            echo DateFormater::giveMetheHour($song['date_played']);
+                        } elseif ($type = "lastplay") {
+                            echo DateFormater::giveMetheHour($song['date_played']);
+                        }
+                        ?>
                     </div>
                     <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
                     <div class="col-6">
@@ -104,12 +65,14 @@ class Songs
             echo '</div>';
         }
     }
+
+
     /**
      *
      * Display not already played requests.
      *
      */
-    public static function displayTopRequests()
+    public static function displayRequests()
     {
         $query = "SELECT songs.ID, songs.artist, songs.title, songs.image, requests.username, requests.requested, 
 COUNT(*) AS requests FROM songs LEFT JOIN requests ON songs.ID = requests.songID WHERE TIMESTAMPDIFF( DAY, requests.requested, NOW() ) <= 365 AND PLAYED = 0 GROUP BY songs.ID ORDER BY requests DESC LIMIT 0,4";
@@ -240,7 +203,7 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
 
         // Select all events with the specified category and the specified day
         $stmt = $db_conx_rdj->prepare("SELECT * FROM events 
-        LEFT JOIN " . PREFIX . "_events_info ON events.ID = " . PREFIX . "_events_info.event_id WHERE catID = :catID AND day = :day AND enabled = 1;");
+        LEFT JOIN z_events_info ON events.ID = z_events_info.event_id WHERE day = :day AND catID = :catID AND enabled = 1");
         $stmt->bindValue(':catID', $catID);
         $stmt->bindValue(':day', $day);
         $stmt->execute();
@@ -252,21 +215,19 @@ ON subcategory.id = " . PREFIX . "_subcategory_info.subcategory_id WHERE subcate
             // Fetch each event
             foreach ($events as $event) {
                 // Extract the event hours
-                $eventName = $event['name'];
-                $hours = $event['time'];
                 // Display the event
                 echo '
 <!-- Schedule Item -->
-<div class="col-md-6">
-<div class="timetable-item">
-    <div class="timetable-item-img">
-        <img src="/uploads/' . $event['image'] . '" alt="' . $eventName . '" width="105" height="105">
+<div class="">
+<div class="">
+    <div class="">
+        <img src="/uploads/' . $event['image'] . '" alt="' . $event['name'] . '" width="105" height="105">
     </div>
-<div class="timetable-item-main">
-    <div class="timetable-item-time">' . $hours . '</div>
-    <div class="timetable-item-title">' . $eventName . '</div>
+<div class="">
+    <div class="timetable-item-time">' . $event['time'] . '</div>
+    <div class="timetable-item-title">' . $event['name'] . '</div>
     <div class="timetable-item-desc">
-        <p>' . $event['data'] . '</p>
+        <p>' . $event['tags'] . '</p>
     </div>
 </div>
 </div>
