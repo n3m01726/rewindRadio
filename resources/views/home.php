@@ -16,17 +16,17 @@ use App\Classes\Songs as Songs;
         <div class="row mt-2">
           <h3 class="p-3"><?= _('Last played songs'); ?></h3>
         </div>
-        <?= Songs::displayLastPlayedSong() ?>
+        <?= Songs::displaySongs('lastplayed', 'date_played', 4) ?>
         <div class="row mt-2">
           <h3 class="p-3"><?= _('Top Charts'); ?></h3>
         </div>
-        <?= Songs::displayCountdown(4) ?>
+        <?= Songs::displaySongs('countdown', 'count_played', 5) ?>
       </div>
       <div class="col-lg-6">
         <div class="row mt-2">
           <h3 class="p-3"><?= _('Requests'); ?></h3>
         </div>
-        <?= Songs::displayTopRequests() ?>
+        <?= Songs::displayRequests() ?>
         <div class="row mt-2">
           <h3 class="p-3"><?= _('Shows Live'); ?></h3>
         </div>
