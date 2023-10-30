@@ -94,7 +94,7 @@ echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /et
 sudo wget -qO - https://packages.sury.org/php/apt.gpg | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/debian-php-8.gpg --import
 sudo chmod 644 /etc/apt/trusted.gpg.d/debian-php-8.gpg
 sudo apt update && sudo apt upgrade -y
-sudo apt install php8.1 -y
+sudo apt install php8.2 -y
 sudo apt install libapache2-mod-php php8.2-cli php8.2-zip php8.2-mbstring php8.2-xml php8.2-common php8.2-curl php8.2-mysql php8.2-gd php8.2-bcmath php8.2-imap php8.2-intl  -y
 
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
