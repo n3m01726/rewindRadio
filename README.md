@@ -18,7 +18,7 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 
 ## Technologies utilisées:
 
-- PHP 8.1.16
+- PHP 8.2
 - MariaDB 10.6
 - RadioDJ 2.0.3.9
 
@@ -28,6 +28,6 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 
 ### Dépendances Front-end:
 
-- Bootstrap 5.3-alpha1
+- Bootstrap 5.3.2
 - Bootstrap Icons
-- Plyr.io 3.7.3
+- Plyr.io 3.7.8
