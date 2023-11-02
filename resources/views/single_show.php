@@ -22,7 +22,7 @@ WHERE subcategory_id = " . $id . " LIMIT 1");
         <p class="lead mb-4 p-2" style="background-color: #fff;"><?php echo $show['description']; ?></p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
           <button type="button" class="btn btn-primary btn-lg px-4 gap-3"><?= _("Support this show"); ?></button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4"><?= _("Join the Discord chat"); ?></button>
+          <button type="button" class="btn btn-outline-light btn-lg px-4"><?= _("Join the Discord chat"); ?></button>
         </div>
       </div>
     </div>
@@ -78,7 +78,7 @@ WHERE id_subcat = " . $id . " ORDER BY title DESC LIMIT 20;");
         ?>
       </div>
       <div class="col-lg-4">
-        <h4 class="widgetTitle"><?= $lang['show_infos']; ?></h4>
+        <h4 class="widgetTitle"><?= _('Show Informations'); ?></h4>
         <?php
         $reponse = $db_conx_rdj->query("SELECT " . PREFIX . "_subcategory_info.*, subcategory.* 
 FROM " . PREFIX . "_subcategory_info 
@@ -92,8 +92,8 @@ WHERE subcategory_id = " . $id . " LIMIT 1");
           $timestamp = strtotime('+1 week', $timestamp);
           $next_day = date('Y-m-d', $timestamp);
           if (!empty($show['scheduleDay'])) {
-            echo _('Next episode:') . $next_day . "<br>"
-              . _("Hosted by:") . $show['curator'] . "<br>"
+            echo _('Next episode:') . " " . $next_day . "<br>"
+              . _("Hosted by:") . " " . $show['curator'] . "<br>"
               . _("All") . " " . DateFormater::convertDate($show['scheduleDay'], 'l', 'french', false, false) . "s, " . $show['scheduleTime'] .
               " " . $lang["timezone"];
           } else {
