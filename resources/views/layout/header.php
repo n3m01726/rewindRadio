@@ -1,6 +1,7 @@
 <?php
 
 use App\Classes\Layout;
+use App\Classes\Posts;
 use App\Classes\StaticContent;
 
 require '../vendor/autoload.php';
@@ -15,7 +16,7 @@ require(CONFIG_PATH . 'config.php');
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?= StaticContent::getHeader(); ?>
-  <title><?= SITE_NAME; ?> </title>
+  <title><?= SITE_NAME; ?> | <?= SLOGAN; ?> </title>
 </head>
 
 <body>
@@ -42,10 +43,10 @@ require(CONFIG_PATH . 'config.php');
               <li class="nav-item" style="margin-left: 40px;"><a class="nav-link" aria-label="menuitem" href="<?= $router->generate('home'); ?>"><?= _('Home'); ?></a></li>
               <li class="nav-item"><a class="nav-link" href="<?= $router->generate('charts'); ?>"><?= _('Charts'); ?></a></li>
               <li class="nav-item"><a class="nav-link" href="<?= $router->generate('schedule'); ?>"><?= _('Schedule'); ?></a></li>
-              <li class="nav-item"><a class="nav-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" href="#"><?= _('Magazine'); ?></a></li>
+              <li class="nav-item"><a class="nav-link" href=""><?= _('shop'); ?></a></li>
             </ul>
             <ul>
-              <a href="#" class="nav-link text-light mt-2 btn btn-dark p-2"><?= _('Open the radio') ?>
+              <a href="#" class="nav-link text-light mt-2 btn btn-danger p-2"><?= _('Open the radio') ?>
                 <i class=" m-0 bi bi-box-arrow-up-right"></i></a>
             </ul>
           </div>
@@ -57,7 +58,7 @@ require(CONFIG_PATH . 'config.php');
   <div class="collapse px-5 pt-5 pb-5 border-top border-bottom border-3 bg-light" id="collapseExample">
     <div class="menu-content">
       <div class="hstack gap-3">
-
+        <?php Posts::displayMegaNews(4) ?>
       </div>
     </div>
   </div>

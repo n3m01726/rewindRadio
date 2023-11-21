@@ -61,10 +61,9 @@ use App\Classes\StaticContent;
             </div>
         </div>
     </div>
-
 </footer>
 <div class="player">
-    <div class="comingSoon"> artist - songs goes here </div>
+    <div class="comingSoon"> <?php include('data/song_data.php'); ?></div>
     <audio class="js-player">
         <source src="<?= RADIO_URL ?>" />
     </audio>

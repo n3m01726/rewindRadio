@@ -50,8 +50,8 @@ class StaticContent
     echo '
       <script src="/lib/js/bootstrap/popper.min.js"></script>
       <script src="/lib/js/bootstrap/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vidstack@^1.0.0/cdn/vidstack.js" type="module"></script>
       <script src="/lib/js/plyr/plyr.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       <script>
       document.addEventListener("DOMContentLoaded", () => {
           const controls = ["play", "mute", "volume", "airplay", "settings"];

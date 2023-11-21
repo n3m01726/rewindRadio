@@ -31,7 +31,7 @@ class Layout
   {
     echo "<a class='navbar-brand' href='/'>";
     if (LOGO_URL) {
-      echo "<img src='" . LOGO_URL . "' width='30' height='24'>";
+      echo "<img src='" . LOGO_URL . "' width='300' height='75'></a>";
     } else {
       echo '
 <a href="/" type="button" class="btn btn-dark">
@@ -90,7 +90,7 @@ class Layout
       // Check if the XML document is not empty and the image element exists
       if (isset($xml->track->album->image[2])) {
         // If the image element exists, output the image element
-        echo "<img src='", ((string) $xml->track->album->image[2]), "' alt='cover' class='rounded-4 img-cover'>";
+        echo "<img src='", ((string) $xml->track->album->image[2]), "' alt='cover-lastfm' class='rounded-4 img-cover'>";
         // Check if the cover image file is empty and readable
         if (is_readable($imgPath) && filesize($imgPath) == 0) {
           // If the file is empty and readable, create the file and save the image
@@ -98,7 +98,7 @@ class Layout
         }
       } else {
         // If the image element does not exist, output the default "no cover" image
-        echo "<img src='/covers/no_cover.png' alt='cover' class='rounded-4 img-cover'>";
+        echo "<img src='http://rewind.radio/images/ncover.png' alt='no-cover' class='rounded-4 img-cover'>";
       }
     }
   }

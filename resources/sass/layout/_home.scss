@@ -41,3 +41,20 @@
     height: 150px;
     font-family: Karla, sans-serif;
   }
+  body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent; /* Fond initial du menu */
+    transition: background-color 0.5s ease; /* Animation de transition */
+}
+
+.fade-in {
+    background-color: rgba(255, 255, 255, 0.9); /* Fond qui apparaît en fondu au scroll */
+}
