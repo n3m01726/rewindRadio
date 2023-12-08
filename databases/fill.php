@@ -9,13 +9,6 @@ use App\Classes\StaticContent;
 require('../../config/constants.php');
 require('../../app/classes/StaticContent.php');
 
-$domain = 'main';
-$locale = 'en_US';
-bindtextdomain($domain, dirname(__FILE__) . DIRECTORY_SEPARATOR . 'lang');
-textdomain($domain);
-if (!setlocale(LC_ALL, "$locale.UTF-8")) {
-    throw new \Exception("Locale $locale not supported ");
-};
 ?>
 <html>
 
