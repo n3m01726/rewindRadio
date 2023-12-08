@@ -31,7 +31,7 @@ WHERE subcategory_id = " . $id . " LIMIT 1");
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        <h3 class="widgetTitle"><?= $lang['last_episodes']; ?></h3>
+        <h3 class="widgetTitle"><?= _("Last episodes"); ?></h3>
         <?php
         $reponse = $db_conx_rdj->query("SELECT songs.title, songs.artist, songs.associated_artists, songs.path, " . PREFIX . "_subcategory_info.image
 FROM songs

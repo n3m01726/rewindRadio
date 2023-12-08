@@ -15,23 +15,13 @@ require(CONFIG_PATH . 'config.php');
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <?= StaticContent::getHeader(); ?>
-  <title><?= SITE_NAME; ?> | <?= SLOGAN; ?> </title>
+  <?php StaticContent::getStyleSheet(); ?>
+  <title><?= SITE_NAME; ?> | <?= SITE_SLOG; ?> </title>
 </head>
 
 <body>
   <header>
-    <?php if (isset($_SESSION['user_id'])) { ?>
-      <div class="profile_header" style="background-color:#212121; height:50px;">
-        <ul style="display:flex; color:aliceblue; list-style-type: none; padding-top:10px;">
-          <li style="margin-inline: 10px;"><a href="<?= $router->generate('post-add'); ?>"><?= _('Add an article'); ?></a></li>
-          <li style="margin-inline: 10px;"><a href="<?= $router->generate('user-add'); ?>"><?= _('Add a utilisateur'); ?></a></li>
-          <li style="margin-inline: 10px;"><a href="<?= $router->generate('settings'); ?>"><?= _('Settings'); ?></a></li>
-          <li style="margin-inline: 10px;"><a href="<?= $router->generate('post-add'); ?>"><?= _('View my profile'); ?></a></li>
-        </ul>
-      </div>
-    <?php } ?>
-    <div class="bg-light">
+    <div class="bg-white">
       <nav class="navbar navbar-expand-lg mx-5">
         <div class="container-fluid">
           <?php Layout::getBrandLogo(); ?>
@@ -46,19 +36,10 @@ require(CONFIG_PATH . 'config.php');
               <li class="nav-item"><a class="nav-link" href=""><?= _('shop'); ?></a></li>
             </ul>
             <ul>
-              <a href="#" class="nav-link text-light mt-2 btn btn-danger p-2"><?= _('Open the radio') ?>
-                <i class=" m-0 bi bi-box-arrow-up-right"></i></a>
+              <a href="#" class="nav-link text-light mt-2 btn btn-danger p-2"><?= _('Open the radio') ?></a>
             </ul>
           </div>
         </div>
       </nav>
     </div>
   </header>
-
-  <div class="collapse px-5 pt-5 pb-5 border-top border-bottom border-3 bg-light" id="collapseExample">
-    <div class="menu-content">
-      <div class="hstack gap-3">
-        <?php Posts::displayMegaNews(4) ?>
-      </div>
-    </div>
-  </div>

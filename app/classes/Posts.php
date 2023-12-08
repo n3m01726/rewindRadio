@@ -37,7 +37,7 @@ class Posts
               <?= $row['clean_date']; ?> -
               <?= Texter::cutText($row['title'], 80) ?></a>
 
-            <div class='artist'><?= Texter::cutText(Shortcodes::removeShortcodes($row['content']), 100); ?></div>
+            <div class='artist'><?= strip_tags(Texter::cutText(Shortcodes::removeShortcodes($row['content']), 100)); ?></div>
             <div class="meta">
               <?= _('Posted by'); ?><a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
                 <?php if (isset($row['nice_nickname'])) {

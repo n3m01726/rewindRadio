@@ -29,7 +29,6 @@ require('../../app/classes/StaticContent.php');
     <div class="card mx-auto mt-3 card-dark" style="width: 50rem;">
         <div class="card-header">
             <h4><?= _("RewindRadio script Installation process"); ?></h4>
-            <h4><?= _("RewindRadio script Installation process"); ?></h4>
         </div>
         <div class="card-body">
             <pre>
@@ -469,9 +468,7 @@ VALUES ('$firstUsername', '$firstPassword', 'AvatarMaker-03.png', NULL, NULL, 'M
     $config .= "?>";
     file_put_contents('../../config/config.php', $config, FILE_APPEND);
 
-    echo _('Setup completed successfully!') . "</pre>
-    <a href='/'><button class='btn btn-dark'>" . _('Go to your website') . "</button></a>";
-    echo _('Setup completed successfully!') . "</pre>
+    echo _('Setup completed successfully!') . "***** N'oubliez SURTOUT pas de déplacer/supprimer le dossier setup du dossier public. **** </pre> 
     <a href='/'><button class='btn btn-dark'>" . _('Go to your website') . "</button></a>";
 }
 ?>

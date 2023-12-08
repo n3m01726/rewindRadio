@@ -33,11 +33,12 @@ use App\Classes\StaticContent;
             <div class="col-lg-3">
                 <nav>
                     <ul>
-                        <li class="title"><?= _('Our webradios') ?></li>
+                        <li class="title"><?= _('Inspirations') ?></li>
                         <li class='nav-item'><a href="<?= F3_LINK1_LINK ?>" target="_blank"><?= F3_LINK1_TXT ?></a></li>
                         <li class='nav-item'><a href="<?= F3_LINK2_LINK ?>" target="_blank"><?= F3_LINK2_TXT ?></a></li>
                         <li class='nav-item'><a href="<?= F3_LINK3_LINK ?>" target="_blank"><?= F3_LINK3_TXT ?></a></li>
                         <li class='nav-item'><a href="<?= F3_LINK4_LINK ?>" target="_blank"><?= F3_LINK4_TXT ?></a></li>
+                        <li class='nav-item'><a href="<?= F3_LINK5_LINK ?>" target="_blank"><?= F3_LINK5_TXT ?></a></li>
                     </ul>
                 </nav>
             </div>
@@ -50,7 +51,6 @@ use App\Classes\StaticContent;
                         ['instagram', INSTAGRAM],
                         ['discord', DISCORD_INVITE],
                         ['github', GITHUB],
-                        ['trello', TRELLO]
                     ];
 
                     foreach ($socialLinks as $link) {

@@ -5,18 +5,18 @@ use App\Classes\Songs as Songs;
 
 ?>
 
-<main class="pb-4 mt-4">
+<main style="margin: 120px 0 0 0;">
   <div class="container widget">
     <div class="row">
       <div class="col-lg gx-5">
         <div class="row mt-2">
           <h3 class="p-3"><?= _('news/blogs'); ?></h3>
         </div>
-        <?= Posts::displayNews(4) ?>
+        <?= Posts::displayNews(5) ?>
         <div class="row mt-2">
           <h3 class="p-3"><?= _('Last played songs'); ?></h3>
         </div>
-        <?= Songs::displaySongs('lastplayed', 'date_played', 4) ?>
+        <?= Songs::displaySongs('lastplayed', 'date_played', 5) ?>
         <div class="row mt-2">
           <h3 class="p-3"><?= _('Top Charts'); ?></h3>
         </div>

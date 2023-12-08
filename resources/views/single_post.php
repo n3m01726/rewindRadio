@@ -44,3 +44,4 @@ $post = $stmt->fetch();
 $stmt->closeCursor();
 
 ?>
+</main>
