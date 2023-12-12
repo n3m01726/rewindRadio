@@ -4,7 +4,7 @@ use App\Classes\Database;
 ?>
 
 <section>
-    <div class="posts-img" style="background-image: url('uploads/posts/pexels-marlene-leppanen-12529340.jpg'); padding-top:15%;">
+    <div class="posts-img" style="background-image: url('uploads/posts/pexels-yan-krukau-9002798'); padding-top:15%;">
 
         <h3 class="text-center post-title"><b><?= _('Charts'); ?></b></h3>
     </div>
