@@ -6,11 +6,12 @@ define('ADMIN_MODE', '0'); // défini comme 1 pour indiquer que le site est en m
 
 define('SITE_URL', 'http://bulbsandbeatz.radio'); // l'url du site, défini comme rewind.radio.
 define('ALL_MAIL', 'hello [at] bulbsandbeatz [point] radio'); //: l'adresse email de contact du site, définie comme hello [at] rewind [point] radio. Elle est définie de cette façon pour éviter un tant soit peu les robots.
-define('SITE_SLOG', 'this is an awesome internet radio'); // le slogan du site, défini comme this is an awesome internet radio.
-define('SITE_DESCRIPTION', 'This is a cool radio.'); // la description du site, définie comme This is a cool RadioDJ script..
-define('SPACER', '|'); // le caractère utilisé pour séparer les mots du titre du site, défini comme |.
+define('SITE_SLOG', 'Your daily dose of feel-good!'); // le slogan du site, défini comme this is an awesome internet radio.
+define("ABOUT_DESCRIPTION", "Welcome to On Cue, where every click brings you closer to your daily dose of feel-good! Immerse yourself in a curated musical journey that effortlessly blends the smooth rhythms of hip-hop, the soothing melodies of lo-fi, the laid-back vibes of lounge, the energetic beats of rock, and the pulsating rhythms of dance and club music. We're your go-to destination for a harmonious sonic experience that uplifts your spirits. Tune in and let On Cue be the soundtrack to your moments of joy, relaxation, and connection. Discover a world where music meets emotion, precisely on cue for your daily feel-good fix!"); // la description du site, définie comme This is a cool RadioDJ script..
 
-define('LOGO_URL', 'http://rewind.radio/images/logo.jpg'); // l'URL du logo du site, définie comme chemin/vers/logo.png.
+define('TITLE_SPACER', ':'); // le caractère utilisé pour séparer les mots du titre du site, défini comme |.
+
+define('LOGO_URL', 'http://rewind.radio/images/logo_site2.jpg'); // l'URL du logo du site, définie comme chemin/vers/logo.png.
 
 define('RADIO_URL', ''); // URL radio ex. https://yourstream.radio.ca/8787/stream
 // Social Medias

@@ -6,6 +6,8 @@ use App\Classes\Database;
 // Get the post ID from the URL
 $post_id = $match['params']['id'];
 $db = new Database;
+$parsedown = new Parsedown;
+
 $db_conx_rdj = $db->connect();
 // Prepare and execute the SELECT query
 $stmt = $db_conx_rdj->prepare("SELECT * FROM " . PREFIX . "_posts LEFT JOIN " . PREFIX . "_users ON " . PREFIX . "_posts.posted_by = " . PREFIX . "_users.id LEFT JOIN " . PREFIX . "_categories ON " . PREFIX . "_posts.category_id = " . PREFIX . "_categories.id LEFT JOIN " . PREFIX . "_tags ON " . PREFIX . "_posts.tag_id = " . PREFIX . "_tags.id WHERE " . PREFIX . "_posts.id = :post_id");
@@ -24,7 +26,8 @@ $post = $stmt->fetch();
                                                                 echo $post['nice_nickname'];
                                                             } else {
                                                                 echo $post['username'];
-                                                            } ?>, <?= $post['job_title']; ?> </span>
+                                                            } ?>,
+        <?= $post['job_title']; ?> </span>
 </div>
 <section>
     <div class="container">
@@ -32,7 +35,7 @@ $post = $stmt->fetch();
             <div class="col-10 mx-auto post-content" style="padding:20px;">
                 <?php
                 $content = $post['content'];
-                echo shortcodes::makeShortcode($content);
+                echo $parsedown->text(shortcodes::makeShortcode($content));
                 ?>
             </div>
         </div>

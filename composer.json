@@ -2,7 +2,9 @@
     "name": "noordotda/rewindradio",
     "type": "project",
     "require": {
-        "altorouter/altorouter": "^2.0"
+        "altorouter/altorouter": "^2.0",
+        "intervention/image": "^2.5",
+        "erusev/parsedown": "1.8.0-beta7"
     },
     "autoload": {
         "psr-4": {

@@ -2,9 +2,11 @@
 config.php
 public/uploads/posts/*.jpeg
 public/uploads/posts/*.jpg
+public/covers/*.*
 
 # Dev stuff 
 vendor/
 style.css.map
 toDolist.md
 adminer.php
+public/setup/phpinfo.php

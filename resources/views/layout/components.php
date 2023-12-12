@@ -1,3 +1,21 @@
+<!-- About -->
+
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-uppercase" id="exampleModalLongTitle"><?= _('About'); ?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="content-text-modal">
+          <p><?= ABOUT_DESCRIPTION; ?></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- // about -->
 <!-- Image Modal -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -89,5 +107,36 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ol class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Subheading</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Subheading</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">Subheading</div>
+          Content for list item
+        </div>
+        <span class="badge bg-primary rounded-pill">14</span>
+      </li>
+    </ol>
   </div>
 </div>

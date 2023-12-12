@@ -51,6 +51,7 @@ class StaticContent
       <script src="/lib/js/bootstrap/popper.min.js"></script>
       <script src="/lib/js/bootstrap/bootstrap.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/vidstack@^1.0.0/cdn/vidstack.js" type="module"></script>
+      <script src="/lib/js/scripts.js"></script>
       <script src="/lib/js/plyr/plyr.js"></script>
       <script>
       document.addEventListener("DOMContentLoaded", () => {

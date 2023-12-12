@@ -35,9 +35,11 @@ class Posts
 
             <a href="<?= $router->generate('single_post', ['id' => $id]); ?>" class="title text-uppercase fw-bold">
               <?= $row['clean_date']; ?> -
-              <?= Texter::cutText($row['title'], 80) ?></a>
+              <?= Texter::cutText($row['title'], 80);
+              $pattern = '/\*{1,2}|#{1,6}|[_`~]{1,2}/';
+              ?> </a>
 
-            <div class='artist'><?= strip_tags(Texter::cutText(Shortcodes::removeShortcodes($row['content']), 100)); ?></div>
+            <div class='artist'><?= preg_replace($pattern, '', Texter::cutText(Shortcodes::removeShortcodes($row['content']), 100)); ?></div>
             <div class="meta">
               <?= _('Posted by'); ?><a href="<?= $router->generate('profile', ['id' => $posted_by]); ?>">
                 <?php if (isset($row['nice_nickname'])) {

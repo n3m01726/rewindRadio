@@ -1,7 +1,6 @@
 <?php
 
 use App\Classes\Layout;
-use App\Classes\Posts;
 use App\Classes\StaticContent;
 
 require '../vendor/autoload.php';
@@ -16,7 +15,7 @@ require(CONFIG_PATH . 'config.php');
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php StaticContent::getStyleSheet(); ?>
-  <title><?= SITE_NAME; ?> | <?= SITE_SLOG; ?> </title>
+  <title><?= SITE_NAME; ?> <?= TITLE_SPACER; ?> <?= SITE_SLOG; ?> </title>
 </head>
 
 <body>
@@ -36,7 +35,7 @@ require(CONFIG_PATH . 'config.php');
               <li class="nav-item"><a class="nav-link" href=""><?= _('shop'); ?></a></li>
             </ul>
             <ul>
-              <a href="#" class="nav-link text-light mt-2 btn btn-danger p-2"><?= _('Open the radio') ?></a>
+              <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><?= _('Open the radio menu'); ?></button>
             </ul>
           </div>
         </div>

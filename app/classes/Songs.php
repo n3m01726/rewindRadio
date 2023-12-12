@@ -35,6 +35,9 @@ class Songs
                 $show_artist = str_replace($accents, $letters, (string) $song['artist']);
                 $show_track = str_replace($accents, $letters, (string) $song['title']);
                 $fileName = $song['image'];
+                $fileName2 = $song['artist'];
+                $fileName2 .= " - ";
+                $fileName2 .= $song['title'];
                 // Display the song
 ?>
 
@@ -48,7 +51,7 @@ class Songs
                         }
                         ?>
                     </div>
-                    <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName) ?></div>
+                    <div class="col-2 me-3"><?= Layout::getCoverImage($show_artist, $show_track, $fileName2) ?></div>
                     <div class="col-6">
                         <div class='song_title'><?= Texter::cutText($show_artist, 30); ?></div>
                         <div class='song_artist'><?= Texter::cutText($show_track, 40); ?></div>
@@ -65,7 +68,57 @@ class Songs
             echo '</div>';
         }
     }
+    /**
+     * 
+     * This function displays the songs on Rewind Radio.
+     *
+     */
+    public static function displaySongsText(string $type, string $orderby, int $limit)
+    {
+        // Connect to the database
+        $db = new Database();
+        $db_conx_rdj = $db->connect();
+        // Select the last played song with song type 0 from the history table
+        $query = "SELECT * FROM songs WHERE song_type = ? AND count_played > 0 ORDER BY $orderby DESC LIMIT ?, ?";
+        $stmt = $db_conx_rdj->prepare($query);
+        $stmt->bindValue(1, 0, PDO::PARAM_INT);
+        $stmt->bindValue(2, 1, PDO::PARAM_INT);
+        $stmt->bindValue(3, $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        // Check if a song was found
+        if ($stmt->rowCount() > 0) {
+            // Fetch the song
+            while ($song = $stmt->fetch()) {
+                // Replace some characters in the artist and title
+                $accents = ["&", "è"];
+                $letters = ["&amp", "e"];
+                $show_artist = str_replace($accents, $letters, (string) $song['artist']);
+                $show_track = str_replace($accents, $letters, (string) $song['title']);
+                $fileName = $song['image'];
+                $fileName2 = $song['artist'];
+                $fileName2 .= " - ";
+                $fileName2 .= $song['title'];
+                // Display the song
+            ?>
 
+                <!-- Display the content-->
+                <div class="row border-bottom border-3 bg-light p-2">
+                    <div class="col-12">
+                        <div class='song_title'><?= Texter::cutText($show_artist, 30); ?></div>
+                        <div class='song_artist'><?= Texter::cutText($show_track, 40); ?></div>
+                    </div>
+                </div>
+            <?php
+            }
+        } else {
+            // No song was found
+            echo '<div id="widget" style="padding: 20px;">';
+            echo '<div class="bd-callout bd-callout-info">';
+            echo '<p>' . _('Nothing found.') . '</p>';
+            echo '</div>';
+            echo '</div>';
+        }
+    }
 
     /**
      *
