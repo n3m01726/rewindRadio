@@ -9,5 +9,5 @@ style.css.map
 toDolist.md
 adminer.php
 phpinfo.php
-config.php
+config/config.php
 composer.lock
