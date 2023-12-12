@@ -1,5 +1,4 @@
 .DS_Store
-config.php
 public/uploads/posts/*.jpeg
 public/uploads/posts/*.jpg
 public/covers/*.*
@@ -9,4 +8,6 @@ vendor/
 style.css.map
 toDolist.md
 adminer.php
-public/setup/phpinfo.php
+phpinfo.php
+config.php
+composer.lock
