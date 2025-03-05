@@ -10,13 +10,6 @@ Ce script est conçu pour gérer le site web de votre station de radio en ligne.
 - Affichage des émissions enregistrées/podcasts pour une écoute en différé.
 - Ce script offre une interface simple et efficace pour gérer les différents aspects de votre station de radio en ligne.
 
-## Projets futurs
-
-- ~~Afficher les dédicaces des auditeurs~~ [DONE]
-- ~~Ajouter un router PHP et/ou passer à React. :wave: devs !~~ [DONE]
-- Ajouter une section dédicaces pour que les auditeurs puisse en faire via le site web
-- Régler le problème de la gestion des traductions via gettext
-
 ## Technologies utilisées:
 
 - PHP 8.2
